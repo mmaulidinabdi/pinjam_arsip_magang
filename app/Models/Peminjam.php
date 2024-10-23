@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Peminjam extends Model
 {
     //
-    protected $table = 'kategoris';
+    protected $table = 'peminjamans';
     //
     protected $guarded = ['id'];
 

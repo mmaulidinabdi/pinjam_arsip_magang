@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TransaksiPeminjaman extends Model
 {
     //
-    protected $table = 'peminjamans';
+    protected $table = 'transaksi_peminjamans';
 
     //relasi peminjaman dengan peminjam
     public function peminjam()
