@@ -14,7 +14,7 @@ return new class extends Migration
         //
         Schema::create('arsip_peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('peminjaman_id')->constrained("peminjamans")->onDelete('cascade');
+            $table->foreignId('peminjaman_id')->constrained("transaksi_peminjamans")->onDelete('cascade');
             $table->foreignId('arsip_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
