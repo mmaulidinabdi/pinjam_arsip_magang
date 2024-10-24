@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('peminjams', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->text('alamat');
-            $table->string('no_telp')->unique();
-            $table->string('ktp');
+            $table->string('nama_lengkap');
+            $table->string('email');
+            $table->text('alamat')->nullable();
+            $table->string('no_telp')->unique()->nullable();
+            $table->string('ktp')->nullable();
             $table->timestamps();
         });
     }
