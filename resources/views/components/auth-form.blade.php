@@ -12,12 +12,17 @@
                 <h1 class="text-2xl font-semibold mb-4">Login</h1>
                 <form action="/login" method="POST">
                     @csrf
-                    <!-- nama_lengkap Input -->
+                    <!-- Email Input -->
                     <div class="mb-4">
-                        <label for="nama_lengkap" class="block text-gray-600">nama_lengkap</label>
-                        <input type="text" id="nama_lengkap" name="nama_lengkap"
+                        <label for="email" class="block text-gray-600">Email</label>
+                        <input type="email" id="email" name="email"
                             class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                             autocomplete="off">
+                        @error('email')
+                            <div class="">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <!-- Password Input -->
                     <div class="mb-4">
