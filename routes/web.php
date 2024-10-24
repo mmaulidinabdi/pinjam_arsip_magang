@@ -7,6 +7,7 @@ Route::get('/', function () {
 });
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PeminjamController;
 
 // Route untuk menampilkan form login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -19,3 +20,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 
 // Route untuk memproses register
 Route::post('/register', [AuthController::class, 'register'])->name('register.process');
+
+
+// Dashboard
+Route::get('/dashboard', [PeminjamController::class, 'index']);
