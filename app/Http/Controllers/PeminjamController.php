@@ -11,4 +11,8 @@ class PeminjamController extends Controller
     public function index(){
         return view('userDashboard',['title'=>'User Dashboard']);
     }
+
+    public function userProfile(){
+        return view('userProfile',['title' => 'Profile']);
+    }
 }

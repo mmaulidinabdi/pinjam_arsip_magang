@@ -9,12 +9,12 @@
             </div>
             <!-- Right: Login Form -->
             <div class="lg:p-36 md:p-24 sm:p-16 p-8 w-full lg:w-1/2">
-                <h1 class="text-2xl font-semibold mb-4">Login</h1>
+                <h1 class="font-mono text-center text-3xl font-semibold mb-4 lg:text-left">Login</h1>
                 <form action="/login" method="POST">
                     @csrf
                     <!-- Email Input -->
                     <div class="mb-4">
-                        <label for="email" class="block text-gray-600">Email</label>
+                        <label for="email" class=" font-mono block text-gray-600">Email</label>
                         <input type="email" id="email" name="email"
                             class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                             autocomplete="off">
@@ -26,7 +26,7 @@
                     </div>
                     <!-- Password Input -->
                     <div class="mb-4">
-                        <label for="password" class="block text-gray-800">Password</label>
+                        <label for="password" class="font-mono block text-gray-800">Password</label>
                         <input type="password" id="password" name="password"
                             class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                             autocomplete="off">
@@ -34,11 +34,11 @@
                     <!-- Remember Me Checkbox -->
                     <div class="mb-4 flex items-center">
                         <input type="checkbox" id="remember" name="remember" class="text-red-500 rounded-full">
-                        <label for="remember" class="text-green-900 ml-2">Remember Me</label>
+                        <label for="remember" class=" font-mono text-green-900 ml-2">Remember Me</label>
                     </div>
                     <!-- Forgot Password Link -->
                     <div class="mb-6 text-blue-500">
-                        <a href="#" class="hover:underline">Forgot Password?</a>
+                        <a href="#" class= "font-mono hover:underline">Forgot Password?</a>
                     </div>
                     <!-- Login Button -->
                     <button type="submit"
