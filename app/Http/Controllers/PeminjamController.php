@@ -15,4 +15,12 @@ class PeminjamController extends Controller
     public function userProfile(){
         return view('userProfile',['title' => 'Profile']);
     }
+
+    public function admindashboard(){
+        return view('adminlayout/adminDashboard',['title' => 'Admin Dashboard']);
+    }
+
+    public function kelola(){
+        return view('adminlayout/kelolapeminjaman',['title' => 'kelola peminjaman']);
+    }
 }

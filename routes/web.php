@@ -27,3 +27,10 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
 Route::get('/dashboard', [PeminjamController::class, 'index'])->name('user.dashboard');
 
 Route::get('/userProfile', [PeminjamController::class, 'userProfile'])->name('user.profile');
+
+
+//admin
+//Dashboard
+Route::get('/admindashboard', [PeminjamController::class, 'admindashboard'])->name('admin.dashboard');
+
+Route::get('/kelola', [PeminjamController::class, 'kelola'])->name('kelola');
