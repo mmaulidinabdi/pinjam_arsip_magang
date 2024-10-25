@@ -24,6 +24,9 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
 
 // USER
 // Dashboard
-Route::get('/dashboard', [PeminjamController::class, 'index'])->name('user.dashboard');
+Route::get('/user/Dashboard', [PeminjamController::class, 'index'])->name('user.dashboard');
 
-Route::get('/userProfile', [PeminjamController::class, 'userProfile'])->name('user.profile');
+Route::get('/user/Profile', [PeminjamController::class, 'userProfile'])->name('user.profile');
+
+// Peminjaman
+Route::get('userPeminjaman',[PeminjamController::class, 'userPeminjaman'])->name('user.peminjaman');

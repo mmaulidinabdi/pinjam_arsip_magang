@@ -42,7 +42,7 @@
                     </div>
                     <!-- Login Button -->
                     <button type="submit"
-                        class="bg-red-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
+                        class="font-mono bg-red-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
                 </form>
                 <!-- Sign up Link -->
                 <div class="mt-6 text-green-500 text-center">
@@ -60,12 +60,12 @@
             </div>
             <!-- Right: Register Form -->
             <div class="lg:p-20 md:p-12 sm:p-8 p-4 w-full lg:w-1/2">
-                <h1 class="text-2xl font-semibold mb-4">Register</h1>
+                <h1 class="font-mono text-2xl font-semibold mb-4">Register</h1>
                 <form action="/register" method="POST">
                     @csrf
                     <!-- nama_lengkap_lengkap Input -->
                     <div class="mb-4">
-                        <label for="nama_lengkap" class="block text-gray-600">nama lengkap</label>
+                        <label for="nama_lengkap" class="font-mono block text-gray-600">Nama lengkap</label>
                         <input type="text" id="nama_lengkap" name="nama_lengkap" value="{{ old('nama_lengkap') }}"
                             class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                             autocomplete="off">
@@ -77,7 +77,7 @@
                     </div>
                     <!-- Email Input -->
                     <div class="mb-4">
-                        <label for="email" class="block text-gray-800">Email</label>
+                        <label for="email" class="font-mono block text-gray-800">Email</label>
                         <input type="email" id="email" name="email" value="{{ old('email') }}"
                             class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                             autocomplete="off">
@@ -89,7 +89,7 @@
                     </div>
                     <!-- Password Input -->
                     <div class="mb-4">
-                        <label for="password" class="block text-gray-800">Password</label>
+                        <label for="password" class="font-mono block text-gray-800">Password</label>
                         <input type="password" id="password" name="password"
                             class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                             autocomplete="off">
@@ -101,7 +101,7 @@
                     </div>
                     <!-- Confirm Password Input -->
                     <div class="mb-4">
-                        <label for="confirm_password" class="block text-gray-800">Confirm Password</label>
+                        <label for="confirm_password" class="font-mono block text-gray-800">Confirm Password</label>
                         <input type="password" id="confirm_password" name="confirm_password"
                             class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                             autocomplete="off">
@@ -111,7 +111,7 @@
                     </div>
                     <!-- Register Button -->
                     <button type="submit"
-                        class="bg-red-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Register</button>
+                        class=" font-mono bg-red-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Register</button>
                 </form>
                 <!-- Login Link -->
                 <div class="mt-6 text-green-500 text-center">
