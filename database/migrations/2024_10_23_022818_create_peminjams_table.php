@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_lengkap');
             $table->string('email');
+            $table->string('password');
             $table->text('alamat')->nullable();
             $table->string('no_telp')->unique()->nullable();
             $table->string('ktp')->nullable();
