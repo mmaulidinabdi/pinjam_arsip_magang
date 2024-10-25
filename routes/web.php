@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,8 +34,8 @@ Route::get('/userProfile', [PeminjamController::class, 'userProfile'])->name('us
 
 //admin
 //Dashboard
-Route::get('/admindashboard', [PeminjamController::class, 'admindashboard'])->name('admin.dashboard');
+Route::get('/admindashboard', [AdminController::class, 'admindashboard'])->name('admin.dashboard');
 
-Route::get('/kelola', [PeminjamController::class, 'kelola'])->name('kelola');
+Route::get('/kelola', [AdminController::class, 'kelola'])->name('kelola');
 
-Route::get('/historyadmin', [PeminjamController::class, 'historyadmin'])->name('historyadmin');
+Route::get('/historyadmin', [AdminController::class, 'historyadmin'])->name('historyadmin');
