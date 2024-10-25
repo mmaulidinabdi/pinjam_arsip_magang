@@ -23,4 +23,8 @@ class PeminjamController extends Controller
     public function kelola(){
         return view('adminlayout/kelolapeminjaman',['title' => 'kelola peminjaman']);
     }
+
+    public function historyadmin(){
+        return view('adminlayout/history',['title' => 'History peminjaman']);
+    }
 }

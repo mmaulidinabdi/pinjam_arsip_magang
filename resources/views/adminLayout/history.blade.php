@@ -4,7 +4,7 @@
 
 <div class=" font-bold">
     <h2 class="text-xl" >
-        KELOLA PEMINJAMAN
+        HISTORY PEMINJAMAN
     </h2>
     <br>
 </div>
@@ -43,11 +43,7 @@
   </svg></a>
                     </div>
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        
-                    </div>
-                </th>
+                
                 
             </tr>
         </thead>
@@ -66,16 +62,10 @@
                     menjual rumah
                 </td>
                 <td class="px-6 py-4">
-                    diproses
+                    Ditolak
                 </td>
-                <td class="px-6 py-4">
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 text-xs rounded">
-        Tindak Lanjuti
-    </button>
-    
-</td>
-
                 
+
             </tr>
             
         </tbody>
