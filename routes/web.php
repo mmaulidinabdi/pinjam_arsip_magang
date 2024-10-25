@@ -32,13 +32,13 @@ Route::get('/user/dashboard', [PeminjamController::class, 'index'])->name('user.
 Route::get('/user/Profile', [PeminjamController::class, 'userProfile'])->name('user.profile');
 
 // Peminjaman
-Route::get('userPeminjaman',[PeminjamController::class, 'userPeminjaman'])->name('user.peminjaman');
+Route::get('user/peminjaman',[PeminjamController::class, 'userPeminjaman'])->name('user.peminjaman');
 
 
 //admin
 //Dashboard
 Route::get('/admin/dashboard', [AdminController::class, 'admindashboard'])->name('admin.dashboard');
 
-Route::get('/kelola', [AdminController::class, 'kelola'])->name('kelola');
+Route::get('/admin/kelola', [AdminController::class, 'kelola'])->name('kelola');
 
-Route::get('/historyadmin', [AdminController::class, 'historyadmin'])->name('historyadmin');
+Route::get('/admin/histori', [AdminController::class, 'historyadmin'])->name('historyadmin');

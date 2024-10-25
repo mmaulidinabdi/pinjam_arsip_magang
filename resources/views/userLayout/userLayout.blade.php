@@ -80,7 +80,7 @@
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="{{ Route('user.dashboard') }}"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('user.dashboard') ? ' bg-gray-500' : 'text-white' }}">
                         <svg class="w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 22 21">
@@ -119,7 +119,7 @@
                 </li> -->
 
                 <li>
-                    <a href="{{Route('user.peminjaman')}}" class="flex items-center p-2 text-white hover:text-gray-800 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{Route('user.peminjaman')}}" class="flex items-center p-2 text-white hover:text-gray-800 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('user.peminjaman') ? ' bg-gray-500' : 'text-white' }}">
                         <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                             <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
                         </svg>
@@ -128,18 +128,17 @@
                 </li>
 
                 <li>
-                    <a href="#" class="flex items-center p-2 text-white hover:text-gray-800 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5  transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
-                        </svg>
+                    <a href="#" class="flex items-center p-2 text-white hover:text-gray-800 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('user.history') ? ' bg-gray-500' : 'text-white' }}">
+
+
                         <span class="flex-1 ms-3 whitespace-nowrap">History</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#" class="flex items-center p-2 text-white hover:text-gray-800 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5  transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
+                    <a href="{{ Route('user.profile') }}" class="flex items-center p-2 text-white hover:text-gray-800 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('user.profile') ? ' bg-gray-500' : 'text-white' }}">
+                        <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                            <path stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M10 19H5a1 1 0 0 1-1-1v-1a3 3 0 0 1 3-3h2m10 1a3 3 0 0 1-3 3m3-3a3 3 0 0 0-3-3m3 3h1m-4 3a3 3 0 0 1-3-3m3 3v1m-3-4a3 3 0 0 1 3-3m-3 3h-1m4-3v-1m-2.121 1.879-.707-.707m5.656 5.656-.707-.707m-4.242 0-.707.707m5.656-5.656-.707.707M12 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap">Setting</span>
                     </a>
@@ -165,7 +164,7 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Sign out</span>
                     </a>
                 </li>
-                
+
 
             </ul>
         </div>
