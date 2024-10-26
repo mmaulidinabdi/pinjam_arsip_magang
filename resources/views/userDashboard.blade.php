@@ -1,8 +1,9 @@
 @extends('userLayout.userLayout')
 
 @section('peminjamLayout')
-<div class="grid grid-cols-4 gap-4 grid-flow-row-dense">
-    <div class=" col-span-3  p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<div class="grid md:grid-cols-4 gap-4 grid-flow-row-dense">
+
+    <div class=" md:col-span-3  p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h2 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Selamat Datang *nama user*</h2>
         </div>
@@ -19,11 +20,11 @@
     </div>
 
     <!-- 2 -->
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">*Jumlah Arsip*</h5>
         </div>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Jumlah Arsip yang sudah didata berada di Dinas Arsip dan Perpustakaan Banjarmasin</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Jumlah Arsip yang sudah didata berada di Dinas Arsip dan Perpustakaan Banjarmasin Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam repellendus eius ullam assumenda esse vel soluta commodi dolor repudiandae asperiores.</p>
         <!-- <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Lebih Lengkap
             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -35,11 +36,11 @@
 </div>
 
 <!-- Kategori -->
-<div class=" my-4 grid grid-cols-3 gap-4">
+<div class=" my-4 grid sm:grid-cols-3  md:grid-row-3 gap-4">
 
     <!-- Kategtori section -->
     <!-- 3 -->
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Kategori 1</h5>
         </div>
@@ -52,7 +53,7 @@
         </a> -->
     </div>
     <!-- 4 -->
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Kategori 2</h5>
         </div>
@@ -65,7 +66,7 @@
         </a> -->
     </div>
 
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Kategori 2</h5>
         </div>
