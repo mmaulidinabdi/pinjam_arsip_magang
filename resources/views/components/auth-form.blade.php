@@ -1,6 +1,15 @@
 <div>
     @if ($type == 'login')
     <!-- component -->
+
+    <!-- alert registrasi berhasil -->
+    @if (session()->has('success'))
+    <div id="alert" class="absolute inset-x-0 top-0 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        <span class="font-medium">{{ session('success') }}</span>
+    </div>
+    @endif
+
+    <!-- alert login gagal -->
     @if (session()->has('loginError'))
     <div id="alert" class="absolute inset-x-0 top-0 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
         <span class="font-medium">{{ session('loginError') }}</span>
@@ -117,8 +126,9 @@
                     <input type="password" id="confirm_password" name="confirm_password"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off">
+
                     @if (session()->has('registErr'))
-                    {{ session('registErr') }}
+                    <span class="text-red-600">*{{ session('registErr') }}</span>
                     @endif
                 </div>
                 <!-- Register Button -->
@@ -135,15 +145,14 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded',function(){
+    document.addEventListener('DOMContentLoaded', function() {
+        const alert = document.getElementById('alert');
+
+        if (alert) {
+            setTimeout(() => {
+                alert.style.display = 'none'
+            }, 2000);
+        }
+    })
     const alert = document.getElementById('alert');
-
-    if(alert){
-        setTimeout(() => {
-            alert.style.display = 'none'
-        }, 2000);
-    }
-})
-const alert = document.getElementById('alert');
-
 </script>
