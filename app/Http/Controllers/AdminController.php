@@ -18,4 +18,8 @@ class AdminController extends Controller
     public function historyadmin(){
         return view('adminlayout/history',['title' => 'History peminjaman']);
     }
+
+    public function lanjutan(){
+        return view('adminlayout/lanjutan',['title' => 'Data Peminjam']);
+    }
 }
