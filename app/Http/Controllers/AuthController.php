@@ -35,7 +35,8 @@ class AuthController extends Controller
         }
 
         if(Auth::guard('admin')->attempt($validateData)){
-            dd($request);
+            $request->session()->regenerate();
+            return redirect()->intended('/admindashboard');
         }
 
         return back()->with('loginError', 'Login gagal!');
