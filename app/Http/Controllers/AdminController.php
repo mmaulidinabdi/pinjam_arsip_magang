@@ -22,4 +22,12 @@ class AdminController extends Controller
     public function lanjutan(){
         return view('adminlayout/lanjutan',['title' => 'Data Peminjam']);
     }
+
+    public function detail(){
+        return view('adminlayout/detailhistory',['title' => 'detail Peminjam']);
+    }
+
+    public function useradmin(){
+        return view('adminlayout/user',['title' => 'user']);
+    }
 }
