@@ -46,14 +46,14 @@
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
                                 <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    Neil Sims
+                                    Admin
                                 </p>
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                    neil.sims@flowbite.com
+                                    Admin@admin.com
                                 </p>
                             </div>
                             <ul class="py-1" role="none">
-                                
+
                                 <li>
                                     <form action="/logout" method="POST">
                                         @csrf
@@ -89,41 +89,51 @@
                         <span class="ms-3">Dashboard</span>
                     </a>
                 </li>
+               
                 <li>
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base text-white hover:text-gray-800 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+
+                        <!-- Icon dengan efek hover -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="size-6 text-white group-hover:text-gray-800 dark:group-hover:text-gray-300">
                             <path
                                 d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375Z" />
                             <path fill-rule="evenodd"
                                 d="m3.087 9 .54 9.176A3 3 0 0 0 6.62 21h10.757a3 3 0 0 0 2.995-2.824L20.913 9H3.087ZM12 10.5a.75.75 0 0 1 .75.75v4.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-3 3a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 1 1 1.06-1.06l1.72 1.72v-4.94a.75.75 0 0 1 .75-.75Z"
                                 clip-rule="evenodd" />
                         </svg>
+
+                        <!-- Teks dengan efek hover -->
                         <span
-                            class="flex-1 ms-3 text-white hover:text-gray-800 text-left rtl:text-right whitespace-nowrap">Peminjaman</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 10 6">
+                            class="flex-1 ms-3 text-white group-hover:text-gray-800 text-left rtl:text-right whitespace-nowrap dark:group-hover:text-gray-300">Peminjaman</span>
+
+                        <!-- Ikon dropdown dengan efek hover -->
+                        <svg class="w-3 h-3 text-white group-hover:text-gray-800 dark:group-hover:text-gray-300" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
+
+                    <!-- Dropdown menu -->
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
                         <li>
                             <a href="kelola"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">Kelola
-                                Peminjaman</a>
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">
+                                Kelola Peminjaman
+                            </a>
                         </li>
                         <li>
                             <a href="histori"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">History</a>
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">
+                                History
+                            </a>
                         </li>
-
-
-
-
                     </ul>
                 </li>
+
                 <li>
                     <button type="button"
                         class="flex items-center w-full p-2 text-base text-white hover:text-gray-800 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -137,9 +147,9 @@
                         </svg>
 
                         <span
-                            class="flex-1 ms-3 text-white hover:text-gray-800 text-left rtl:text-right whitespace-nowrap">Manajemen
+                            class="flex-1 ms-3 text-white group-hover:text-gray-800 text-left rtl:text-right whitespace-nowrap">Manajemen
                             Arsip</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        <svg class="w-3 h-3 group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" d="m1 1 4 4 4-4" />
@@ -173,7 +183,7 @@
 
 
                         <span
-                            class="flex-1 ms-3 text-white hover:text-gray-800 text-left rtl:text-right whitespace-nowrap">Tambah
+                            class="flex-1 ms-3 text-white group-hover:text-gray-800 text-left rtl:text-right whitespace-nowrap">Tambah
                             Arsip</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
