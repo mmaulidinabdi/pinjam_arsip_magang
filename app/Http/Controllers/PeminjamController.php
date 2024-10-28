@@ -15,4 +15,8 @@ class PeminjamController extends Controller
     public function userProfile(){
         return view('userProfile',['title' => 'Profile']);
     }
+
+    public function userPeminjaman(){
+        return view('userPeminjaman',['title'=>'Form Peminjaman']);
+    }
 }

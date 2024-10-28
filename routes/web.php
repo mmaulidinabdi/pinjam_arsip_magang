@@ -27,15 +27,19 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // USER
 // Dashboard
-Route::get('/dashboard', [PeminjamController::class, 'index'])->name('user.dashboard');
+Route::get('/user/dashboard', [PeminjamController::class, 'index'])->name('user.dashboard');
 
-Route::get('/userProfile', [PeminjamController::class, 'userProfile'])->name('user.profile');
+Route::get('/user/Profile', [PeminjamController::class, 'userProfile'])->name('user.profile');
+
+// Peminjaman
+Route::get('user/peminjaman', [PeminjamController::class, 'userPeminjaman'])->name('user.peminjaman');
 
 
 //admin
 //Dashboard
-Route::get('/admindashboard', [AdminController::class, 'admindashboard'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [AdminController::class, 'admindashboard'])->name('admin.dashboard');
 
-Route::get('/kelola', [AdminController::class, 'kelola'])->name('kelola');
+Route::get('/admin/kelola', [AdminController::class, 'kelola'])->name('admin.kelola');
 
-Route::get('/historyadmin', [AdminController::class, 'historyadmin'])->name('historyadmin');
+Route::get('/admin/histori', [AdminController::class, 'historyadmin'])->name('admin.history');
+Route::get('/admin/lanjutan', [AdminController::class, 'lanjutan'])->name('lanjutan');

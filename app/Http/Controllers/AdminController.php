@@ -8,14 +8,18 @@ class AdminController extends Controller
 {
     //
     public function admindashboard(){
-        return view('adminlayout/adminDashboard',['title' => 'Admin Dashboard']);
+        return view('adminlayout/adminDashboard',['title' => 'Admin dashboard']);
     }
 
     public function kelola(){
-        return view('adminlayout/kelolapeminjaman',['title' => 'kelola peminjaman']);
+        return view('adminlayout/kelolapeminjaman',['title' => 'Kelola peminjaman']);
     }
 
     public function historyadmin(){
         return view('adminlayout/history',['title' => 'History peminjaman']);
+    }
+
+    public function lanjutan(){
+        return view('adminlayout/lanjutan',['title' => 'Data Peminjam']);
     }
 }
