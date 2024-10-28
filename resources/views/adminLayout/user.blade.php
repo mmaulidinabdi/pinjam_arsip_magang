@@ -211,11 +211,20 @@
     }
 
     function changeButtonText(button) {
-        button.textContent = "DI ACC";
-        button.disabled = true;  // Menonaktifkan tombol setelah di klik
-        button.classList.remove("bg-gray-700", "hover:bg-gray-900");
-        button.classList.add("bg-green-500"); // Mengubah warna tombol menjadi hijau
+    // Change the text and disable the "PERIKSA" button
+    button.textContent = "DI ACC";
+    button.disabled = true;
+    button.classList.remove("bg-gray-700", "hover:bg-gray-900");
+    button.classList.add("bg-green-500");
+
+    // Find the "ditolak" button in the same row and hide it
+    const row = button.closest("tr"); // Get the current row
+    const rejectButton = row.querySelector('button[onclick="toggleRejectionReason(this)"]'); // Find the "ditolak" button
+    if (rejectButton) {
+        rejectButton.style.display = "none"; // Hide the "ditolak" button
     }
+}
+
 
     function toggleRejectionReason(button) {
         // Find the next sibling row, which is the rejection reason row

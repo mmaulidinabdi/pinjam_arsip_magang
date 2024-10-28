@@ -19,4 +19,8 @@ class PeminjamController extends Controller
     public function userPeminjaman(){
         return view('userPeminjaman',['title'=>'Form Peminjaman']);
     }
+
+    public function editPeminjam(Request $request){
+        dd($request);
+    }
 }
