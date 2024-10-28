@@ -129,7 +129,7 @@
                                 Peminjaman</a>
                         </li>
                         <li>
-                            <a href="/admin/histori"
+                            <a href="histori"
                                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">History</a>
                         </li>
 
@@ -210,7 +210,7 @@
                 </li>
 
                 <li>
-                    <a href="k"
+                    <a href="useradmin"
                         class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"

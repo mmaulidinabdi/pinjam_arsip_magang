@@ -41,5 +41,10 @@ Route::get('/admin/dashboard', [AdminController::class, 'admindashboard'])->name
 
 Route::get('/admin/kelola', [AdminController::class, 'kelola'])->name('admin.kelola');
 
-Route::get('/admin/histori', [AdminController::class, 'historyadmin'])->name('admin.history');
+Route::get('/admin/histori', [AdminController::class, 'historyadmin'])->name('adminhistory');
+
 Route::get('/admin/lanjutan', [AdminController::class, 'lanjutan'])->name('lanjutan');
+
+Route::get('/admin/detail', [AdminController::class, 'detail'])->name('detail');
+
+Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->name('useradmin');
