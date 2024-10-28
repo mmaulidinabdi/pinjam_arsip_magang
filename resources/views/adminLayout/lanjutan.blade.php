@@ -24,7 +24,7 @@
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
                     Arsip
                 </th>
-                <td class="px-6 py-3">IMB 124 1999</td>
+                <td class="px-6 py-3">IMB-124 1999</td>
             </tr>
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
@@ -105,8 +105,6 @@
 <div id="alasanContainer" class="hidden mt-2">
             <label for="alasan" class="block text-sm font-medium text-gray-700">Alasan Penolakan</label>
             <textarea id="alasan" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200"></textarea>
-             <button type="button"
-        class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Konfirmasi</button>
 
         </div>
 
