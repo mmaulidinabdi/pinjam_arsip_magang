@@ -69,9 +69,12 @@
                                         role="menuitem">Earnings</a>
                                 </li>
                                 <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Sign out</a>
+                                    <form action="/logout" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Sign
+                                            Out </button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>
@@ -87,7 +90,7 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-800 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="/admin/dashboard"
+                    <a href="admindashboard"
                         class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -111,7 +114,6 @@
                                 d="m3.087 9 .54 9.176A3 3 0 0 0 6.62 21h10.757a3 3 0 0 0 2.995-2.824L20.913 9H3.087ZM12 10.5a.75.75 0 0 1 .75.75v4.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-3 3a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 1 1 1.06-1.06l1.72 1.72v-4.94a.75.75 0 0 1 .75-.75Z"
                                 clip-rule="evenodd" />
                         </svg>
-
                         <span
                             class="flex-1 ms-3 text-white hover:text-gray-800 text-left rtl:text-right whitespace-nowrap">Peminjaman</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -130,6 +132,8 @@
                             <a href="histori"
                                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">History</a>
                         </li>
+
+
 
 
                     </ul>
