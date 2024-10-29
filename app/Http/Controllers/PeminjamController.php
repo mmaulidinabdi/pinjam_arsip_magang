@@ -23,4 +23,8 @@ class PeminjamController extends Controller
     public function editPeminjam(Request $request){
         dd($request);
     }
+
+    public function userHistory(){
+        return view('userhistory',['title'=>'User History']);
+    }
 }

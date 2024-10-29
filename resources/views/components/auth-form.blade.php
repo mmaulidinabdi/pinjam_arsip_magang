@@ -1,27 +1,28 @@
 <div>
     @if ($type == 'login')
     <!-- Alert Success Registration -->
-    @if (session()->has('success'))
-    <div id="alert" class="absolute inset-x-0 top-0 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-        <span class="font-medium">{{ session('success') }}</span>
-    </div>
-    @endif
 
-    <!-- Alert Login Failed -->
-    @if (session()->has('loginError'))
-    <div id="alert" class="absolute inset-x-0 top-0 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-        <span class="font-medium">{{ session('loginError') }}</span>
-    </div>
-    @endif
+    <div class=" relative bg-sky-200 flex flex-col lg:flex-row justify-center items-center min-h-screen">
+        @if (session()->has('success'))
+        <div id="alert" class="absolute right-0 top-20 mr-4 mt-4 max-w-sm p-4 mb-4 text-sm text-blue-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium">{{ session('success') }}</span>
+        </div>
+        @endif
 
-    <div class="bg-sky-200 flex flex-col lg:flex-row justify-center items-center min-h-screen">
+        <!-- Alert Login Failed -->
+
         <!-- Left: Image -->
         <div class="w-full lg:w-1/2 h-48 sm:h-64 md:h-80 lg:h-screen hidden lg:block">
             <img src="https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826" alt="Placeholder Image" class="object-cover w-full h-full">
         </div>
 
         <!-- Right: Login Form -->
-        <div class="lg:p-36 md:p-24 sm:p-16 p-8 w-full lg:w-1/2">
+        <div class="relative lg:p-20 md:p-12 sm:p-8 p-4 w-full lg:w-1/2">
+            @if (session()->has('loginError'))
+            <div id="alert" class=" w-full p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert" role="alert">
+                <span class="font-medium">{{ session('loginError') }}</span>
+            </div>
+            @endif
             <h1 class="font-mono text-center text-3xl font-semibold mb-4 lg:text-left">Login</h1>
             <form action="/login" method="POST">
                 @csrf
@@ -64,8 +65,10 @@
         </div>
     </div>
     @else
+
     <!-- Register Component -->
-    <div class="bg-sky-100 flex flex-col lg:flex-row justify-center items-center min-h-screen">
+
+    <div class="bg-sky-200 flex flex-col lg:flex-row justify-center items-center min-h-screen">
         <!-- Left: Image -->
         <div class="w-full lg:w-1/2 h-48 sm:h-64 md:h-80 lg:h-screen hidden lg:block">
             <img src="https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826" alt="Placeholder Image" class="object-cover w-full h-full">

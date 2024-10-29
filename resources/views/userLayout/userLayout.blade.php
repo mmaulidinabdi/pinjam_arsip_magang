@@ -142,7 +142,7 @@
                 </li>
 
                 <li>
-                    <a href="#"
+                    <a href="{{Route('user.history')}}"
                         class="flex items-center p-2 text-white hover:text-gray-800 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('user.history') ? ' bg-gray-500' : 'text-white' }}">
                         <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512"
@@ -325,7 +325,8 @@
 
 
 
-    <script src="{{ asset('js/flowbite.min.js') }}"></script>
+    <!-- <script src="{{ asset('js/flowbite.min.js') }}"></script> karena sudah pakai vite di head -->
+
 </body>
 
 </html>

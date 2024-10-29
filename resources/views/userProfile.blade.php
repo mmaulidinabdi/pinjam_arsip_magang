@@ -61,7 +61,7 @@
             </div> -->
         <input class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" onchange="previewFile(event)">
     </div>
-    <div id="preview_container" class="flex w-full items-center justify-center w-full my-4 hidden">
+    <div id="preview_container" class="flex w-full items-center justify-center  my-4 hidden">
         <img id="preview_image" class="max-w-xs rounded-lg" alt="Image preview" />
     </div>
 
