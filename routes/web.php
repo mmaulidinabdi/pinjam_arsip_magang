@@ -40,14 +40,14 @@ Route::get('/user/history',[PeminjamController::class, 'userHistory'])->middlewa
 
 //admin
 //Dashboard
-Route::get('/admin/dashboard', [AdminController::class, 'admindashboard'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [AdminController::class, 'admindashboard'])->middleware('admin')->name('admin.dashboard');
 
-Route::get('/admin/kelola', [AdminController::class, 'kelola'])->name('admin.kelola');
+Route::get('/admin/kelola', [AdminController::class, 'kelola'])->middleware('admin')->name('admin.kelola');
 
-Route::get('/admin/histori', [AdminController::class, 'historyadmin'])->name('adminhistory');
+Route::get('/admin/histori', [AdminController::class, 'historyadmin'])->middleware('admin')->name('adminhistory');
 
-Route::get('/admin/lanjutan', [AdminController::class, 'lanjutan'])->name('lanjutan');
+Route::get('/admin/lanjutan', [AdminController::class, 'lanjutan'])->middleware('admin')->name('lanjutan');
 
-Route::get('/admin/detail', [AdminController::class, 'detail'])->name('detail');
+Route::get('/admin/detail', [AdminController::class, 'detail'])->middleware('admin')->name('detail');
 
-Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->name('useradmin');
+Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middleware('admin')->name('useradmin');
