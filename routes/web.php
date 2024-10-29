@@ -34,6 +34,9 @@ Route::get('/user/Profile', [PeminjamController::class, 'userProfile'])->middlew
 // Peminjaman
 Route::get('user/peminjaman', [PeminjamController::class, 'userPeminjaman'])->middleware('auth')->name('user.peminjaman');
 
+// history
+Route::get('/user/history',[PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
+
 
 //admin
 //Dashboard
