@@ -36,6 +36,9 @@ Route::get('/user/peminjaman', [PeminjamController::class, 'userPeminjaman'])->m
 
 Route::put('/user/{peminjam}/updateProfile', [PeminjamController::class, 'Update'])->middleware('auth')->name('user.update');
 
+// history
+Route::get('/user/history',[PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
+
 
 //admin
 //Dashboard

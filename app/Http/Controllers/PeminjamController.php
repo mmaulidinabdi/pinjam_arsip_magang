@@ -45,4 +45,8 @@ class PeminjamController extends Controller
 
         return redirect('/user/profile')->with('success', 'Data Disimpan');
     }
+
+    public function userHistory(){
+        return view('userhistory',['title'=>'User History']);
+    }
 }
