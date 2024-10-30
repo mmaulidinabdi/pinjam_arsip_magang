@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
             $table->date('tanggal_peminjaman');
             $table->string('tujuan_peminjam');
+            $table->string('dokumen_pendukung');
             $table->enum('status', ['selesai', 'belum selesai'])->default('belum selesai');
             $table->timestamps();
         });
