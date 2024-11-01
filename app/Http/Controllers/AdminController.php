@@ -41,12 +41,12 @@ class AdminController extends Controller
         ]);
     }
 
-    public function updateStatus(Request $request, $id)
+    public function terimaStatus($id)
     {
         $peminjam = Peminjam::findOrFail($id);
-        $peminjam->isVerificate = $request->isVerificate;
+        $peminjam->isVerificate = 'diterima';
         $peminjam->save();
 
-        return response()->json(['success' => true]);
+        return redirect()->back();
     }
 }

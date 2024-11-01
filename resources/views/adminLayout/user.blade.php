@@ -99,16 +99,16 @@
                         </a>
                     </td>
                     <td>
-                        @if ($peminjam->isVerificate)
-                            <button type="button" onclick="changeStatus('{{ $peminjam->id }}', true)"
+                        @if ($peminjam->isVerificate == 'diterima')
+                            <button type="button"
                                 class="min-w-[60px] whitespace-nowrap text-white bg-green-500 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                                 DI ACC
                             </button>
-                        @else
-                            <button type="button" onclick="changeStatus('{{ $peminjam->id }}', false)"
+                        @else ($peminjam->isVerificate == 'diperiksa')
+                            <a href="/admin/terima/{{ $peminjam->id }}"
                                 class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                                 PERIKSA
-                            </button>
+                            </a>
                             <button type="button" onclick="toggleRejectionReason(this)"
                                 class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                                 ditolak
@@ -181,31 +181,7 @@
                 }
             });
         }
-
-        function changeStatus(peminjamId, isVerificate) {
-            fetch(`/peminjam/update-status/${peminjamId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    },
-                    body: JSON.stringify({
-                        isVerificate: !isVerificate
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        location.reload(); // Reload to reflect the change
-                    } else {
-                        alert("Gagal mengubah status.");
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-
-
+        
         function toggleRejectionReason(button) {
             // Find the next sibling row, which is the rejection reason row
             const rejectionRow = button.closest("tr").nextElementSibling;

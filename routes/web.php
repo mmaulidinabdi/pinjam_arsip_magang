@@ -54,4 +54,4 @@ Route::get('/admin/detail', [AdminController::class, 'detail'])->middleware('adm
 
 Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middleware('admin')->name('useradmin');
 
-Route::post('/peminjam/update-status/{id}', [AdminController::class, 'updateStatus']);
+Route::get('/admin/terima/{id}', [AdminController::class, 'terimaStatus']);
