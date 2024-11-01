@@ -16,7 +16,8 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "simple-datatables": "^9.2.1",
-        "apexcharts": "^3.36.3"
+        "apexcharts": "^3.36.3",
+        "chart.js": "^4.4.6",
+        "simple-datatables": "^9.2.1"
     }
 }
