@@ -49,4 +49,16 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function tolakStatus(Request $request, Peminjam $peminjam){
+        $validateData =  $request->validate([
+            'alasan_ditolak' => 'required',
+        ]);
+
+        $validateData['isVerificate'] = 'ditolak';
+
+        Peminjam::where('id', $peminjam->id)->update($validateData);
+
+        return redirect()->back();
+    }
 }

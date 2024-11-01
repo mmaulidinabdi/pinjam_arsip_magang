@@ -55,3 +55,5 @@ Route::get('/admin/detail', [AdminController::class, 'detail'])->middleware('adm
 Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middleware('admin')->name('useradmin');
 
 Route::get('/admin/terima/{id}', [AdminController::class, 'terimaStatus']);
+
+Route::post('/admin/tolak/{peminjam}', [AdminController::class, 'tolakStatus']);

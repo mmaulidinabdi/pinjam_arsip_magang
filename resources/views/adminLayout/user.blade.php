@@ -92,9 +92,9 @@
                                 class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                                 PERIKSA
                             </a>
-                            <button type="button" onclick="openModal(this)"
+                            <button type="button" onclick="openModal({{ $peminjam->id }})"
                                 class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                                ditolak
+                                Ditolak
                             </button>
                         @else
                             <button type="button"
@@ -114,22 +114,26 @@
                         </button>
                     </td>
                 </tr>
+                <!-- Modal khusus untuk peminjam ini -->
+                <div id="myModal-{{ $peminjam->id }}" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal({{ $peminjam->id }})">&times;</span>
+                        <h3>Alasan Ditolak</h3>
+                        <form action="/admin/tolak/{{ $peminjam->id }}" method="POST">
+                            @csrf
+                            <textarea placeholder="Alasan ditolak..." name="alasan_ditolak" class="w-full p-2 border rounded-md dark:bg-gray-800 dark:text-white"></textarea>
+                            <button type="submit"
+                                class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                Konfirmasi
+                            </button>
+                        </form>
+                    </div>
+                </div>
             @endforeach
+
         </tbody>
     </table>
 
-    <!-- Modal for rejection reason -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>Alasan Ditolak</h3>
-            <textarea placeholder="Alasan ditolak..." class="w-full p-2 border rounded-md dark:bg-gray-800 dark:text-white"></textarea>
-            <button type="button"
-                class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                Konfirmasi
-            </button>
-        </div>
-    </div>
 
     <script>
         if (document.getElementById("filter-table") && typeof simpleDatatables.DataTable !== 'undefined') {
@@ -170,20 +174,23 @@
             });
         }
 
-        function openModal(button) {
-            const modal = document.getElementById("myModal");
-            modal.style.display = "block"; // Show the modal
+
+        function openModal(id) {
+            const modal = document.getElementById(`myModal-${id}`);
+            modal.style.display = "block"; // Tampilkan modal yang sesuai
         }
 
-        function closeModal() {
-            const modal = document.getElementById("myModal");
-            modal.style.display = "none"; // Hide the modal
+        function closeModal(id) {
+            const modal = document.getElementById(`myModal-${id}`);
+            modal.style.display = "none"; // Sembunyikan modal yang sesuai
         }
 
         window.onclick = function(event) {
-            const modal = document.getElementById("myModal");
-            if (event.target === modal) {
-                modal.style.display = "none"; // Hide the modal when clicking outside
+            const modals = document.getElementsByClassName("modal");
+            for (let modal of modals) {
+                if (event.target === modal) {
+                    modal.style.display = "none"; // Sembunyikan modal saat klik di luar modal
+                }
             }
         }
     </script>
