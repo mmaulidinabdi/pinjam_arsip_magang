@@ -51,10 +51,7 @@
                     <input type="checkbox" id="remember" name="remember" class="text-red-500 rounded-full">
                     <label for="remember" class="font-mono text-green-900 ml-2">Remember Me</label>
                 </div>
-                <!-- Forgot Password Link -->
-                <div class="mb-6 text-blue-500">
-                    <a href="#" class="font-mono hover:underline">Forgot Password?</a>
-                </div>
+            
                 <!-- Login Button -->
                 <button type="submit" class="font-mono bg-red-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
             </form>

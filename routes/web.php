@@ -29,10 +29,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Dashboard
 Route::get('/user/dashboard', [PeminjamController::class, 'index'])->middleware('auth')->name('user.dashboard');
 
-Route::get('/user/Profile', [PeminjamController::class, 'userProfile'])->middleware('auth')->name('user.profile');
+Route::get('/user/profile', [PeminjamController::class, 'userProfile'])->middleware('auth')->name('user.profile');
 
 // Peminjaman
-Route::get('user/peminjaman', [PeminjamController::class, 'userPeminjaman'])->middleware('auth')->name('user.peminjaman');
+Route::get('/user/peminjaman', [PeminjamController::class, 'userPeminjaman'])->middleware('auth')->name('user.peminjaman');
+
+Route::put('/user/{peminjam}/updateProfile', [PeminjamController::class, 'Update'])->middleware('auth')->name('user.update');
 
 // history
 Route::get('/user/history',[PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
@@ -51,3 +53,5 @@ Route::get('/admin/lanjutan', [AdminController::class, 'lanjutan'])->middleware(
 Route::get('/admin/detail', [AdminController::class, 'detail'])->middleware('admin')->name('detail');
 
 Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middleware('admin')->name('useradmin');
+
+Route::get('/admin/terima/{id}', [AdminController::class, 'terimaStatus']);
