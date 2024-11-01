@@ -37,7 +37,7 @@ class AdminController extends Controller
     {
         return view('adminlayout/user', [
             'title' => 'user',
-            'peminjams' => Peminjam::all(),
+            'peminjams' => Peminjam::whereIn('isVerificate', ['diterima', 'diperiksa'])->get(),
         ]);
     }
 
