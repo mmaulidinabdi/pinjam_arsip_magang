@@ -24,7 +24,7 @@
             </div>
             @endif
             <h1 class="font-mono text-center text-3xl font-semibold mb-4 lg:text-left">Login</h1>
-            <form action="/login" method="POST">
+            <form id="form" action="/login" method="POST">
                 @csrf
                 <!-- Email Input -->
                 <div class="mb-4">
@@ -46,14 +46,16 @@
                     </div>
                     @enderror
                 </div>
-                <!-- Remember Me Checkbox -->
-                <div class="mb-4 flex items-center">
-                    <input type="checkbox" id="remember" name="remember" class="text-red-500 rounded-full">
-                    <label for="remember" class="font-mono text-green-900 ml-2">Remember Me</label>
+                <!-- penyetujuan Checkbox -->
+                <div class="flex items-start mb-5">
+                    <div class="flex items-center h-5">
+                        <input id="terms" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                    </div>
+                    <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the terms and conditions</label>
                 </div>
-            
+
                 <!-- Login Button -->
-                <button type="submit" class="font-mono bg-red-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
+                <button type="submit" id="loginButton" class="font-mono bg-red-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
             </form>
             <!-- Sign up Link -->
             <div class="mt-6 text-green-500 text-center">

@@ -3,7 +3,7 @@
 @section('peminjamLayout')
 <div class="grid md:grid-cols-4 gap-4 grid-flow-row-dense">
 
-    <div class=" md:col-span-3  p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h2 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Selamat Datang Atmin</h2>
         </div>
@@ -20,9 +20,17 @@
     </div>
 
     <!-- 2 -->
+    <div class="md:col-span-2  p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div>
+            <h5 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">*Jumlah User*</h5>
+        </div>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Jumlah Pengguna yang terdaftar di website peminjaman arsip Dinas Perpusatakaan dan Arsip Kota Banjarmasin</p>
+
+    </div>
+    <!-- 3 -->
     <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">*Jumlah Arsip*</h5>
+            <h5 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">*20000*</h5>
         </div>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Jumlah Arsip yang sudah didata berada di Dinas Arsip dan Perpustakaan Banjarmasin</p>
 
@@ -79,4 +87,95 @@
         <canvas class="h-48 sm:h-64 md:h-80 lg:h-96 w-full" id="donutChart"></canvas>
     </div>
 </div>
+
+<!-- Table peminjaman yg baru diajukan hnaya 5 saja -->
+<div class="flex flex-col sm:flex-row mt-4">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                Proses peminjaman yang belum ditindak lanjuti
+            </caption>
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Nama Peminjamn
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Arsip
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Tanggal
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Apple MacBook Pro 17"
+                    </th>
+                    <td class="px-6 py-4">
+                        Silver
+                    </td>
+                    <td class="px-6 py-4">
+                        Laptop
+                    </td>
+                    <td class="px-6 py-4">
+                        $2999
+                    </td>
+                    <td>
+                        <button type="button"
+                            class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            Tindak Lanjut
+                        </button>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Apple MacBook Pro 17"
+                    </th>
+                    <td class="px-6 py-4">
+                        Silver
+                    </td>
+                    <td class="px-6 py-4">
+                        Laptop
+                    </td>
+                    <td class="px-6 py-4">
+                        $2999
+                    </td>
+                    <td>
+                        <button type="button"
+                            class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            Tindak Lanjut
+                        </button>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Apple MacBook Pro 17"
+                    </th>
+                    <td class="px-6 py-4">
+                        Silver
+                    </td>
+                    <td class="px-6 py-4">
+                        Laptop
+                    </td>
+                    <td class="px-6 py-4">
+                        $2999
+                    </td>
+                    <td>
+                        <button type="button"
+                            class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            Tindak Lanjut
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 @endsection
