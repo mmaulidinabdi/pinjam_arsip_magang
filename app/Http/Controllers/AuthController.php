@@ -54,24 +54,7 @@ class AuthController extends Controller
         return back()->with('loginError', 'Login gagal!')->withInput();
     }
 
-    public function register(Request $request)
-    {
-        $validateData = $request->validate([
-            'nama_lengkap' => 'required|max:255',
-            'email' => 'required|email|unique:peminjams',
-            'password' => 'required|min:5|max:255',
-        ]);
 
-        if ($validateData['password'] != $request['confirm_password']) {
-            return back()->with('registErr', 'password berbeda')->withInput();
-        }
-
-        $validateData['password'] = Hash::make($validateData['password']);
-
-        Peminjam::create($validateData);
-
-        return redirect('/login')->with('success', 'Registrasi berhasil !!');
-    }
 
     public function logout(Request $request)
     {

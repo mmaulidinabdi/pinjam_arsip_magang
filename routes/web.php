@@ -20,8 +20,9 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/login', [AuthController::class, 'login'])->name('login.process')->middleware('guest');;
 
 // Route untuk memproses register
-Route::post('/register', [AuthController::class, 'register'])->name('register.process')->middleware('guest');;
+Route::post('/register', [PeminjamController::class, 'create'])->name('register.process')->middleware('guest');;
 
+//Route untuk Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
@@ -57,3 +58,5 @@ Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middlewar
 Route::get('/admin/terima/{id}', [AdminController::class, 'terimaStatus']);
 
 Route::post('/admin/tolak/{peminjam}', [AdminController::class, 'tolakStatus']);
+
+Route::delete('/admin/hapusUser/{peminjam}', [PeminjamController::class, 'delete']);
