@@ -11,15 +11,15 @@ class PeminjamController extends Controller
     //
 
     public function index(){
-        return view('userDashboard',['title'=>'User Dashboard']);
+        return view('userLayout/userDashboard',['title'=>'User Dashboard']);
     }
 
     public function userProfile(){
-        return view('userProfile',['title' => 'Profile']);
+        return view('userLayout/userProfile',['title' => 'Profile']);
     }
 
     public function userPeminjaman(){
-        return view('userPeminjaman',['title'=>'Form Peminjaman']);
+        return view('userLayout/userPeminjaman',['title'=>'Form Peminjaman']);
     }
 
     public function update(Request $request, Peminjam $peminjam){
@@ -47,6 +47,6 @@ class PeminjamController extends Controller
     }
 
     public function userHistory(){
-        return view('userhistory',['title'=>'User History']);
+        return view('userLayout/userhistory',['title'=>'User History']);
     }
 }
