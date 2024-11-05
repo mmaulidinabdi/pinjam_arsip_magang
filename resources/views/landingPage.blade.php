@@ -230,20 +230,20 @@ window.addEventListener('scroll', function() {
 });
 
 // Fungsi saat tombol hamburger diklik
-// document.getElementById('hamburgerBtn').addEventListener('click', function() {
-//     const navbar = document.getElementById('navbar');
-//     const navbarSticky = document.getElementById('navbar-sticky');
+document.getElementById('hamburgerBtn').addEventListener('click', function() {
+    const navbar = document.getElementById('navbar');
+    const navbarSticky = document.getElementById('navbar-sticky');
 
-//     // Toggle navbar sticky visibility
-//     navbarSticky.classList.toggle('hidden');
+    // Toggle navbar sticky visibility
+    navbarSticky.classList.toggle('hidden');
 
-//     // Atur background navbar hanya jika navbar sticky terlihat
-//     if (!navbarSticky.classList.contains('hidden')) {
-//         navbar.classList.add('bg-black');
-//     } else {
-//         navbar.classList.remove('bg-black');
-//     }
-// });
+    // Atur background navbar hanya jika navbar sticky terlihat
+    if (!navbarSticky.classList.contains('hidden')) {
+        navbar.classList.add('bg-black');
+    } else {
+        navbar.classList.remove('bg-black');
+    }
+});
 
     </script>
 </body>
