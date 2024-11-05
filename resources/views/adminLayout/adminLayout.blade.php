@@ -89,7 +89,7 @@
                         <span class="ms-3">Dashboard</span>
                     </a>
                 </li>
-               
+
                 <li>
                     <button type="button"
                         class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"
@@ -342,8 +342,8 @@
     </div> -->
 
 
-    <div class="p-4 sm:ml-64">
-        <div class="p-4 dark:border-gray-700 mt-14">
+    <div class="p-4 sm:ml-64 ">
+        <div class="relative p-4 dark:border-gray-700 mt-14">
             @yield('peminjamLayout')
         </div>
     </div>
