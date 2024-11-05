@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('alamat')->nullable();
             $table->string('no_telp')->unique()->nullable();
             $table->string('ktp')->nullable();
-            $table->enum('isVerificate', ['diperiksa', 'diterima', 'ditolak'])->default(false);
+            $table->enum('isVerificate', ['diperiksa', 'diterima', 'ditolak'])->default('diperiksa');
             $table->string('alasan_ditolak')->nullable();
             $table->timestamps();
         });
