@@ -77,7 +77,7 @@
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="/admin/dashboard"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('admin.dashboard') ? ' bg-gray-500' : 'text-white' }}">
                         <svg class="w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 22 21">
@@ -120,14 +120,14 @@
                     <!-- Dropdown menu -->
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="kelola"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">
+                            <a href="kelola" 
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.kelola') ? ' bg-gray-500' : 'text-white' }}">
                                 Kelola Peminjaman
                             </a>
                         </li>
                         <li>
                             <a href="histori"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.history') ? ' bg-gray-500' : 'text-white' }}">
                                 History
                             </a>
                         </li>
@@ -157,8 +157,8 @@
                     </button>
                     <ul id="dropdown-kelolaarsip" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="kelola"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">IMB
+                            <a href="kelola" 
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.kelola') ? ' bg-gray-500' : 'text-white' }}">IMB
                             </a>
                         </li>
                         <li>
@@ -194,7 +194,7 @@
                     <ul id="dropdown-tambaharsip" class="hidden py-2 space-y-2">
                         <li>
                             <a href="kelola"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">IMB
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('user.kelola') ? ' bg-gray-500' : 'text-white' }}">IMB
                             </a>
                         </li>
                         <li>
@@ -207,7 +207,7 @@
 
                 <li>
                     <a href="useradmin"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('admin.useradmin') ? ' bg-gray-500' : 'text-white' }}">
                         <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 18">

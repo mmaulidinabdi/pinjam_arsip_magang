@@ -95,23 +95,30 @@
                         <option value="acc">Acc</option>
                         <option value="tolak">Tolak</option>
                     </select>
+
                 </td>
-                
+            <tr id="alasanContainer" class="hidden mt-2">
+            <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
+                    Alasan penolakan
+                </th>
+                <td class="px-6 py-3">
+                    <div>
+                        <textarea id="alasan" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200"></textarea>
+                    </div>
+                </td>
+            </tr>
+
             </tr>
         </tbody>
     </table>
 </div>
 
-<div id="alasanContainer" class="hidden mt-2">
-            <label for="alasan" class="block text-sm font-medium text-gray-700">Alasan Penolakan</label>
-            <textarea id="alasan" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200"></textarea>
 
-        </div>
 
 
 <div class="mt-4">
-<button  onclick="location.href='kelola'" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back</button>
-<button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Save</button>    
+    <button onclick="location.href='kelola'" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back</button>
+    <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Save</button>
 </div>
 
 <script>

@@ -126,10 +126,10 @@
                         $2999
                     </td>
                     <td>
-                        <button type="button"
+                        <a href="{{Route('admin.kelola')}}"
                             class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                             Tindak Lanjut
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -146,10 +146,10 @@
                         $2999
                     </td>
                     <td>
-                        <button type="button"
+                        <a href="{{Route('admin.kelola')}}"
                             class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                             Tindak Lanjut
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -166,10 +166,10 @@
                         $2999
                     </td>
                     <td>
-                        <button type="button"
+                        <a href="{{Route('admin.kelola')}}"
                             class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                             Tindak Lanjut
-                        </button>
+                        </a>
                     </td>
                 </tr>
             </tbody>
