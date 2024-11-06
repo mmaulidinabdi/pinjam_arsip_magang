@@ -60,3 +60,5 @@ Route::get('/admin/terima/{id}', [AdminController::class, 'terimaStatus']);
 Route::post('/admin/tolak/{peminjam}', [AdminController::class, 'tolakStatus']);
 
 Route::delete('/admin/hapusUser/{peminjam}', [PeminjamController::class, 'delete']);
+
+Route::put('/admin/updateUser/{peminjam}', [AdminController::class, 'updateUser']);

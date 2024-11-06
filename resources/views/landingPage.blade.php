@@ -52,10 +52,12 @@
     <div class="relative pt-[8rem] ">
 
         <!-- Background gradient bar -->
-        <div class="absolute h-[480px] w-full p-[3rem] -z-[1] top-0 left-0 bg-gradient-to-r from-black to-indigo-800"></div>
+        <div class="absolute h-[480px] w-full p-[3rem] -z-[1] top-0 left-0 bg-gradient-to-r from-black to-indigo-800">
+        </div>
 
         <!-- Main content container -->
-        <div class="z-10 bg-white max-w-[90%] md:max-w-[1144px] mt-10 mx-auto mb-10 rounded-lg p-4 md:p-12 border-2 shadow-lg">
+        <div
+            class="z-10 bg-white max-w-[90%] md:max-w-[1144px] mt-10 mx-auto mb-10 rounded-lg p-4 md:p-12 border-2 shadow-lg">
             <h1 class="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl md:text-4xl lg:text-5xl">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
                     Selamat Datang di Website Resmi
@@ -65,12 +67,25 @@
 
             <!-- Text paragraph -->
             <p class="mb-3 text-gray-500 dark:text-gray-400 text-base sm:text-lg">
-                Sumber informasi terkini dan terpercaya mengenai pengelolaan arsip serta pelayanan perpustakaan di kota kita. Kami hadir untuk membantu masyarakat Banjarmasin dalam mengakses berbagai sumber literasi dan dokumentasi, yang tidak hanya mendukung kebutuhan edukasi, namun juga menjaga jejak sejarah serta warisan budaya lokal. Melalui kolaborasi dengan berbagai instansi, kami memastikan pengelolaan arsip berjalan dengan baik dan dapat diakses secara luas. Selain itu, perpustakaan kami menawarkan koleksi buku yang terus diperbarui untuk meningkatkan minat baca dan mendukung literasi masyarakat di semua kalangan.
+                Sumber informasi terkini dan terpercaya mengenai pengelolaan arsip serta pelayanan perpustakaan di kota
+                kita. Kami hadir untuk membantu masyarakat Banjarmasin dalam mengakses berbagai sumber literasi dan
+                dokumentasi, yang tidak hanya mendukung kebutuhan edukasi, namun juga menjaga jejak sejarah serta
+                warisan budaya lokal. Melalui kolaborasi dengan berbagai instansi, kami memastikan pengelolaan arsip
+                berjalan dengan baik dan dapat diakses secara luas. Selain itu, perpustakaan kami menawarkan koleksi
+                buku yang terus diperbarui untuk meningkatkan minat baca dan mendukung literasi masyarakat di semua
+                kalangan.
             </p>
 
             <!-- Second text paragraph -->
             <p class="text-gray-500 dark:text-gray-400 text-base sm:text-lg">
-                Dengan inovasi dalam sistem manajemen informasi, kami menggunakan platform terbuka dan kolaboratif untuk melacak dan mengelola data, sehingga setiap perubahan dan pengelolaan arsip tercatat secara rapi. Pendekatan ini memungkinkan kami untuk merespon permintaan dan kebutuhan masyarakat dengan lebih cepat, serta memberikan pengalaman layanan yang efisien tanpa kerumitan. Kami berkomitmen untuk mempercepat alur kerja penting, mengurangi beban administratif, dan menyediakan jejak audit yang lengkap pada setiap perubahan. Hal ini tidak hanya meningkatkan keandalan pelayanan, tetapi juga memberikan jaminan akuntabilitas pada setiap proses yang dilakukan. Terima kasih atas kepercayaan Anda, dan kami siap mendukung perjalanan literasi dan informasi Anda di Kota Banjarmasin.
+                Dengan inovasi dalam sistem manajemen informasi, kami menggunakan platform terbuka dan kolaboratif untuk
+                melacak dan mengelola data, sehingga setiap perubahan dan pengelolaan arsip tercatat secara rapi.
+                Pendekatan ini memungkinkan kami untuk merespon permintaan dan kebutuhan masyarakat dengan lebih cepat,
+                serta memberikan pengalaman layanan yang efisien tanpa kerumitan. Kami berkomitmen untuk mempercepat
+                alur kerja penting, mengurangi beban administratif, dan menyediakan jejak audit yang lengkap pada setiap
+                perubahan. Hal ini tidak hanya meningkatkan keandalan pelayanan, tetapi juga memberikan jaminan
+                akuntabilitas pada setiap proses yang dilakukan. Terima kasih atas kepercayaan Anda, dan kami siap
+                mendukung perjalanan literasi dan informasi Anda di Kota Banjarmasin.
             </p>
         </div>
 
@@ -78,10 +93,10 @@
         <!-- card tengah -->
 
         <div class="flex flex-wrap justify-center gap-4 p-4 ">
-            <img src="{{asset('img/Logo-Anri.png')}}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo ANRI">
-            <img src="{{asset('img/Logo-BEL.png')}}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo BEL">
-            <img src="{{asset('img/Logo-Perpusnas.png')}}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo Perpusnas">
-            <img src="{{asset('img/Logo-Srikandi.png')}}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo Srikandi">
+            <img src="{{ asset('img/Logo-Anri.png') }}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo ANRI">
+            <img src="{{ asset('img/Logo-BEL.png') }}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo BEL">
+            <img src="{{ asset('img/Logo-Perpusnas.png') }}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo Perpusnas">
+            <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo Srikandi">
         </div>
 
     </div>
@@ -89,18 +104,29 @@
     <!-- card -->
     <div class="max-w-[1144px] mt-8 mx-auto mb-20 rounded-lg p-5">
         <section class="flex flex-col flex-wrap">
-            <h2 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">Article</h2>
+            <h2
+                class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
+                Article</h2>
             <ul class="w-full">
                 <li class="flex flex-col md:flex-row w-full items-start md:items-center mb-10">
                     <a href="#" class="inline-flex w-full">
                         <div class="flex flex-col md:flex-row flex-grow gap-5 md:gap-10 items-start md:items-center">
                             <div class="p-4 overflow-hidden rounded-lg shadow-lg w-full md:w-auto md:flex-shrink-0">
-                                <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg" alt="">
+                                <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg"
+                                    alt="">
                             </div>
                             <div class="flex-1">
-                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure, possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi, recusandae autem eos cumque dolore nemo dolores culpa...</h4>
+                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit,
+                                    amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad
+                                    maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure,
+                                    possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi,
+                                    recusandae autem eos cumque dolore nemo dolores culpa...</h4>
                                 <div class="mb-2 text-sky-400/75">Jumat Agustus 2024</div>
-                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum soluta aliquam culpa minus perspiciatis...</p>
+                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est
+                                    dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus
+                                    repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum
+                                    soluta aliquam culpa minus perspiciatis...</p>
                             </div>
                         </div>
                     </a>
@@ -110,12 +136,21 @@
                     <a href="#" class="inline-flex w-full">
                         <div class="flex flex-col md:flex-row flex-grow gap-5 md:gap-10 items-start md:items-center">
                             <div class="p-4 overflow-hidden rounded-lg shadow-lg w-full md:w-auto md:flex-shrink-0">
-                                <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg" alt="">
+                                <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg"
+                                    alt="">
                             </div>
                             <div class="flex-1">
-                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure, possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi, recusandae autem eos cumque dolore nemo dolores culpa...</h4>
+                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit,
+                                    amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad
+                                    maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure,
+                                    possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi,
+                                    recusandae autem eos cumque dolore nemo dolores culpa...</h4>
                                 <div class="mb-2 text-sky-400/75">Jumat Agustus 2024</div>
-                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum soluta aliquam culpa minus perspiciatis...</p>
+                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est
+                                    dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus
+                                    repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum
+                                    soluta aliquam culpa minus perspiciatis...</p>
                             </div>
                         </div>
                     </a>
@@ -125,12 +160,21 @@
                     <a href="#" class="inline-flex w-full">
                         <div class="flex flex-col md:flex-row flex-grow gap-5 md:gap-10 items-start md:items-center">
                             <div class="p-4 overflow-hidden rounded-lg shadow-lg w-full md:w-auto md:flex-shrink-0">
-                                <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg" alt="">
+                                <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg"
+                                    alt="">
                             </div>
                             <div class="flex-1">
-                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure, possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi, recusandae autem eos cumque dolore nemo dolores culpa...</h4>
+                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit,
+                                    amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad
+                                    maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure,
+                                    possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi,
+                                    recusandae autem eos cumque dolore nemo dolores culpa...</h4>
                                 <div class="mb-2 text-sky-400/75">Jumat Agustus 2024</div>
-                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum soluta aliquam culpa minus perspiciatis...</p>
+                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est
+                                    dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus
+                                    repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum
+                                    soluta aliquam culpa minus perspiciatis...</p>
                             </div>
                         </div>
                     </a>
@@ -140,12 +184,21 @@
                     <a href="#" class="inline-flex w-full">
                         <div class="flex flex-col md:flex-row flex-grow gap-5 md:gap-10 items-start md:items-center">
                             <div class="p-4 overflow-hidden rounded-lg shadow-lg w-full md:w-auto md:flex-shrink-0">
-                                <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg" alt="">
+                                <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg"
+                                    alt="">
                             </div>
                             <div class="flex-1">
-                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure, possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi, recusandae autem eos cumque dolore nemo dolores culpa...</h4>
+                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit,
+                                    amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad
+                                    maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure,
+                                    possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi,
+                                    recusandae autem eos cumque dolore nemo dolores culpa...</h4>
                                 <div class="mb-2 text-sky-400/75">Jumat Agustus 2024</div>
-                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum soluta aliquam culpa minus perspiciatis...</p>
+                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est
+                                    dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus
+                                    repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum
+                                    soluta aliquam culpa minus perspiciatis...</p>
                             </div>
                         </div>
                     </a>
@@ -207,7 +260,9 @@
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="https://dispersip.banjarmasinkota.go.id/" class="hover:underline">DISPERSIP™</a>. All Rights Reserved.
+                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a
+                        href="https://dispersip.banjarmasinkota.go.id/" class="hover:underline">DISPERSIP™</a>. All
+                    Rights Reserved.
                 </span>
             </div>
         </div>
@@ -217,11 +272,11 @@
 
 
     <script>
-       // Fungsi saat halaman di-scroll
-window.addEventListener('scroll', function() {
-    const btn = document.getElementById('btnLogin');
-    const navbar = document.getElementById('navbar');
-    const navbarSticky = document.getElementById('navbar-sticky');
+        // Fungsi saat halaman di-scroll
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('btnLogin');
+            const navbar = document.getElementById('navbar');
+            const navbarSticky = document.getElementById('navbar-sticky');
 
     if (window.scrollY > 5) {
         navbar.classList.add('bg-black', 'text-white');
