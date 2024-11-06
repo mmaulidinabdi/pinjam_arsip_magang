@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Peminjam;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -60,5 +61,21 @@ class AdminController extends Controller
         Peminjam::where('id', $peminjam->id)->update($validateData);
 
         return redirect()->back();
+    }
+
+    public function updateUser(Request $request, Peminjam $peminjam) {
+        $validateData = $request->validate( [
+            'password' => 'required|min:5|max:255'
+        ]);
+
+        if($validateData['password'] != $request['confirm_password']){
+            return back()->with('passBeda', 'Password berbeda');
+        }
+
+        $validateData['password'] = Hash::make($validateData['password']);
+
+        Peminjam::where('id', $peminjam->id)->update($validateData);
+
+        return back()->with('success', 'Password berhasil diganti');
     }
 }

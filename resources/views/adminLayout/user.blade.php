@@ -52,53 +52,59 @@
         <br>
     </div>
 
+    @if (session()->has('passBeda'))
+        <h1 class="text-red-600">*{{ session('passBeda') }}</h1>
+    @endif
+    @if (session()->has('success'))
+        <h1 class="text-green-600">*{{ session('success') }}</h1>
+    @endif
 
     <!-- delete modal -->
     <div id="popup-modal" tabindex="-1"
-    class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden flex justify-center items-center bg-gray-900 bg-opacity-50">
-    <div class="relative w-full max-w-md p-4">
-        <!-- Modal Content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Close Button -->
-            <button type="button"
-                class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                data-modal-hide="popup-modal">
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                </svg>
-                <span class="sr-only">Close modal</span>
-            </button>
-
-            <!-- Modal Body -->
-            <div class="p-5 text-center">
-                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Yakin Ingin Hapus User?</h3>
-
-                <!-- Form Delete -->
-                <form action="" method="POST" id="formDelete">
-                    @csrf
-                    @method('DELETE')
-                    <button data-modal-hide="popup-modal" type="submit"
-                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5">
-                        Yes
-                    </button>
-                </form>
-
-                <!-- Cancel Button -->
-                <button data-modal-hide="popup-modal" type="button"
-                    class="py-2.5 px-5 mt-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                    No, cancel
+        class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden flex justify-center items-center bg-gray-900 bg-opacity-50">
+        <div class="relative w-full max-w-md p-4">
+            <!-- Modal Content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Close Button -->
+                <button type="button"
+                    class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="popup-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
                 </button>
+
+                <!-- Modal Body -->
+                <div class="p-5 text-center">
+                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Yakin Ingin Hapus User?</h3>
+
+                    <!-- Form Delete -->
+                    <form action="" method="POST" id="formDelete">
+                        @csrf
+                        @method('DELETE')
+                        <button data-modal-hide="popup-modal" type="submit"
+                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5">
+                            Yes
+                        </button>
+                    </form>
+
+                    <!-- Cancel Button -->
+                    <button data-modal-hide="popup-modal" type="button"
+                        class="py-2.5 px-5 mt-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        No, cancel
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
     <table id="filter-table">
@@ -156,28 +162,24 @@
                     </td>
                     <td>
                         <!-- hapus -->
-                        <button data-modal-target="popup-modal"
-                            data-modal-toggle="popup-modal" onclick="confirmDelete({{ $peminjam->id }})"
+                        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                            onclick="confirmDelete({{ $peminjam->id }})"
                             class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                             type="button">
                             Hapus
                         </button>
 
                         <!-- edit -->
-                        <form id="updateForm" action="/admin/updateUser/{{ $peminjam->id }}">
-                            @csrf
-                            @method('PUT')
-                            <button data-modal-target="updateProductModal{{ $peminjam->id }}"
-                                data-modal-toggle="updateProductModal"
-                                class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-                                type="button">
-                                Edit
-                            </button>
-                        </form>
+                        <button data-modal-target="updateProductModal{{ $peminjam->id }}"
+                            data-modal-toggle="updateProductModal{{ $peminjam->id }}"
+                            class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                            type="button">
+                            Edit
+                        </button>
                         <!-- <button type="button"
-                                            class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                                            edit
-                                        </button> -->
+                                                                    class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                                                    edit
+                                                                </button> -->
                     </td>
                 </tr>
 
@@ -213,7 +215,7 @@
                                 </h3>
                                 <button type="button"
                                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    data-modal-toggle="updateProductModal">
+                                    data-modal-toggle="updateProductModal{{ $peminjam->id }}">
                                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -224,47 +226,52 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <div class="grid gap-4 mb-4 sm:grid-cols-2">
-                                <div>
-                                    <label for="name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                        Pengguna</label>
-                                    <input type="text" name="name" id="name"
-                                        value="{{ $peminjam->nama_lengkap }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <form action="/admin/updateUser/{{ $peminjam->id }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                                    <div>
+                                        <label for="name"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                            Pengguna</label>
+                                        <input type="text" name="nama_lengkap" id="name" disabled
+                                            value="{{ $peminjam->nama_lengkap }}"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    </div>
+                                    <div>
+                                        <label for="email"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                        <input type="text" name="email" id="email"
+                                            value="{{ $peminjam->email }}" disabled
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Ex. Apple">
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="password"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                        <input type="password" id="password" name="password"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="•••••••••" required />
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="confirm_password"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
+                                            password</label>
+                                        <input type="password" id="confirm_password" name="confirm_password"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="•••••••••" required />
+                                    </div>
                                 </div>
-                                <div>
-                                    <label for="email"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                    <input type="text" name="email" id="email" value="{{ $peminjam->email }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        placeholder="Ex. Apple">
+                                <div class="flex items-center space-x-4">
+                                    <button data-modal-hide="updateProductModal{{ $peminjam->id }}" type="submit"
+                                        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                        Simpan
+                                    </button>
+                                    <button data-modal-hide="updateProductModal{{ $peminjam->id }}" type="button"
+                                        class=" bg-red-700 py-2.5 px-5 ms-3 text-sm font-medium focus:outline-none text-white rounded-lg border border-gray-200  hover:bg-red-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No,
+                                        Batal</button>
                                 </div>
-                                <div class="mb-6">
-                                    <label for="password"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" id="password"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="•••••••••" required />
-                                </div>
-                                <div class="mb-6">
-                                    <label for="confirm_password"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
-                                        password</label>
-                                    <input type="password" id="confirm_password"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="•••••••••" required />
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <button onclick="updateUser()" data-modal-hide="updateProductModal" type="button"
-                                    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                    Update product
-                                </button>
-                                <button data-modal-hide="updateProductModal" type="button"
-                                    class=" bg-red-700 py-2.5 px-5 ms-3 text-sm font-medium focus:outline-none text-white rounded-lg border border-gray-200  hover:bg-red-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No,
-                                    cancel</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
