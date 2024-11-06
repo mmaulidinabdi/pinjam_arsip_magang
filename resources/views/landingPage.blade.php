@@ -9,39 +9,43 @@
 </head>
 
 <body>
-    <nav id="navbar" class="p-5 transition-all duration-300 ease-in-out bg-transparent fixed w-full z-20 top-0 start-0 ">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{{asset('img/dispersip_logo.png')}}" class="h-8" alt="Flowbite Logo">
-            </a>
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button type="button" id="btnLogin" class="text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Login</button>
-                <button id="hamburgerBtn" data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
-            </div>
-
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium sm:bg-red-700 md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
-                    <li>
-                        <a href="#" class="block py-2 px-3 text-white hover:text-black hover:bg-gray-100 rounded md:hover:bg-transparent md:p-0 md:hover:text-blue-700" aria-current="page">Home</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-                    </li>
-                </ul>
-            </div>
+<nav id="navbar" class="p-5 transition-all duration-300 ease-in-out bg-black md:bg-transparent fixed w-full z-20 top-0 start-0">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="{{asset('img/dispersip_logo.png')}}" class="h-8" alt="Flowbite Logo">
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" id="btnLogin" class="text-white bg-blue-500 md:bg-transparent hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+                Login
+            </button>
+            <button id="hamburgerBtn" data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
         </div>
-    </nav>
+
+        <!-- Navbar Menu -->
+        <div class="items-center mt-5 md:mt-0 justify-between hidden w-full md:flex md:w-auto md:order-1 bg-black md:bg-transparent" id="navbar-sticky">
+            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium bg-black md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
+                <li>
+                    <a href="#" class="block py-2 px-3 text-white hover:text-black hover:bg-gray-100 rounded md:hover:bg-transparent md:p-0 md:hover:text-blue-700" aria-current="page">Home</a>
+                </li>
+                <li>
+                    <a href="#" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                </li>
+                <li>
+                    <a href="#" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                </li>
+                <li>
+                    <a href="#" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 
 
 
@@ -221,29 +225,29 @@ window.addEventListener('scroll', function() {
 
     if (window.scrollY > 5) {
         navbar.classList.add('bg-black', 'text-white');
-        btn.classList.add('bg-blue-500');
-        navbar.classList.remove('bg-transparent');
+        btn.classList.add('md:bg-blue-500');
+        navbar.classList.remove('md:bg-transparent');
     } else {
-        navbar.classList.add('bg-transparent');
-        btn.classList.remove('bg-blue-500');
+        navbar.classList.add('md:bg-transparent');
+        btn.classList.remove('md:bg-blue-500');
     }
 });
 
 // Fungsi saat tombol hamburger diklik
-document.getElementById('hamburgerBtn').addEventListener('click', function() {
-    const navbar = document.getElementById('navbar');
-    const navbarSticky = document.getElementById('navbar-sticky');
+// document.getElementById('hamburgerBtn').addEventListener('click', function() {
+//     const navbar = document.getElementById('navbar');
+//     const navbarSticky = document.getElementById('navbar-sticky');
 
-    // Toggle navbar sticky visibility
-    navbarSticky.classList.toggle('hidden');
+//     // Toggle navbar sticky visibility
+//     navbarSticky.classList.toggle('hidden');
 
-    // Atur background navbar hanya jika navbar sticky terlihat
-    if (!navbarSticky.classList.contains('hidden')) {
-        navbar.classList.add('bg-black');
-    } else {
-        navbar.classList.remove('bg-black');
-    }
-});
+//     // Atur background navbar hanya jika navbar sticky terlihat
+//     if (!navbarSticky.classList.contains('hidden')) {
+//         navbar.classList.add('bg-black');
+//     } else {
+//         navbar.classList.remove('bg-black');
+//     }
+// });
 
     </script>
 </body>
