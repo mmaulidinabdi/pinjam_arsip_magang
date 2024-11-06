@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('peminjaman_id')->constrained('transaksi_peminjamans')->onDelete('cascade');
             $table->foreignId('peminjam_id')->constrained('peminjams')->onDelete('cascade');
-            $table->foreignId('arsip_id')->constrained('arsips')->onDelete('cascade');
-            // tanggal peminjama di ambil dari table peminjamans column  tanggal_peminjaman
-            // status juga di ambil dari table peminjamans
+            $table->foreignId('arsip_id')->constrained('arsips')->onDelete('cascade')->nullable();
+            $table->enum('isVerificate', ['diacc', 'ditolak']);
             $table->timestamps();
         });
     }
