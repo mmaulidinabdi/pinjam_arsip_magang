@@ -38,13 +38,7 @@
                             class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             value="{{ Auth::user()->email }}" disabled readonly>
                     </div>
-                    <div class="w-full">
-                        <label for="arsip"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arsip</label>
-                        <input type="text" id="first_name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required value="{{ old('') }}" />
-                    </div>
+                    
                     <div class="w-full">
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                             Arsip</label>
@@ -56,6 +50,33 @@
                             <option value="GA">Gaming/Console</option>
                             <option value="PH">Phones</option>
                         </select>
+                    </div>
+                    <div class="w-full">
+                        <label for="arsip"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No_arsip *</label>
+                        <input type="text" id="first_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required value="{{ old('') }}" />
+                    </div>
+                    
+                    <div class="w-full">
+                        <label for="arsip"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pada Arsip *</label>
+                        <input type="text" id="first_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required value="{{ old('') }}" />
+                    </div>
+                    
+                    <div class="w-full">
+                        <label for="arsip"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data yang diketahui pada arsip *</label>
+                        <input type="text" id="first_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required value="{{ old('') }}" />
+                    </div>
+
+                    <div class="w-full">
+                        <p>* Tidak wajib di isi</p>
                     </div>
 
                     <div class="sm:col-span-2">
