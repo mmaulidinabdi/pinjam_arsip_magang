@@ -79,4 +79,5 @@ class PeminjamController extends Controller
     public function userHistory(){
         return view('userLayout/userhistory',['title'=>'User History']);
     }
+    
 }
