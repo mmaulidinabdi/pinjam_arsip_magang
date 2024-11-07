@@ -74,3 +74,6 @@ Route::put('/admin/updateUser/{peminjam}', [AdminController::class, 'updateUser'
 Route::get('/tes', function () {
     return view('tes');
 });
+
+
+Route::get('/admin/kelolapeminjaman', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelolapeminjaman');

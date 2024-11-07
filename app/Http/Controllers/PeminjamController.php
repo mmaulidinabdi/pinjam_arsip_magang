@@ -59,6 +59,8 @@ class PeminjamController extends Controller
             $validateData['ktp'] = $request->file('ktp')->store('ktp', 'public');
         }
 
+        $validateData['isVerificate'] = 'diperiksa';
+
         Peminjam::where('id', $peminjam->id)->update($validateData);
         
         // Peminjam::create($validateData);
@@ -79,4 +81,5 @@ class PeminjamController extends Controller
     public function userHistory(){
         return view('userLayout/userhistory',['title'=>'User History']);
     }
+    
 }

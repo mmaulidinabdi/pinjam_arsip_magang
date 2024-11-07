@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Peminjam;
+use App\Models\TransaksiPeminjaman;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -51,6 +52,7 @@ class AdminController extends Controller
             'active'=>'user',
             'peminjams' => Peminjam::whereIn('isVerificate', ['diterima', 'diperiksa'])->get(),
         ]);
+        
     }
 
     public function terimaStatus($id)
@@ -123,4 +125,21 @@ class AdminController extends Controller
             'active' => 'tambahArsip'
         ]);
     }
+
+    public function kelolapeminjaman()
+    {
+        $items = TransaksiPeminjaman::with('peminjam')->orderBy('status','asc')
+        ->paginate(20);
+        
+
+
+        return view('adminlayout/kelolapeminjaman',[
+            'title' => 'kelola',
+            'items' => $items
+        ]);
+
+        
+
+    }
 }
+
