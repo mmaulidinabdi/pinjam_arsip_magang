@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PeminjamController;
 
 Route::get('/', function () {
     return view('landingPage');
 });
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PeminjamController;
+
 
 // Route untuk menampilkan form login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
@@ -38,7 +39,7 @@ Route::get('/user/peminjaman', [PeminjamController::class, 'userPeminjaman'])->m
 Route::put('/user/{peminjam}/updateProfile', [PeminjamController::class, 'Update'])->middleware('auth')->name('user.update');
 
 // history
-Route::get('/user/history',[PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
+Route::get('/user/history', [PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
 
 
 //admin
@@ -55,6 +56,12 @@ Route::get('/admin/detail', [AdminController::class, 'detail'])->middleware('adm
 
 Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middleware('admin')->name('admin.useradmin');
 
+Route::get('/admin/imb', [AdminController::class, 'manajemenImb'])->middleware('admin')->name('admin.manajemenImb');
+Route::get('/admin/suratLain', [AdminController::class, 'manajemenSuratLain'])->middleware('admin')->name('admin.manajemenSuratLain');
+Route::get('/admin/tambahImb', [AdminController::class, 'TambahImb'])->middleware('admin')->name('admin.tambahImb');
+Route::get('/admin/tambahSuratLain', [AdminController::class, 'TambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
+
+
 Route::get('/admin/terima/{id}', [AdminController::class, 'terimaStatus']);
 
 Route::post('/admin/tolak/{peminjam}', [AdminController::class, 'tolakStatus']);
@@ -62,3 +69,8 @@ Route::post('/admin/tolak/{peminjam}', [AdminController::class, 'tolakStatus']);
 Route::delete('/admin/hapusUser/{peminjam}', [PeminjamController::class, 'delete']);
 
 Route::put('/admin/updateUser/{peminjam}', [AdminController::class, 'updateUser']);
+
+
+Route::get('/tes', function () {
+    return view('tes');
+});

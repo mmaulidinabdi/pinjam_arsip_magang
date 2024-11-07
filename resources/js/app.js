@@ -2,6 +2,12 @@ import './bootstrap';
 
 import 'flowbite';
 
+import Alpine from 'alpinejs'
+ 
+window.Alpine = Alpine
+ 
+Alpine.start()
+
 // Import Simple DataTables
 
 // // Wait for the DOM to load

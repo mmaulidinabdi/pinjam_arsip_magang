@@ -281,10 +281,12 @@
     if (window.scrollY > 5) {
         navbar.classList.add('bg-black', 'text-white');
         btn.classList.add('md:bg-blue-500');
+        btn.classList.remove('md:bg-transparent');
         navbar.classList.remove('md:bg-transparent');
     } else {
         navbar.classList.add('md:bg-transparent');
         btn.classList.remove('md:bg-blue-500');
+        btn.classList.add('md:bg-transparent');
     }
 });
 

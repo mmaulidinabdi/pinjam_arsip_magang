@@ -163,5 +163,4 @@
             }, 2000);
         }
     })
-    const alert = document.getElementById('alert');
 </script>

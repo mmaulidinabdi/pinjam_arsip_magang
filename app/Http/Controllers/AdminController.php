@@ -5,23 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Peminjam;
 use Illuminate\Support\Facades\Hash;
+use PhpParser\Node\Expr\FuncCall;
 
 class AdminController extends Controller
 {
     //
     public function admindashboard()
     {
-        return view('adminlayout/adminDashboard', ['title' => 'Admin dashboard']);
+        return view('adminlayout/adminDashboard', [
+            'title' => 'Admin dashboard',
+            'active' => 'dashboard'
+        ]);
     }
 
     public function kelola()
     {
-        return view('adminlayout/kelolapeminjaman', ['title' => 'Kelola peminjaman']);
+        return view('adminlayout/kelolapeminjaman', [
+            'title' => 'Kelola peminjaman',
+            'active' => 'peminjaman'
+        ]);
     }
 
     public function historyadmin()
     {
-        return view('adminlayout/history', ['title' => 'History peminjaman']);
+        return view('adminlayout/history', [
+            'title' => 'History peminjaman',
+            'active' => 'peminjaman'
+        ]);
     }
 
     public function lanjutan()
@@ -38,6 +48,7 @@ class AdminController extends Controller
     {
         return view('adminlayout/user', [
             'title' => 'user',
+            'active'=>'user',
             'peminjams' => Peminjam::whereIn('isVerificate', ['diterima', 'diperiksa'])->get(),
         ]);
     }
@@ -51,7 +62,8 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function tolakStatus(Request $request, Peminjam $peminjam){
+    public function tolakStatus(Request $request, Peminjam $peminjam)
+    {
         $validateData =  $request->validate([
             'alasan_ditolak' => 'required',
         ]);
@@ -63,12 +75,13 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function updateUser(Request $request, Peminjam $peminjam) {
-        $validateData = $request->validate( [
+    public function updateUser(Request $request, Peminjam $peminjam)
+    {
+        $validateData = $request->validate([
             'password' => 'required|min:5|max:255'
         ]);
 
-        if($validateData['password'] != $request['confirm_password']){
+        if ($validateData['password'] != $request['confirm_password']) {
             return back()->with('passBeda', 'Password berbeda');
         }
 
@@ -77,5 +90,37 @@ class AdminController extends Controller
         Peminjam::where('id', $peminjam->id)->update($validateData);
 
         return back()->with('success', 'Password berhasil diganti');
+    }
+
+    public function manajemenImb()
+    {
+        return view('adminLayout.imb', [
+            'title' => 'Management IMB',
+            'active' => 'manajemen'
+        ]);
+    }
+
+    public function manajemenSuratLain()
+    {
+        return view('adminLayout.suratlain', [
+            'title' => 'Management Surat Lain',
+            'active' => 'manajemen'
+        ]);
+    }
+
+    public function tambahImb()
+    {
+        return view('adminLayout.tambahImb', [
+            'title' => 'Input IMB',
+            'active' => 'tambahArsip'
+        ]);
+    }
+
+    public function tambahSuratLain()
+    {
+        return view('adminLayout.tambahSuratlain', [
+            'title' => 'Input Surat Lain',
+            'active' => 'tambahArsip'
+        ]);
     }
 }
