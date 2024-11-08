@@ -37,7 +37,10 @@ class AdminController extends Controller
 
     public function lanjutan()
     {
-        return view('adminlayout/lanjutan', ['title' => 'Data Peminjam']);
+        return view('adminlayout/lanjutan', [
+            'title' => 'Data Peminjam',
+            'active' => 'tindakLanjut',
+        ]);
     }
 
     public function detail()
@@ -135,6 +138,7 @@ class AdminController extends Controller
 
         return view('adminlayout/kelolapeminjaman',[
             'title' => 'kelola',
+            'active' => 'peminjaman',
             'items' => $items
         ]);
 
