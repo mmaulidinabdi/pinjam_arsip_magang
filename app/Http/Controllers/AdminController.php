@@ -135,7 +135,8 @@ class AdminController extends Controller
 
         return view('adminlayout/kelolapeminjaman',[
             'title' => 'kelola',
-            'items' => $items
+            'items' => $items,
+            'active' => 'peminjaman'
         ]);
 
         

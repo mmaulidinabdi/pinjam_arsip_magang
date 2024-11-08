@@ -76,4 +76,4 @@ Route::get('/tes', function () {
 });
 
 
-Route::get('/admin/kelolapeminjaman', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelolapeminjaman');
+Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');
