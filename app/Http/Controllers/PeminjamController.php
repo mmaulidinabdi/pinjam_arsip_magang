@@ -78,6 +78,10 @@ class PeminjamController extends Controller
         return redirect()->back()->with('success', 'Akun Peminjam Berhasil Dihapus');
     }
 
+    public function pinjam(Request $request){
+        dd($request);
+    }
+
     public function userHistory(){
         return view('userLayout/userhistory',['title'=>'User History']);
     }

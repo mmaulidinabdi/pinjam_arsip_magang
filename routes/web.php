@@ -36,6 +36,8 @@ Route::get('/user/profile', [PeminjamController::class, 'userProfile'])->middlew
 // Peminjaman
 Route::get('/user/peminjaman', [PeminjamController::class, 'userPeminjaman'])->middleware('auth')->name('user.peminjaman');
 
+Route::post('/user/peminjaman', [PeminjamController::class, 'Pinjam']);
+
 Route::put('/user/{peminjam}/updateProfile', [PeminjamController::class, 'Update'])->middleware('auth')->name('user.update');
 
 // history
@@ -74,6 +76,5 @@ Route::put('/admin/updateUser/{peminjam}', [AdminController::class, 'updateUser'
 Route::get('/tes', function () {
     return view('tes');
 });
-
 
 Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');
