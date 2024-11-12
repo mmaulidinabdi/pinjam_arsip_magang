@@ -3,8 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\TransaksiPeminjaman;
-use App\Models\Peminjam;
-use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TransaksiPeminjamanFactory extends Factory
@@ -14,8 +12,8 @@ class TransaksiPeminjamanFactory extends Factory
     public function definition()
     {
         return [
-            'peminjam_id' => Peminjam::factory(),
-            'admin_id' => Admin::factory(),
+            'peminjam_id' => $this->faker->randomElement(['1','2','3']),
+            'admin_id' => ('1'),
             'tanggal_peminjaman' => $this->faker->date(),
             'tujuan_peminjam' => $this->faker->sentence(),
             'dokumen_pendukung' => $this->faker->word() . '.pdf',

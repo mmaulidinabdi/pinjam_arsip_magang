@@ -100,5 +100,8 @@ class DatabaseSeeder extends Seeder
         foreach($peminjams as $peminjam){
             Peminjam::create($peminjam);
         }
+        $this->call(TransaksiPeminjamanSeeder::class);
     }
+    
+
 }
