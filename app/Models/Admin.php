@@ -18,4 +18,14 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(TransaksiPeminjaman::class);
     }
+
+
+    public function imb()
+    {
+        return $this->hasMany(Imb::class);
+    }
+
+    // Tambahkan relasi arsip yg lain
+
+
 }

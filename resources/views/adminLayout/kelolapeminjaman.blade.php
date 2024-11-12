@@ -8,7 +8,7 @@
     </h2>
     <br>
 </div>
-<table id="filter-table">
+<table id="filter-table" class="h-dvh">
     <thead>
         <tr>
             <th>

@@ -18,7 +18,7 @@ class TransaksiPeminjaman extends Model
     // relasi peminjaman dengan arsips
     public function arsips()
     {
-        return $this->belongsToMany(Arsip::class, 'arsip_peminjaman');
+        return $this->belongsToMany(Imb::class, 'imb_id');
     }
 
     // relasi peminjaman ke atmin
@@ -31,4 +31,6 @@ class TransaksiPeminjaman extends Model
     {
         return $this->hasOne(Histori::class);
     }
+
+    
 }

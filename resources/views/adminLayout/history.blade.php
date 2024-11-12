@@ -9,7 +9,7 @@
     <br>
 </div>
 
-<table id="filter-table">
+<table id="filter-table" class="">
     <thead>
         <tr>
             <th>

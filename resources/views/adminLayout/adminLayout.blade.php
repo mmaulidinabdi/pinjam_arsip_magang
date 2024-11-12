@@ -242,8 +242,8 @@
     </aside>
 
 
-    <div class="p-4 sm:ml-64 ">
-        <div class="relative p-4 dark:border-gray-700 mt-14">
+    <div class="mx-auto min-h-screen p-4 sm:ml-64 bg-[#fefeff]" >
+        <div class="relative p-4 dark:border-gray-700 mt-14" >
             @yield('peminjamLayout')
         </div>
     </div>
