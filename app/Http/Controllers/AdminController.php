@@ -13,6 +13,8 @@ class AdminController extends Controller
     //
     public function admindashboard()
     {
+
+
         return view('adminlayout/adminDashboard', [
             'title' => 'Admin dashboard',
             'active' => 'dashboard'
@@ -32,7 +34,7 @@ class AdminController extends Controller
         return view('adminlayout/history', [
             'title' => 'History peminjaman',
             'active' => 'peminjaman'
-        ]);
+        ], );
     }
 
     public function lanjutan()

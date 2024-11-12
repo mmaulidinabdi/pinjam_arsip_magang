@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Histori extends Model
 {
+    use HasFactory;
     //
     protected $table = 'historis';
     //
@@ -25,5 +27,5 @@ class Histori extends Model
         return $this->hasOne(Imb::class);
     }
 
-    
+
 }
