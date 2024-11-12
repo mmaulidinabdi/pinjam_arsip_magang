@@ -16,7 +16,7 @@
                 $table->foreignId('peminjam_id')->constrained('peminjams')->onDelete('cascade');
                 $table->date('tanggal_peminjaman');
                 $table->string('tujuan_peminjam');
-                $table->string('dokumen_pendukung');
+                $table->string('dokumen_pendukung')->nullable();
                 $table->string('status')->default('diperiksa');
                 $table->string('no_arsip');
                 $table->string('nama_arsip');

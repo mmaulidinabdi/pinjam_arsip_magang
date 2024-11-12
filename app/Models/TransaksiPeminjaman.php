@@ -11,6 +11,20 @@ class TransaksiPeminjaman extends Model
     //
     protected $table = 'transaksi_peminjamans';
 
+    protected $fillable = [
+        'peminjam_id',
+        'tanggal_peminjaman',
+        'tujuan_peminjam',
+        'dokumen_pendukung',
+        'status',
+        'no_arsip',
+        'nama_arsip',
+        'data_arsip',
+        'jenis_arsip',
+        'alasan_ditolak',
+
+    ];
+
 
     //relasi peminjaman dengan peminjam
     public function peminjam()

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Peminjam;
+use App\Models\TransaksiPeminjaman;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -79,7 +80,22 @@ class PeminjamController extends Controller
     }
 
     public function pinjam(Request $request){
-        dd($request);
+        $validateData = $request->validate([
+            'peminjam_id' => 'required',
+            'tujuan_peminjam' => 'required',
+            'dokumen_pendukung' => 'nullable',
+            'no_arsip' => 'nullable',
+            'nama_arsip' => 'required',
+            'data_arsip' => 'nullable',
+            'jenis_arsip' => 'required',
+        ]);
+
+        $validateData['tanggal_peminjaman'] = now()->format('Y-m-d');
+        $validateData['status'] = 'diperiksa';
+
+        TransaksiPeminjaman::create($validateData);
+
+        return back()->with('success', 'Peminjaman Berhasil Diajukan !!');
     }
 
     public function userHistory(){
