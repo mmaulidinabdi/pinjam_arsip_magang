@@ -49,10 +49,9 @@ class AdminController extends Controller
     {
         return view('adminlayout/user', [
             'title' => 'user',
-            'active'=>'user',
+            'active' => 'user',
             'peminjams' => Peminjam::whereIn('isVerificate', ['diterima', 'diperiksa'])->get(),
         ]);
-        
     }
 
     public function terimaStatus($id)
@@ -128,18 +127,13 @@ class AdminController extends Controller
 
     public function kelolapeminjaman()
     {
-        $items = TransaksiPeminjaman::with('peminjam')->orderBy('status','asc')
-        ->paginate(20);
-        
+        $items = TransaksiPeminjaman::with('peminjam')->orderBy('status', 'asc')
+            ->paginate(20);
 
-
-        return view('adminlayout/kelolapeminjaman',[
+        return view('adminlayout/kelolapeminjaman', [
             'title' => 'kelola',
-            'items' => $items
+            'items' => $items,
+            'active'=>'peminjaman'
         ]);
-
-        
-
     }
 }
-

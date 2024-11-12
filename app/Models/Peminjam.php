@@ -12,8 +12,10 @@ class Peminjam extends Authenticatable
     //
     protected $guarded = ['id'];
 
-    public function arsips()
+    
+
+    public function histori()
     {
-        return $this->hasMany(Arsip::class);
+        return $this->hasMany(Histori::class, 'peminjam_id');
     }
 }

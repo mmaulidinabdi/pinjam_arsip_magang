@@ -13,4 +13,17 @@ class Histori extends Model
     {
         return $this->belongsTo(TransaksiPeminjaman::class);
     }
+
+    // Relasi ke peminjam
+    public function peminjam()
+    {
+        return $this->belongsTo(Peminjam::class, 'peminjam_id');
+    }
+
+    public function imb()
+    {
+        return $this->hasOne(Imb::class);
+    }
+
+    
 }

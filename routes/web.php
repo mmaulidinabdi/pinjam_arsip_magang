@@ -46,7 +46,7 @@ Route::get('/user/history', [PeminjamController::class, 'userHistory'])->middlew
 //Dashboard
 Route::get('/admin/dashboard', [AdminController::class, 'admindashboard'])->middleware('admin')->name('admin.dashboard');
 
-Route::get('/admin/kelola', [AdminController::class, 'kelola'])->middleware('admin')->name('admin.kelola');
+Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');
 
 Route::get('/admin/histori', [AdminController::class, 'historyadmin'])->middleware('admin')->name('admin.history');
 

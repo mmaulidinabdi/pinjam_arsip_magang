@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('peminjaman_id')->constrained('transaksi_peminjamans')->onDelete('cascade');
             $table->foreignId('peminjam_id')->constrained('peminjams')->onDelete('cascade');
             $table->foreignId('arsip_id')->constrained('arsips')->onDelete('cascade')->nullable();
-            $table->enum('isVerificate', ['diacc', 'ditolak']);
+            $table->enum('status', ['diacc', 'ditolak']);
             $table->timestamps();
         });
     }
