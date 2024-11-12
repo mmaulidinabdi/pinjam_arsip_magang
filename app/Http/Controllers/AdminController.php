@@ -136,7 +136,6 @@ class AdminController extends Controller
         return view('adminlayout/kelolapeminjaman', [
             'title' => 'kelola',
             'items' => $items,
-<<<<<<< HEAD
             'active' => 'peminjaman'
         ]);
 
@@ -150,9 +149,6 @@ class AdminController extends Controller
             'item' => $data,
             'active' => 'peminjaman'
         ]);
-=======
-            'active'=>'peminjaman'
-        ]);
->>>>>>> 79d08174788fb02d30be40b8dd7c48eba57e952d
+
     }
 }
