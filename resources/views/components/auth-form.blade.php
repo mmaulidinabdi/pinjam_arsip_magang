@@ -35,7 +35,7 @@
                 <!-- Email Input -->
                 <div class="mb-4">
                     <label for="email" class="font-mono block text-gray-600">Email</label>
-                    <input type="email" id="email" name="email"
+                    <input type="email" id="email" name="email" value="{{ old('email') }}"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                         autocomplete="off">
                     @error('email')
