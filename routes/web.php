@@ -59,10 +59,14 @@ Route::get('/admin/detail', [AdminController::class, 'detail'])->middleware('adm
 Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middleware('admin')->name('admin.useradmin');
 
 Route::get('/admin/imb', [AdminController::class, 'manajemenImb'])->middleware('admin')->name('admin.manajemenImb');
+
 Route::get('/admin/suratLain', [AdminController::class, 'manajemenSuratLain'])->middleware('admin')->name('admin.manajemenSuratLain');
+
 Route::get('/admin/tambahImb', [AdminController::class, 'TambahImb'])->middleware('admin')->name('admin.tambahImb');
+
 Route::get('/admin/tambahSuratLain', [AdminController::class, 'TambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
 
+Route::get('/admin/lanjutan/{id}', [AdminController::class, 'datalanjutan'])->middleware('admin')->name('adminlanjut');
 
 Route::get('/admin/terima/{id}', [AdminController::class, 'terimaStatus']);
 

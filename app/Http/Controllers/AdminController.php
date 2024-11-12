@@ -136,7 +136,19 @@ class AdminController extends Controller
         return view('adminlayout/kelolapeminjaman', [
             'title' => 'kelola',
             'items' => $items,
-            'active'=>'peminjaman'
+            'active' => 'peminjaman'
         ]);
+
+    }
+
+    public function datalanjutan($id)
+    {
+        $data = TransaksiPeminjaman::with('peminjam')->findOrFail($id);
+        return view('adminlayout/lanjutan',[
+            'title' => 'kelola',
+            'item' => $data,
+            'active' => 'peminjaman'
+        ]);
+
     }
 }
