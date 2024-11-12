@@ -62,9 +62,9 @@ Route::get('/admin/imb', [AdminController::class, 'manajemenImb'])->middleware('
 
 Route::get('/admin/suratLain', [AdminController::class, 'manajemenSuratLain'])->middleware('admin')->name('admin.manajemenSuratLain');
 
-Route::get('/admin/tambahImb', [AdminController::class, 'TambahImb'])->middleware('admin')->name('admin.tambahImb');
+Route::get('/admin/tambahImb', [AdminController::class, 'tambahImb'])->middleware('admin')->name('admin.tambahImb');
 
-Route::get('/admin/tambahSuratLain', [AdminController::class, 'TambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
+Route::get('/admin/tambahSuratLain', [AdminController::class, 'tambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
 
 Route::get('/admin/lanjutan/{id}', [AdminController::class, 'datalanjutan'])->middleware('admin')->name('adminlanjut');
 

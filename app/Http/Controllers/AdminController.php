@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Arsip1;
+use App\Models\Arsip2;
+use App\Models\Imb;
 use Illuminate\Http\Request;
 use App\Models\Peminjam;
 use App\Models\TransaksiPeminjaman;
@@ -13,12 +16,24 @@ class AdminController extends Controller
     //
     public function admindashboard()
     {
+        $jumlahPeminjam = Peminjam::count();
 
+        $jumlahImb = Imb::count();
+        $jumlahArsip1 = Arsip1::count();
+        $jumlahArsip2  = Arsip2::count();
+        $jumlahArsip = $jumlahImb + $jumlahArsip1 + $jumlahArsip2;
+
+        // ambil transaksi peminjaman dengan status diperiksa
+        $transaksiPending = TransaksiPeminjaman::where('status','diperiksa')->limit(5)->get();
+// dd($transaksiPending);
 
         return view('adminlayout/adminDashboard', [
             'title' => 'Admin dashboard',
-            'active' => 'dashboard'
-        ]);
+            'active' => 'dashboard',
+            'imb' =>'IMB',
+            'arsip1' => 'Arsip 1',
+            'arsip2' => 'Arsip 2',
+        ], compact('jumlahPeminjam','jumlahArsip', 'jumlahImb', 'jumlahArsip1', 'jumlahArsip2','transaksiPending'));
     }
 
     public function kelola()
@@ -34,7 +49,7 @@ class AdminController extends Controller
         return view('adminlayout/history', [
             'title' => 'History peminjaman',
             'active' => 'peminjaman'
-        ], );
+        ],);
     }
 
     public function lanjutan()
@@ -140,17 +155,15 @@ class AdminController extends Controller
             'items' => $items,
             'active' => 'peminjaman'
         ]);
-
     }
 
     public function datalanjutan($id)
     {
         $data = TransaksiPeminjaman::with('peminjam')->findOrFail($id);
-        return view('adminlayout/lanjutan',[
+        return view('adminlayout/lanjutan', [
             'title' => 'kelola',
             'item' => $data,
             'active' => 'peminjaman'
         ]);
-
     }
 }

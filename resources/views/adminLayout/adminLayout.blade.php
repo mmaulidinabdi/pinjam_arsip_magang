@@ -160,12 +160,12 @@
                     <ul id="dropdown-kelolaarsip" class="{{ $active == 'manajemen' ? '' : 'hidden' }} py-2 space-y-2">
                         <li>
                             <a href="{{ route('admin.manajemenImb') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.kelola') ? ' bg-gray-500' : 'text-white' }}">IMB
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.manajemenImb') ? ' bg-gray-500' : 'text-white' }}">IMB
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin.manajemenSuratLain') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">Surat
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700  {{ Route::is('admin.manajemenSuratLain') ? ' bg-gray-500' : 'text-white' }}">Surat
                                 lain</a>
                         </li>
                     </ul>
@@ -196,12 +196,12 @@
                     <ul id="dropdown-tambaharsip" class=" {{$active == 'tambahArsip' ? '' : 'hidden'}} py-2 space-y-2">
                         <li>
                             <a href="{{ Route('admin.tambahImb') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('user.kelola') ? ' bg-gray-500' : 'text-white' }}">IMB
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.tambahImb') ? ' bg-gray-500' : 'text-white' }}">IMB
                             </a>
                         </li>
                         <li>
                             <a href="{{Route('admin.tambahSuratLain')}}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">Surat
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.tambahSuratLain' ? 'bg-gray-500' : 'text-white')}}">Surat
                                 lain</a>
                         </li>
                     </ul>
