@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Arsip1;
 use App\Models\Arsip2;
 use App\Models\Imb;
@@ -50,7 +49,7 @@ class AdminController extends Controller
         return view('adminlayout/history', [
             'title' => 'History peminjaman',
             'active' => 'peminjaman'
-        ],);
+        ], );
     }
 
     public function lanjutan()
@@ -161,6 +160,7 @@ class AdminController extends Controller
             'items' => $items,
             'active' => 'peminjaman'
         ]);
+
     }
 
     public function datalanjutan($id)
