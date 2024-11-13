@@ -128,7 +128,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="histori"
+                            <a href="/admin/histori"
                                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.history') ? ' bg-gray-500' : 'text-white' }}">
                                 History
                             </a>
