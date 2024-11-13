@@ -24,16 +24,16 @@ class AdminController extends Controller
         $jumlahArsip = $jumlahImb + $jumlahArsip1 + $jumlahArsip2;
 
         // ambil transaksi peminjaman dengan status diperiksa
-        $transaksiPending = TransaksiPeminjaman::where('status','diperiksa')->limit(5)->get();
-// dd($transaksiPending);
+        $transaksiPending = TransaksiPeminjaman::with('peminjam')->where('status', 'diperiksa')->limit(5)->get();
+        // dd($transaksiPending);
 
         return view('adminlayout/adminDashboard', [
             'title' => 'Admin dashboard',
             'active' => 'dashboard',
-            'imb' =>'IMB',
+            'imb' => 'IMB',
             'arsip1' => 'Arsip 1',
             'arsip2' => 'Arsip 2',
-        ], compact('jumlahPeminjam','jumlahArsip', 'jumlahImb', 'jumlahArsip1', 'jumlahArsip2','transaksiPending'));
+        ], compact('jumlahPeminjam', 'jumlahArsip', 'jumlahImb', 'jumlahArsip1', 'jumlahArsip2', 'transaksiPending'));
     }
 
     public function kelola()
@@ -147,8 +147,8 @@ class AdminController extends Controller
 
     public function kelolapeminjaman()
     {
-        $items = TransaksiPeminjaman::with('peminjam')->orderBy('status', 'asc')
-            ->paginate(20);
+        $items = TransaksiPeminjaman::with('peminjam')->where('status', 'diperiksa')->get();
+
 
         return view('adminlayout/kelolapeminjaman', [
             'title' => 'kelola',

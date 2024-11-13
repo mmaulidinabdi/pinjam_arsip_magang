@@ -106,16 +106,16 @@
 
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $transaksi->id }}
+                        {{ $transaksi->peminjam->nama_lengkap }}
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        {{ $transaksi->nama_arsip }}
                     </td>
                     <td class="px-6 py-4">
-                        Laptop
+                        {{ $transaksi->tanggal_peminjaman }}
                     </td>
                     <td class="px-6 py-4">
-                        $2999
+                        {{ $transaksi->status }}
                     </td>
                     <td>
                         <a href="{{Route('admin.kelola')}}"
