@@ -123,9 +123,11 @@
         </tr>
     </thead>
     <tbody>
+        @foreach ($dataImb as $imb )
+
         <tr>
-            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple iMac</td>
-            <td>Computers</td>
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
+            <td>{{$imb->nomor_dp}}</td>
             <td>Apple</td>
             <td>$1,299</td>
             <td>50</td>
@@ -136,6 +138,7 @@
                     Lihat File
                 </a> </td>
         </tr>
+        @endforeach
 
 
     </tbody>

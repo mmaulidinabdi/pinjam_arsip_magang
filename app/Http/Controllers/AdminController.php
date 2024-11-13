@@ -119,9 +119,13 @@ class AdminController extends Controller
 
     public function manajemenImb()
     {
+        $dataImb = Imb::all();
+
+
         return view('adminLayout.imb', [
             'title' => 'Management IMB',
-            'active' => 'manajemen'
+            'active' => 'manajemen',
+            'dataImb' => $dataImb,
         ]);
     }
 
@@ -189,20 +193,15 @@ class AdminController extends Controller
         $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
         $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
 
-        // dd($validateData);
 
         Histori::create($validateData);
         TransaksiPeminjaman::where('id', $transaksi->id)->delete();
 
-        // if ($request->status === 'tolak') {
-        //     $history = new Histori();
-        //     $history->id_peminjam = $peminjam->id;
-        //     $history->id_transaksi = $request->id; 
-        //     $history->alasan_penolakan = $request->alasan;
-        //     $history->save();
-        // }
+        
 
         return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
     }
+
+
 
 }
