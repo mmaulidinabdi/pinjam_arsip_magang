@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Imb extends Model
+class Arsip2 extends Model
 {
-     use HasFactory;
+    //
+    use HasFactory;
     //
     protected $fillable = [
         'nomor_dp',
@@ -28,6 +29,4 @@ class Imb extends Model
     {
         return $this->belongsTo(Histori::class);
     }
-
-
 }

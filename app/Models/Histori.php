@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory; 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Histori extends Model
@@ -40,5 +40,5 @@ class Histori extends Model
         return $this->hasOne(Imb::class);
     }
 
-    
+
 }
