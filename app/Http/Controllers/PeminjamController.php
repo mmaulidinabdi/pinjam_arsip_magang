@@ -93,6 +93,10 @@ class PeminjamController extends Controller
         $validateData['tanggal_peminjaman'] = now()->format('Y-m-d');
         $validateData['status'] = 'diperiksa';
 
+        if($request->file('dokumen_pendukung')){
+            $validateData['dokumen_pendukung'] = $request->file('dokumen_pendukung')->store('dokumen_pendunkung', 'public');
+        }
+
         TransaksiPeminjaman::create($validateData);
 
         return back()->with('success', 'Peminjaman Berhasil Diajukan !!');
