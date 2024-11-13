@@ -13,7 +13,6 @@ class TransaksiPeminjamanFactory extends Factory
     {
         return [
             'peminjam_id' => $this->faker->randomElement(['1','2','3']),
-            'admin_id' => ('1'),
             'tanggal_peminjaman' => $this->faker->date(),
             'tujuan_peminjam' => $this->faker->sentence(),
             'dokumen_pendukung' => $this->faker->word() . '.pdf',

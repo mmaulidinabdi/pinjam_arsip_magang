@@ -101,6 +101,8 @@ class DatabaseSeeder extends Seeder
             Peminjam::create($peminjam);
         }
         $this->call(TransaksiPeminjamanSeeder::class);
+        
+        $this->call(historiSeeder::class);
     }
     
 

@@ -14,7 +14,6 @@
             Schema::create('transaksi_peminjamans', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('peminjam_id')->constrained('peminjams')->onDelete('cascade');
-                $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
                 $table->date('tanggal_peminjaman');
                 $table->string('tujuan_peminjam');
                 $table->string('dokumen_pendukung');

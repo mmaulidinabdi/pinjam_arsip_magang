@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Peminjam;
 use App\Models\TransaksiPeminjaman;
+use App\Models\Histori;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -45,7 +46,11 @@ class AdminController extends Controller
 
     public function detail()
     {
-        return view('adminlayout/detailhistory', ['title' => 'detail Peminjam']);
+
+        return view('adminlayout/detailhistory', [
+            'title' => 'detail Peminjam',
+            'active' => 'peminjaman'
+        ]);
     }
 
     public function useradmin()
@@ -68,7 +73,7 @@ class AdminController extends Controller
 
     public function tolakStatus(Request $request, Peminjam $peminjam)
     {
-        $validateData =  $request->validate([
+        $validateData = $request->validate([
             'alasan_ditolak' => 'required',
         ]);
 
@@ -144,11 +149,43 @@ class AdminController extends Controller
     public function datalanjutan($id)
     {
         $data = TransaksiPeminjaman::with('peminjam')->findOrFail($id);
-        return view('adminlayout/lanjutan',[
+        return view('adminlayout/lanjutan', [
             'title' => 'kelola',
             'item' => $data,
             'active' => 'peminjaman'
         ]);
 
     }
+
+    public function simpanKeHistory(request $request, TransaksiPeminjaman $transaksi)
+    {
+        $validateData = $request->validate([
+            'alasan_ditolak' => 'required|max:255',
+        ]);
+
+
+        $validateData['peminjaman_id'] = $transaksi->id;
+        $validateData['peminjam_id'] = $transaksi->peminjam_id;
+        $validateData['status'] = 'ditolak';
+        $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
+        $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
+        $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
+        $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
+
+        // dd($validateData);
+
+        Histori::create($validateData);
+        TransaksiPeminjaman::where('id', $transaksi->id)->delete();
+
+        // if ($request->status === 'tolak') {
+        //     $history = new Histori();
+        //     $history->id_peminjam = $peminjam->id;
+        //     $history->id_transaksi = $request->id; 
+        //     $history->alasan_penolakan = $request->alasan;
+        //     $history->save();
+        // }
+
+        return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
+    }
+
 }
