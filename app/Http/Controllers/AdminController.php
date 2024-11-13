@@ -137,8 +137,9 @@ class AdminController extends Controller
 
     public function kelolapeminjaman()
     {
-        $items = TransaksiPeminjaman::with('peminjam')->orderBy('status', 'asc')
-            ->paginate(20);
+        $items = TransaksiPeminjaman::with('peminjam')
+        ->where('status', 'diperiksa')
+        ->get();
 
         return view('adminlayout/kelolapeminjaman', [
             'title' => 'kelola',
