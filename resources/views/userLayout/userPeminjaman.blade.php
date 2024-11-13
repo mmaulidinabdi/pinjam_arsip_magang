@@ -10,9 +10,9 @@
                 </div>
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <!-- <div class="sm:col-span-2">
-                                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
-                                  <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
-                              </div> -->
+                                      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
+                                      <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                                  </div> -->
                     <input type="hidden" name="peminjam_id" value="{{ Auth::user()->id }}">
                     <div class="w-full">
                         <label for="nama"
@@ -47,11 +47,11 @@
                         <label for="jenis_arsip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span
                                 class="text-red-600">*</span> Jenis
                             Arsip</label>
-                        <select id="category" name="jenis_arsip" 
+                        <select id="category" name="jenis_arsip"
                             class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option selected="">Arsip1</option>
-                            <option value="TV">Arsip2</option>
-                            <option value="PC">IMB</option>
+                            <option value="Arsip1">Arsip1</option>
+                            <option value="arsip2">Arsip2</option>
+                            <option value="IMB">IMB</option>
                         </select>
                     </div>
                     <div class="w-full">
@@ -101,7 +101,7 @@
                         <input
                             class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             id="file_input" type="file" onchange="previewFile(event)" name="dokumen_pendukung">
-                            @error('dokumen_pendukung')
+                        @error('dokumen_pendukung')
                             <div class="text-red-600">
                                 *{{ $message }}
                             </div>
