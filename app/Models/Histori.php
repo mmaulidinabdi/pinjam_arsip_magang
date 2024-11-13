@@ -11,6 +11,19 @@ class Histori extends Model
     //
     protected $table = 'historis';
     //
+
+    protected $fillable = [
+        'peminjaman_id',
+        'peminjam_id',
+        'imb_id',
+        'status',
+        'alasan_ditolak',
+        'tanggal_peminjaman',
+        'tujuan_peminjam',
+        'dokumen_pendukung',
+        'jenis_arsip',
+    ];
+
     public function peminjaman()
     {
         return $this->belongsTo(TransaksiPeminjaman::class);
