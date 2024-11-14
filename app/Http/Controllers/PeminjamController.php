@@ -94,7 +94,7 @@ class PeminjamController extends Controller
         $validateData['status'] = 'diperiksa';
 
         if($request->file('dokumen_pendukung')){
-            $validateData['dokumen_pendukung'] = $request->file('dokumen_pendukung')->store('dokumen_pendunkung', 'public');
+            $validateData['dokumen_pendukung'] = $request->file('dokumen_pendukung')->store('dokumen_pendukung', 'public');
         }
 
         TransaksiPeminjaman::create($validateData);

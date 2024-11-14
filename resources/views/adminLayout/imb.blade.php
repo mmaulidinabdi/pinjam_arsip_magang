@@ -56,14 +56,14 @@
 <table id="filter-table">
     <thead>
         <tr>
-            <th>
+            <!-- <th>
                 <span class="flex items-center">
                     id
                     <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
                     </svg>
                 </span>
-            </th>
+            </th> -->
             <th>
                 <span class="flex items-center">
                     Nomor DP
@@ -124,16 +124,16 @@
     </thead>
     <tbody>
         @foreach ($dataImb as $imb )
-
+        
         <tr>
-            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
+            <!-- <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white"></td> -->
             <td>{{$imb->nomor_dp}}</td>
-            <td>Apple</td>
-            <td>$1,299</td>
-            <td>50</td>
-            <td>200</td>
-            <td>In Stock</td>
-            <td>In Stock</td>
+            <td>{{$imb->nama_pemilik}}</td>
+            <td>{{ $imb->alamat }}</td>
+            <td>{{ $imb->lokasi }}</td>
+            <td>{{ $imb->box }}</td>
+            <td>{{$imb->keterangan}}</td>
+            <td>{{$imb->tahun}}</td>
             <td><a href="#" class="text-blue-600">
                     Lihat File
                 </a> </td>

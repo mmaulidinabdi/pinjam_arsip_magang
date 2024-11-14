@@ -46,9 +46,15 @@ class AdminController extends Controller
 
     public function historyadmin()
     {
+
+        $historis = Histori::with('peminjam')->get();
+        // dd($historis);
+
+
         return view('adminlayout/history', [
             'title' => 'History peminjaman',
-            'active' => 'peminjaman'
+            'active' => 'peminjaman',
+            'histori' => $historis,
         ], );
     }
 

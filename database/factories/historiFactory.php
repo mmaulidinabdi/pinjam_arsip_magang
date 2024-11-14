@@ -25,6 +25,7 @@ class historiFactory extends Factory
             'peminjaman_id' => $transaksi->id,
             'peminjam_id' => $transaksi->peminjam_id,
             'imb_id' => $status === 'diacc' ? $this->faker->randomElement(['1', '2', '3', '4', '5', '6', '7']) : null,
+            'nama_arsip'=> $this->faker->sentence(),
             'status' => $status,
             'alasan_ditolak' => $status === 'ditolak' ? $this->faker->sentence() : null, // Jika status ditolak, alasan_ditolak berisi kalimat; jika diacc, kosong
             'tanggal_peminjaman' => $transaksi->tanggal_peminjaman, // Menggunakan tanggal peminjaman dari TransaksiPeminjaman
