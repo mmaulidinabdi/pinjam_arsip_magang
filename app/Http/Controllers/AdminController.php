@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Imb;
-use App\Models\Arsip1;
-use App\Models\Arsip2;
-use App\Models\Histori;
+
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 use App\Models\TransaksiPeminjaman;
+use App\Models\Histori;
+use App\Models\Imb;
+use App\Models\Arsip1;
+use App\Models\Arsip2;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -48,16 +49,16 @@ class AdminController extends Controller
 
     public function historyadmin()
     {
-
-        $historis = Histori::with('peminjam')->get();
-        // dd($historis);
-
+        
+        $items = Histori::with('Peminjam','Imb','Arsip1','Arsip2')
+        ->get();
+        
 
         return view('adminlayout/history', [
-            'title' => 'History peminjaman',
-            'active' => 'peminjaman',
-            'histori' => $historis,
-        ],);
+            'title' => 'kelola',
+            'items' => $items,
+            'active' => 'peminjaman'
+        ]);
     }
 
     public function lanjutan()
@@ -225,6 +226,7 @@ class AdminController extends Controller
 
         $validateData['peminjaman_id'] = $transaksi->id;
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
+        $validateData['nama_arsip'] = $transaksi->nama_arsip;
         $validateData['status'] = 'ditolak';
         $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
         $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;

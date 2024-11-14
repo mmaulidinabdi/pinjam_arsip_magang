@@ -4,6 +4,7 @@
 
 <div class=" font-bold">
     <h2 class="text-xl">
+    <h2 class="text-xl">
         HISTORY PEMINJAMAN
     </h2>
     <br>
@@ -56,28 +57,45 @@
                 <span class="flex items-center">
 
 
+
+
                 </span>
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($histori as $data )
 
-        <tr>
-            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $data->peminjam->nama_lengkap }}</td>
-            <td>{{$data->nama_arsip}}</td>
-            <td>{{ $data->tanggal_peminjaman }}</td>
-            <td>{{ $data->status }}</td>
-            <td>
-                <a href=""
-                    class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                    Detail peminjaman
-                </a>
-            </td>
-        </tr>
+        @foreach ($items as $item)
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $item->peminjam->nama_lengkap }}
+                </td>
+                <td>
+                    @if($item->status === 'diacc')
+                        {{ $item->jenis_arsip }}
+                        @if (($item->jenis_arsip = 'imb'))
+                        {{ $item->imb->nomor_dp }}
+                        @elseif(($item->jenis_arsip = 'Arsip1'))
+                        {{ $item->arsip1->nomor_dp }}
+                        @elseif(($item->jenis_arsip = 'Arsip2'))
+                        {{ $item->arsip2->nomor_dp }}
+                        @endif
+                    @else
+
+                    @endif
+                </td>
+
+
+                <td>{{ $item->tanggal_peminjaman }}</td>
+                <td>{{ $item->status }}</td>
+                <td>
+                    <a href="{{ url('admin/detaillanjutan') }}"
+                        class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        Tindak Lanjut
+                    </a>
+
+                </td>
+            </tr>
         @endforeach
-
-
     </tbody>
 </table>
 
