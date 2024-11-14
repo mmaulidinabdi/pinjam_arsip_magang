@@ -13,16 +13,22 @@ class PeminjamController extends Controller
 {
     //
 
-    public function index(){
-        return view('userLayout/userDashboard',['title'=>'User Dashboard']);
+    public function index(Peminjam $peminjam)
+    {
+        return view('userLayout/userDashboard', [
+            'title' => 'User Dashboard',
+            'transaksis' => TransaksiPeminjaman::where('peminjam_id', $peminjam->id)->get(),
+        ]);
     }
 
-    public function userProfile(){
-        return view('userLayout/userProfile',['title' => 'Profile']);
+    public function userProfile()
+    {
+        return view('userLayout/userProfile', ['title' => 'Profile']);
     }
 
-    public function userPeminjaman(){
-        return view('userLayout/userPeminjaman',['title'=>'Form Peminjaman']);
+    public function userPeminjaman()
+    {
+        return view('userLayout/userPeminjaman', ['title' => 'Form Peminjaman']);
     }
 
     public function create(Request $request)
@@ -44,7 +50,8 @@ class PeminjamController extends Controller
         return redirect('/login')->with('success', 'Registrasi berhasil !!');
     }
 
-    public function update(Request $request, Peminjam $peminjam){
+    public function update(Request $request, Peminjam $peminjam)
+    {
         $validateData = $request->validate([
             'nama_lengkap' => 'required|max:255',
             'alamat' => 'required',
@@ -54,8 +61,8 @@ class PeminjamController extends Controller
         ]);
 
 
-        if($request->file('ktp')){
-            if($peminjam->ktp){
+        if ($request->file('ktp')) {
+            if ($peminjam->ktp) {
                 Storage::disk('public')->delete($peminjam->ktp);
             }
             $validateData['ktp'] = $request->file('ktp')->store('ktp', 'public');
@@ -64,14 +71,15 @@ class PeminjamController extends Controller
         $validateData['isVerificate'] = 'diperiksa';
 
         Peminjam::where('id', $peminjam->id)->update($validateData);
-        
+
         // Peminjam::create($validateData);
 
         return redirect('/user/profile')->with('success', 'Data Disimpan');
     }
 
-    public function delete(Peminjam $peminjam){
-        if($peminjam->ktp){
+    public function delete(Peminjam $peminjam)
+    {
+        if ($peminjam->ktp) {
             Storage::disk('public')->delete($peminjam->ktp);
         }
 
@@ -80,7 +88,8 @@ class PeminjamController extends Controller
         return redirect()->back()->with('success', 'Akun Peminjam Berhasil Dihapus');
     }
 
-    public function pinjam(Request $request){
+    public function pinjam(Request $request)
+    {
         $validateData = $request->validate([
             'peminjam_id' => 'required',
             'tujuan_peminjam' => 'required',
@@ -94,7 +103,7 @@ class PeminjamController extends Controller
         $validateData['tanggal_peminjaman'] = now()->format('Y-m-d');
         $validateData['status'] = 'diperiksa';
 
-        if($request->file('dokumen_pendukung')){
+        if ($request->file('dokumen_pendukung')) {
             $validateData['dokumen_pendukung'] = $request->file('dokumen_pendukung')->store('dokumen_pendukung', 'public');
         }
 
@@ -103,11 +112,13 @@ class PeminjamController extends Controller
         return back()->with('success', 'Peminjaman Berhasil Diajukan !!');
     }
 
-    public function userHistory( Peminjam $peminjam){
-        return view('userLayout/userhistory',[
+    public function userHistory(Peminjam $peminjam)
+    {
+        return view('userLayout/userhistory', [
             'title' => 'User History',
-            'histories' => Histori::where('id', $peminjam->id)->get(),
+            'histories' => Histori::where('peminjam_id', $peminjam->id)
+                ->where('status', '!=', 'diperiksa')
+                ->get(),
         ]);
     }
-    
 }

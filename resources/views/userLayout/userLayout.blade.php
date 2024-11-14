@@ -80,7 +80,7 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-800 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="{{ Route('user.dashboard') }}"
+                    <a href="/user/dashboard/{{ Auth()->user()->id }}"
                         class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('user.dashboard') ? ' bg-gray-500' : 'text-white' }}">
                         <!-- <svg class="w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -119,7 +119,7 @@
                 </li>
 
                 <li>
-                    <a href="{{Route('user.history')}}"
+                    <a href="/user/history/{{ Auth()->user()->id }}"
                         class="flex items-center p-2 text-white hover:text-gray-800 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('user.history') ? ' bg-gray-500' : 'text-white' }}">
                         <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512"

@@ -193,6 +193,7 @@ class AdminController extends Controller
 
         $validateData['peminjaman_id'] = $transaksi->id;
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
+        $validateData['nama_arsip'] = $transaksi->nama_arsip;
         $validateData['status'] = 'ditolak';
         $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
         $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;

@@ -28,18 +28,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple Inc.</td>
-                <td>AAPL</td>
-                <td>$192.58</td>
-                <td>$3.04T</td>
-            </tr>
             @foreach ($histories as $history)
+            
                 <tr>
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $history->nama }}</td>
-                    <td>AAPL</td>
-                    <td>$192.58</td>
-                    <td>$3.04T</td>
+                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $history->nama_arsip }}</td>
+                    <td>{{ $history->jenis_arsip }}</td>
+                    <td>{{ $history->tanggal_peminjaman }}</td>
+                    <td>{{ $history->status }}</td>
+                    <td>husein</td>
                 </tr>
             @endforeach
         </tbody>
