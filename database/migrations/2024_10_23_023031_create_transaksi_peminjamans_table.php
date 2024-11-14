@@ -18,7 +18,7 @@
                 $table->string('tujuan_peminjam');
                 $table->string('dokumen_pendukung')->nullable();
                 $table->string('status')->default('diperiksa');
-                $table->string('no_arsip');
+                $table->string('no_arsip')->nullable();
                 $table->string('nama_arsip');
                 $table->string('data_arsip');
                 $table->enum('jenis_arsip', ['Arsip1', 'arsip2', 'IMB'])->notNull();

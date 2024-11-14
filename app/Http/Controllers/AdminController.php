@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Arsip1;
+use App\Models\Arsip2;
+use App\Models\Imb;
 use Illuminate\Http\Request;
 use App\Models\Peminjam;
 use App\Models\TransaksiPeminjaman;
@@ -17,12 +19,24 @@ class AdminController extends Controller
     //
     public function admindashboard()
     {
+        $jumlahPeminjam = Peminjam::count();
 
+        $jumlahImb = Imb::count();
+        $jumlahArsip1 = Arsip1::count();
+        $jumlahArsip2  = Arsip2::count();
+        $jumlahArsip = $jumlahImb + $jumlahArsip1 + $jumlahArsip2;
+
+        // ambil transaksi peminjaman dengan status diperiksa
+        $transaksiPending = TransaksiPeminjaman::with('peminjam')->where('status', 'diperiksa')->limit(5)->get();
+        // dd($transaksiPending);
 
         return view('adminlayout/adminDashboard', [
             'title' => 'Admin dashboard',
-            'active' => 'dashboard'
-        ]);
+            'active' => 'dashboard',
+            'imb' => 'IMB',
+            'arsip1' => 'Arsip 1',
+            'arsip2' => 'Arsip 2',
+        ], compact('jumlahPeminjam', 'jumlahArsip', 'jumlahImb', 'jumlahArsip1', 'jumlahArsip2', 'transaksiPending'));
     }
 
     public function kelola()
@@ -114,9 +128,13 @@ class AdminController extends Controller
 
     public function manajemenImb()
     {
+        $dataImb = Imb::all();
+
+
         return view('adminLayout.imb', [
             'title' => 'Management IMB',
-            'active' => 'manajemen'
+            'active' => 'manajemen',
+            'dataImb' => $dataImb,
         ]);
     }
 
@@ -178,24 +196,16 @@ class AdminController extends Controller
 
         $validateData['peminjaman_id'] = $transaksi->id;
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
+        $validateData['nama_arsip'] = $transaksi->nama_arsip;
         $validateData['status'] = 'ditolak';
         $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
         $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
         $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
         $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
 
-        // dd($validateData);
 
         Histori::create($validateData);
         TransaksiPeminjaman::where('id', $transaksi->id)->delete();
-
-        // if ($request->status === 'tolak') {
-        //     $history = new Histori();
-        //     $history->id_peminjam = $peminjam->id;
-        //     $history->id_transaksi = $request->id; 
-        //     $history->alasan_penolakan = $request->alasan;
-        //     $history->save();
-        // }
 
         return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
     }

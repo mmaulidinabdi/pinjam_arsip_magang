@@ -8,7 +8,7 @@
     </h2>
     <br>
 </div>
-<table id="filter-table" class="h-dvh">
+<table id="filter-table">
     <thead>
         <tr>
             <th>
@@ -80,9 +80,12 @@
 
 </table>
 
+
+
 <script>
     if (document.getElementById("filter-table") && typeof simpleDatatables.DataTable !== 'undefined') {
         const dataTable = new simpleDatatables.DataTable("#filter-table", {
+            // paging:false
             tableRender: (_data, table, type) => {
                 if (type === "print") {
                     return table;

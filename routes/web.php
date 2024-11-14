@@ -7,7 +7,7 @@ use App\Http\Controllers\PeminjamController;
 
 Route::get('/', function () {
     return view('landingPage');
-});
+})->name('landingPage');
 
 
 
@@ -29,7 +29,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // USER
 // Dashboard
-Route::get('/user/dashboard', [PeminjamController::class, 'index'])->middleware('auth')->name('user.dashboard');
+Route::get('/user/dashboard/{peminjam}', [PeminjamController::class, 'index'])->middleware('auth')->name('user.dashboard');
 
 Route::get('/user/profile', [PeminjamController::class, 'userProfile'])->middleware('auth')->name('user.profile');
 
@@ -41,7 +41,7 @@ Route::post('/user/peminjaman', [PeminjamController::class, 'Pinjam']);
 Route::put('/user/{peminjam}/updateProfile', [PeminjamController::class, 'Update'])->middleware('auth')->name('user.update');
 
 // history
-Route::get('/user/history', [PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
+Route::get('/user/history/{peminjam}', [PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
 
 
 //admin
@@ -62,9 +62,9 @@ Route::get('/admin/imb', [AdminController::class, 'manajemenImb'])->middleware('
 
 Route::get('/admin/suratLain', [AdminController::class, 'manajemenSuratLain'])->middleware('admin')->name('admin.manajemenSuratLain');
 
-Route::get('/admin/tambahImb', [AdminController::class, 'TambahImb'])->middleware('admin')->name('admin.tambahImb');
+Route::get('/admin/tambahImb', [AdminController::class, 'tambahImb'])->middleware('admin')->name('admin.tambahImb');
 
-Route::get('/admin/tambahSuratLain', [AdminController::class, 'TambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
+Route::get('/admin/tambahSuratLain', [AdminController::class, 'tambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
 
 Route::get('/admin/lanjutan/{id}', [AdminController::class, 'datalanjutan'])->middleware('admin')->name('adminlanjut');
 

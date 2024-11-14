@@ -4,6 +4,7 @@
 
 <div class=" font-bold">
     <h2 class="text-xl">
+    <h2 class="text-xl">
         HISTORY PEMINJAMAN
     </h2>
     <br>
@@ -54,6 +55,8 @@
             </th>
             <th>
                 <span class="flex items-center">
+
+
 
 
                 </span>
@@ -112,20 +115,20 @@
                     childNodes: tHead.childNodes[0].childNodes.map((_th, index) => {
 
                         if (index === tHead.childNodes[0].childNodes.length - 1) {
-                            return { nodeName: "TH" };
+                            return {
+                                nodeName: "TH"
+                            };
                         }
                         return {
                             nodeName: "TH",
-                            childNodes: [
-                                {
-                                    nodeName: "INPUT",
-                                    attributes: {
-                                        class: "datatable-input",
-                                        type: "search",
-                                        "data-columns": "[" + index + "]"
-                                    }
+                            childNodes: [{
+                                nodeName: "INPUT",
+                                attributes: {
+                                    class: "datatable-input",
+                                    type: "search",
+                                    "data-columns": "[" + index + "]"
                                 }
-                            ]
+                            }]
                         };
                     })
                 };

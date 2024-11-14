@@ -15,6 +15,7 @@ class Histori extends Model
     protected $fillable = [
         'peminjaman_id',
         'peminjam_id',
+        'nama_arsip',
         'imb_id',
         'status',
         'alasan_ditolak',

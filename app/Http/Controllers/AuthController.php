@@ -32,17 +32,10 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Cek apakah user atau admin ada di db
-        // $userExist = Peminjam::where('email', $validateData['email'])->exists();
-        // $adminExist = Admin::where('email', $validateData['email'])->exists();
-
-        // if (!$userExist && !$adminExist) {
-        //     return back()->with('loginError', 'Akun tidak ditemukan')->withInput();
-        // }
 
         if (Auth::guard('web')->attempt($validateData)) {
             $request->session()->regenerate();
-            return redirect()->intended('/user/dashboard');
+            return redirect()->intended('/user/dashboard/'. Auth::user()->id);
         }
 
         if (Auth::guard('admin')->attempt($validateData)) {
