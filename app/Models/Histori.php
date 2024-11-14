@@ -35,10 +35,25 @@ class Histori extends Model
         return $this->belongsTo(Peminjam::class, 'peminjam_id');
     }
 
+
     public function imb()
     {
-        return $this->hasOne(Imb::class);
+        // Menghubungkan dengan tabel `imb` menggunakan `imb_id`
+        return $this->belongsTo(Imb::class, 'imb_id');
     }
+    
+    public function arsip1()
+    {
+        // Menghubungkan dengan tabel `arsip1` menggunakan `imb_id`
+        return $this->belongsTo(Arsip1::class, 'imb_id');
+    }
+    
+    public function arsip2()
+    {
+        // Menghubungkan dengan tabel `arsip2` menggunakan `imb_id`
+        return $this->belongsTo(Arsip2::class, 'imb_id');
+    }
+    
 
 
 }

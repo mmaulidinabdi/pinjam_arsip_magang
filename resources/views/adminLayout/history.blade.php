@@ -3,7 +3,7 @@
 @section('peminjamLayout')
 
 <div class=" font-bold">
-    <h2 class="text-xl" >
+    <h2 class="text-xl">
         HISTORY PEMINJAMAN
     </h2>
     <br>
@@ -54,51 +54,45 @@
             </th>
             <th>
                 <span class="flex items-center">
-                    
-                    
+
+
                 </span>
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Muhammad Azhar Sadikin</td>
-            <td>IMB 123 1999</td>
-            <td>25 september 2024</td>
-            <td>ditolak</td>
-            <td>
-                <button type="button"
-                    class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                    Detail peminjaman
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Maulidin Abdi</td>
-            <td>IMB 33 1998</td>
-            <td>21 september 2024</td>
-            <td>diacc
-            </td>
-            <td>
-                <button type="button"
-                    class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                    Detail peminjaman 
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Muhammad Abu Husein</td>
-            <td>IMB 234 1998</td>
-            <td>12 september 2024</td>
-            <td>Ditolak</td>
-            <td>
-                <button type="button"
-                    class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                    Detail peminjaman
-                </button>
-            </td>
-        </tr>
-        
+
+        @foreach ($items as $item)
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $item->peminjam->nama_lengkap }}
+                </td>
+                <td>
+                    @if($item->status === 'diacc')
+                        {{ $item->jenis_arsip }}
+                        @if (($item->jenis_arsip = 'imb'))
+                        {{ $item->imb->nomor_dp }}
+                        @elseif(($item->jenis_arsip = 'Arsip1'))
+                        {{ $item->arsip1->nomor_dp }}
+                        @elseif(($item->jenis_arsip = 'Arsip2'))
+                        {{ $item->arsip2->nomor_dp }}
+                        @endif
+                    @else
+
+                    @endif
+                </td>
+
+
+                <td>{{ $item->tanggal_peminjaman }}</td>
+                <td>{{ $item->status }}</td>
+                <td>
+                    <a href="{{ url('admin/detaillanjutan') }}"
+                        class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        Tindak Lanjut
+                    </a>
+
+                </td>
+            </tr>
+        @endforeach
     </tbody>
 </table>
 
