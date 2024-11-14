@@ -11,12 +11,13 @@ class Imb extends Model
     //
     protected $fillable = [
         'nomor_dp',
-        'nama',
+        'nama_pemilik',
         'alamat',
         'lokasi',
         'box',
         'keterangan',
         'tahun',
+        'imbs'
     ];
 
     public function admin()

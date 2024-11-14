@@ -65,14 +65,14 @@
 
         <tr>
             <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $data->peminjam->nama_lengkap }}</td>
-            <td>{{}}</td>
-            <td>25 september 2024</td>
-            <td>ditolak</td>
+            <td>{{$data->nama_arsip}}</td>
+            <td>{{ $data->tanggal_peminjaman }}</td>
+            <td>{{ $data->status }}</td>
             <td>
-                <button type="button"
+                <a href=""
                     class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                     Detail peminjaman
-                </button>
+                </a>
             </td>
         </tr>
         @endforeach

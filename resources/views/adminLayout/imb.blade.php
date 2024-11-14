@@ -52,18 +52,16 @@
     <br>
 </div>
 
+@if (session()->has('success'))
+<div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400" role="alert">
+    <span class="font-medium">{{ session('success') }}</span>
+</div>
+@endif
+
 
 <table id="filter-table">
     <thead>
         <tr>
-            <!-- <th>
-                <span class="flex items-center">
-                    id
-                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                    </svg>
-                </span>
-            </th> -->
             <th>
                 <span class="flex items-center">
                     Nomor DP
@@ -124,7 +122,7 @@
     </thead>
     <tbody>
         @foreach ($dataImb as $imb )
-        
+
         <tr>
             <!-- <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white"></td> -->
             <td>{{$imb->nomor_dp}}</td>
@@ -134,9 +132,17 @@
             <td>{{ $imb->box }}</td>
             <td>{{$imb->keterangan}}</td>
             <td>{{$imb->tahun}}</td>
-            <td><a href="#" class="text-blue-600">
-                    Lihat File
-                </a> </td>
+            <td class="px-6 py-4 hidden-print">
+                <a href="/admin/lihat/{{ $imb->imbs }}" target="_blank">
+                    <svg id="eye-open" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                        style="cursor: pointer;">
+                        <path stroke="currentColor" stroke-width="2"
+                            d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
+                        <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                </a>
+            </td>
         </tr>
         @endforeach
 
@@ -146,6 +152,16 @@
 
 
 <script>
+    // delay alert
+    const alert = document.getElementById("alert");
+
+    if (alert) {
+        setTimeout(() => {
+            alert.style.display = "none";
+        }, 2000);
+    }
+
+
     if (document.getElementById("filter-table") && typeof simpleDatatables.DataTable !== 'undefined') {
         const dataTable = new simpleDatatables.DataTable("#filter-table", {
             tableRender: (_data, table, type) => {

@@ -12,7 +12,7 @@ class Arsip1 extends Model
     //
     protected $fillable = [
         'nomor_dp',
-        'nama',
+        'nama_pemilik',
         'alamat',
         'lokasi',
         'box',

@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Imb;
 use App\Models\Arsip1;
 use App\Models\Arsip2;
-use App\Models\Imb;
-use Illuminate\Http\Request;
-use App\Models\Peminjam;
-use App\Models\TransaksiPeminjaman;
 use App\Models\Histori;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Peminjam;
+use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
+use App\Models\TransaksiPeminjaman;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -55,7 +57,7 @@ class AdminController extends Controller
             'title' => 'History peminjaman',
             'active' => 'peminjaman',
             'histori' => $historis,
-        ], );
+        ],);
     }
 
     public function lanjutan()
@@ -80,6 +82,7 @@ class AdminController extends Controller
         return view('adminlayout/user', [
             'title' => 'user',
             'active' => 'user',
+            // ambil yg status nya diterima dan diperiksa
             'peminjams' => Peminjam::whereIn('isVerificate', ['diterima', 'diperiksa'])->get(),
         ]);
     }
@@ -105,6 +108,7 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
 
     public function updateUser(Request $request, Peminjam $peminjam)
     {
@@ -143,15 +147,45 @@ class AdminController extends Controller
         ]);
     }
 
-    public function tambahImb()
+
+    public function viewTambahImb()
     {
+
         return view('adminLayout.tambahImb', [
             'title' => 'Input IMB',
             'active' => 'tambahArsip'
         ]);
     }
 
-    public function tambahSuratLain()
+    public function tambahImb(Request $request)
+    {
+        $validateData = $request->validate([
+            'nomor_dp' => 'required|numeric',
+            'nama_pemilik' => 'nullable',
+            'alamat' => 'nullable',
+            'lokasi' => 'nullable',
+            'box' => 'nullable',
+            'keterangan' => 'nullable',
+            'tahun' => 'nullable',
+            'imbs' => 'nullable',
+        ]);
+
+
+        // Decode base64 to store as file
+        $base64Pdf = $request->input('imbs');
+        $pdfContent = base64_decode(preg_replace('#^data:application/pdf;base64,#i', '', $base64Pdf));
+
+        // Simpan file ke storage Laravel (atau folder tertentu)
+        $fileName = 'imb_' . $request['nomor_dp'] . '_' . $request['tahun'] . '_' . time() . '.pdf';
+        $validateData['imbs'] = $fileName;
+
+        Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);
+        Imb::create($validateData);
+
+        return redirect()->route('admin.manajemenImb')->with('success', 'Data Berhasil Masuk!!');
+    }
+
+    public function viewTambahSuratLain()
     {
         return view('adminLayout.tambahSuratlain', [
             'title' => 'Input Surat Lain',
@@ -162,15 +196,14 @@ class AdminController extends Controller
     public function kelolapeminjaman()
     {
         $items = TransaksiPeminjaman::with('peminjam')
-        ->where('status', 'diperiksa')
-        ->get();
+            ->where('status', 'diperiksa')
+            ->get();
 
         return view('adminlayout/kelolapeminjaman', [
             'title' => 'kelola',
             'items' => $items,
             'active' => 'peminjaman'
         ]);
-
     }
 
     public function datalanjutan($id)
@@ -181,7 +214,6 @@ class AdminController extends Controller
             'item' => $data,
             'active' => 'peminjaman'
         ]);
-
     }
 
     public function simpanKeHistory(request $request, TransaksiPeminjaman $transaksi)
@@ -207,5 +239,13 @@ class AdminController extends Controller
     }
 
 
-
+    // untuk lihat file imb
+    public function show($name)
+    {
+        $path = storage_path('app/public/imbs/' . $name);
+        // dd($path);
+        return response()->file($path, [
+            'Content-Type' => 'application/pdf'
+        ]);
+    }
 }

@@ -195,13 +195,13 @@
                     </button>
                     <ul id="dropdown-tambaharsip" class=" {{$active == 'tambahArsip' ? '' : 'hidden'}} py-2 space-y-2">
                         <li>
-                            <a href="{{ Route('admin.tambahImb') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.tambahImb') ? ' bg-gray-500' : 'text-white' }}">IMB
+                            <a href="{{ Route('admin.viewTambahImb') }}"
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.viewTambahImb') ? ' bg-gray-500' : 'text-white' }}">IMB
                             </a>
                         </li>
                         <li>
-                            <a href="{{Route('admin.tambahSuratLain')}}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.tambahSuratLain' ? 'bg-gray-500' : 'text-white')}}">Surat
+                            <a href="{{Route('admin.viewTambahSuratLain')}}"
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.viewTambahSuratLain' ? 'bg-gray-500' : 'text-white')}}">Surat
                                 lain</a>
                         </li>
                     </ul>
