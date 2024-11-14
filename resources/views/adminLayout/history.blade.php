@@ -3,7 +3,7 @@
 @section('peminjamLayout')
 
 <div class=" font-bold">
-    <h2 class="text-xl" >
+    <h2 class="text-xl">
         HISTORY PEMINJAMAN
     </h2>
     <br>
@@ -54,16 +54,18 @@
             </th>
             <th>
                 <span class="flex items-center">
-                    
-                    
+
+
                 </span>
             </th>
         </tr>
     </thead>
     <tbody>
+        @foreach ($histori as $data )
+
         <tr>
-            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Muhammad Azhar Sadikin</td>
-            <td>IMB 123 1999</td>
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $data->peminjam->nama_lengkap }}</td>
+            <td>{{}}</td>
             <td>25 september 2024</td>
             <td>ditolak</td>
             <td>
@@ -73,32 +75,9 @@
                 </button>
             </td>
         </tr>
-        <tr>
-            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Maulidin Abdi</td>
-            <td>IMB 33 1998</td>
-            <td>21 september 2024</td>
-            <td>diacc
-            </td>
-            <td>
-                <button type="button"
-                    class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                    Detail peminjaman 
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Muhammad Abu Husein</td>
-            <td>IMB 234 1998</td>
-            <td>12 september 2024</td>
-            <td>Ditolak</td>
-            <td>
-                <button type="button"
-                    class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                    Detail peminjaman
-                </button>
-            </td>
-        </tr>
-        
+        @endforeach
+
+
     </tbody>
 </table>
 
@@ -118,20 +97,20 @@
                     childNodes: tHead.childNodes[0].childNodes.map((_th, index) => {
 
                         if (index === tHead.childNodes[0].childNodes.length - 1) {
-                            return { nodeName: "TH" };
+                            return {
+                                nodeName: "TH"
+                            };
                         }
                         return {
                             nodeName: "TH",
-                            childNodes: [
-                                {
-                                    nodeName: "INPUT",
-                                    attributes: {
-                                        class: "datatable-input",
-                                        type: "search",
-                                        "data-columns": "[" + index + "]"
-                                    }
+                            childNodes: [{
+                                nodeName: "INPUT",
+                                attributes: {
+                                    class: "datatable-input",
+                                    type: "search",
+                                    "data-columns": "[" + index + "]"
                                 }
-                            ]
+                            }]
                         };
                     })
                 };

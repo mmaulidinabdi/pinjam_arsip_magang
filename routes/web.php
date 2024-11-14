@@ -7,7 +7,7 @@ use App\Http\Controllers\PeminjamController;
 
 Route::get('/', function () {
     return view('landingPage');
-});
+})->name('landingPage');
 
 
 

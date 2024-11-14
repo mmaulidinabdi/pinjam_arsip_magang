@@ -46,9 +46,15 @@ class AdminController extends Controller
 
     public function historyadmin()
     {
+
+        $historis = Histori::with('peminjam')->get();
+        // dd($historis);
+
+
         return view('adminlayout/history', [
             'title' => 'History peminjaman',
-            'active' => 'peminjaman'
+            'active' => 'peminjaman',
+            'histori' => $historis,
         ], );
     }
 
@@ -119,9 +125,13 @@ class AdminController extends Controller
 
     public function manajemenImb()
     {
+        $dataImb = Imb::all();
+
+
         return view('adminLayout.imb', [
             'title' => 'Management IMB',
-            'active' => 'manajemen'
+            'active' => 'manajemen',
+            'dataImb' => $dataImb,
         ]);
     }
 
@@ -195,5 +205,7 @@ class AdminController extends Controller
 
         return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
     }
+
+
 
 }

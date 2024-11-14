@@ -1,11 +1,9 @@
 <div>
     @if ($type == 'login')
-    <!-- Alert Success Registration -->
 
     <div class=" relative bg-sky-200 flex flex-col lg:flex-row justify-center items-center min-h-screen">
-        
 
-        <!-- Alert Login Failed -->
+
 
         <!-- Left: Image -->
         <div class="w-full lg:w-1/2 h-48 sm:h-64 md:h-80 lg:h-screen hidden lg:block">
@@ -14,14 +12,16 @@
         </div>
 
         <!-- Right: Login Form -->
+
+        <!-- Alert Success Registration -->
         <div class="relative lg:p-25 md:p-12 sm:p-8 p-4 w-full lg:w-1/2">
             @if (session()->has('success'))
-
             <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400" role="alert">
                 <span class="font-medium">{{ session('success') }}</span>
             </div>
             @endif
 
+            <!-- alert gagal login -->
             @if (session()->has('loginError'))
             <div id="alert"
                 class=" w-full p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -29,6 +29,8 @@
                 <span class="font-medium">{{ session('loginError') }}</span>
             </div>
             @endif
+
+
             <h1 class="font-mono text-center text-3xl font-semibold mb-4 lg:text-left">Login</h1>
             <form id="form" action="/login" method="POST">
                 @csrf
@@ -69,8 +71,8 @@
         </div>
     </div>
     @else
-    <!-- Register Component -->
 
+    <!-- Register Component -->
     <div class="bg-sky-200 flex flex-col lg:flex-row justify-center items-center min-h-screen">
         <!-- Left: Image -->
         <div class="w-full lg:w-1/2 h-48 sm:h-64 md:h-80 lg:h-screen hidden lg:block">
