@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Peminjam;
 use App\Models\TransaksiPeminjaman;
+use App\Models\Histori;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -102,8 +103,11 @@ class PeminjamController extends Controller
         return back()->with('success', 'Peminjaman Berhasil Diajukan !!');
     }
 
-    public function userHistory(){
-        return view('userLayout/userhistory',['title'=>'User History']);
+    public function userHistory( Peminjam $peminjam){
+        return view('userLayout/userhistory',[
+            'title' => 'User History',
+            'histories' => Histori::where('id', $peminjam->id)->get(),
+        ]);
     }
     
 }

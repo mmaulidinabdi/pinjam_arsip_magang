@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('peminjam_id')->constrained('peminjams')->onDelete('cascade');
             $table->unsignedBigInteger('imb_id')->nullable(); // Membuat kolom nullable
             $table->foreign('imb_id')->references('id')->on('imbs')->onDelete('cascade');
+            $table->string('nama_arsip');
             $table->enum('status', ['diacc', 'ditolak']);
             $table->string('alasan_ditolak')->nullable();
             $table->date('tanggal_peminjaman');
