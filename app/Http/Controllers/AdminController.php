@@ -8,11 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Peminjam;
 use App\Models\TransaksiPeminjaman;
 use App\Models\Histori;
-use App\Models\Imb;
-use App\Models\Arsip1;
-use App\Models\Arsip2;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Expr\FuncCall;
+use Psy\Command\HistoryCommand;
 
 class AdminController extends Controller
 {
@@ -169,7 +167,7 @@ class AdminController extends Controller
         ->get();
 
         return view('adminlayout/kelolapeminjaman', [
-            'title' => 'kelola',
+            'title' => 'History',
             'items' => $items,
             'active' => 'peminjaman'
         ]);
@@ -178,8 +176,19 @@ class AdminController extends Controller
 
     public function datalanjutan($id)
     {
-        $data = TransaksiPeminjaman::with('peminjam')->findOrFail($id);
+        $data = TransaksiPeminjaman::with('peminjam','imb','arsip1','arsip2')->findOrFail($id);
         return view('adminlayout/lanjutan', [
+            'title' => 'kelola',
+            'item' => $data,
+            'active' => 'peminjaman'
+        ]);
+
+    }
+
+    public function datadetail($id)
+    {
+        $data = Histori::with('peminjam')->findOrFail($id);
+        return view('adminLayout/detailhistory', [
             'title' => 'kelola',
             'item' => $data,
             'active' => 'peminjaman'

@@ -4,11 +4,19 @@
 
 <div class=" font-bold">
     <h2 class="text-xl">
-    <h2 class="text-xl">
-        HISTORY PEMINJAMAN
-    </h2>
-    <br>
+        <h2 class="text-xl">
+            HISTORY PEMINJAMAN
+        </h2>
+        <br>
 </div>
+<style>
+    .datatable-input {
+        width: 120px;
+        height: 30px;
+        padding: 4px;
+        font-size: 12px;
+    }
+</style>
 
 <table id="filter-table" class="">
     <thead>
@@ -35,7 +43,7 @@
             </th>
             <th>
                 <span class="flex items-center">
-                    Tanggal
+                    Tanggal peminjaman
                     <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,12 +63,20 @@
             </th>
             <th>
                 <span class="flex items-center">
-
-
-
-
+                    Tanggal pengembalian
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                    </svg>
                 </span>
             </th>
+
+            <th>
+                <span class="flex items-center">
+                </span>
+            </th>
+            
         </tr>
     </thead>
     <tbody>
@@ -73,11 +89,14 @@
                     @if($item->status === 'diacc')
                         {{ $item->jenis_arsip }}
                         @if (($item->jenis_arsip = 'imb'))
-                        {{ $item->imb->nomor_dp }}
+                            {{ $item->imb->nomor_dp }}
+                            {{ $item->imb->tahun }}
                         @elseif(($item->jenis_arsip = 'Arsip1'))
-                        {{ $item->arsip1->nomor_dp }}
+                            {{ $item->arsip1->nomor_dp }}
+                            {{ $item->arsip1->tahun }}
                         @elseif(($item->jenis_arsip = 'Arsip2'))
-                        {{ $item->arsip2->nomor_dp }}
+                            {{ $item->arsip2->nomor_dp }}
+                            {{ $item->arsip2->tahun }}
                         @endif
                     @else
 
@@ -87,10 +106,20 @@
 
                 <td>{{ $item->tanggal_peminjaman }}</td>
                 <td>{{ $item->status }}</td>
+                
                 <td>
-                    <a href="{{ url('admin/detaillanjutan') }}"
+                    @if($item->status === 'diacc')
+                <button 
+                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        Konfirmasi pengembalian
+                    </button>
+                    @else
+                    @endif
+                </td>
+                <td>
+                    <a href="{{ url('admin/detail', $item->id) }}"
                         class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                        Tindak Lanjut
+                        details
                     </a>
 
                 </td>
@@ -114,7 +143,7 @@
                     },
                     childNodes: tHead.childNodes[0].childNodes.map((_th, index) => {
 
-                        if (index === tHead.childNodes[0].childNodes.length - 1) {
+                        if (index >= tHead.childNodes[0].childNodes.length -1) {
                             return {
                                 nodeName: "TH"
                             };

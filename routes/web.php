@@ -78,7 +78,7 @@ Route::put('/admin/updateUser/{peminjam}', [AdminController::class, 'updateUser'
 
 Route::post('/admin/kelola/simpan-ke-history/{transaksi}', [AdminController::class, 'simpanKeHistory'])->name('simpan-ke-history');
 
-
+Route::get('/admin/detail/{id}', [AdminController::class, 'datadetail'])->middleware('admin')->name('admindetail');
 
 Route::get('/tes', function () {
     return view('tes');
