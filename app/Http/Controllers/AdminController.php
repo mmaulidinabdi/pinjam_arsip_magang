@@ -213,7 +213,9 @@ class AdminController extends Controller
         $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
 
 
+
         Histori::create($validateData);
+
         TransaksiPeminjaman::where('id', $transaksi->id)->delete();
 
         return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);

@@ -29,13 +29,11 @@
         </thead>
         <tbody>
             @foreach ($histories as $history)
-            
                 <tr>
                     <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $history->nama_arsip }}</td>
                     <td>{{ $history->jenis_arsip }}</td>
                     <td>{{ $history->tanggal_peminjaman }}</td>
                     <td>{{ $history->status }}</td>
-                    <td>husein</td>
                 </tr>
             @endforeach
         </tbody>
