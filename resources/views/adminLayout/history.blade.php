@@ -9,6 +9,7 @@
         </h2>
         <br>
 </div>
+
 <style>
     .datatable-input {
         width: 120px;
@@ -76,7 +77,7 @@
                 <span class="flex items-center">
                 </span>
             </th>
-            
+
         </tr>
     </thead>
     <tbody>
@@ -104,18 +105,27 @@
                 </td>
 
 
-                <td>{{ $item->tanggal_peminjaman }}</td>
+                <td>
+                    {{ \Carbon\Carbon::parse($item->tanggal_peminjaman)->translatedFormat('d F Y') }}
+                </td>
                 <td>{{ $item->status }}</td>
-                
+
                 <td>
                     @if($item->status === 'diacc')
-                <button 
-                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                        Konfirmasi pengembalian
-                    </button>
-                    @else
+                        @if($item->tanggal_pengembalian !== null)
+                            {{ \Carbon\Carbon::parse($item->tanggal_pengembalian)->translatedFormat('d F Y') }}
+                        @else
+                            <form action="{{ route('konfirmasi.pengembalian', $item->id) }}" method="POST" class="inline">
+                                @csrf
+                                <button type="submit"
+                                    class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                    Konfirmasi pengembalian
+                                </button>
+                            </form>
+                        @endif
                     @endif
                 </td>
+
                 <td>
                     <a href="{{ url('admin/detail', $item->id) }}"
                         class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
@@ -143,7 +153,7 @@
                     },
                     childNodes: tHead.childNodes[0].childNodes.map((_th, index) => {
 
-                        if (index >= tHead.childNodes[0].childNodes.length -1) {
+                        if (index >= tHead.childNodes[0].childNodes.length - 1) {
                             return {
                                 nodeName: "TH"
                             };

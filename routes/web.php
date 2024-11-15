@@ -80,6 +80,8 @@ Route::post('/admin/kelola/simpan-ke-history/{transaksi}', [AdminController::cla
 
 Route::get('/admin/detail/{id}', [AdminController::class, 'datadetail'])->middleware('admin')->name('admindetail');
 
+Route::post('admin/kelola/{id}', [AdminController::class, 'konfirmasiPengembalian'])->name('konfirmasi.pengembalian');
+
 Route::get('/tes', function () {
     return view('tes');
 });
