@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Peminjam;
 use App\Models\TransaksiPeminjaman;
 use App\Models\Histori;
+use App\Models\Imb;
+use App\Models\Arsip1;
+use App\Models\Arsip2;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -46,16 +49,16 @@ class AdminController extends Controller
 
     public function historyadmin()
     {
-
-        $historis = Histori::with('peminjam')->get();
-        // dd($historis);
-
+        
+        $items = Histori::with('Peminjam','Imb','Arsip1','Arsip2')
+        ->get();
+        
 
         return view('adminlayout/history', [
-            'title' => 'History peminjaman',
-            'active' => 'peminjaman',
-            'histori' => $historis,
-        ], );
+            'title' => 'kelola',
+            'items' => $items,
+            'active' => 'peminjaman'
+        ]);
     }
 
     public function lanjutan()
@@ -209,6 +212,8 @@ class AdminController extends Controller
         return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
     }
 
+    public function history()
+    {
 
-
+    }
 }
