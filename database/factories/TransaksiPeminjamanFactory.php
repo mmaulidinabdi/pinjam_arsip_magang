@@ -28,7 +28,7 @@ class TransaksiPeminjamanFactory extends Factory
             'nama_arsip' => $arsip->nama ?? $this->faker->words(3, true), // Nama arsip jika ada, jika tidak nama acak
             'data_arsip' => $this->faker->sentence(),
             'jenis_arsip' => class_basename($arsip), // Menyimpan jenis arsip dari nama class
-            'alasan_ditolak' => $this->faker->optional()->sentence(),
+            // 'alasan_ditolak' => $this->faker->optional()->sentence(),
         ];
     }
 
