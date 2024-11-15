@@ -20,9 +20,8 @@
                 $table->string('status')->default('diperiksa');
                 $table->string('no_arsip')->nullable();
                 $table->string('nama_arsip');
-                $table->string('data_arsip');
+                $table->string('data_arsip')->nullable();
                 $table->enum('jenis_arsip', ['Arsip1', 'arsip2', 'IMB'])->notNull();
-                $table->string('alasan_ditolak')->nullable();
                 $table->timestamps();
             });
         }

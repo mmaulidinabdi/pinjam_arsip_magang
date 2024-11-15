@@ -65,7 +65,8 @@
 
 <!-- delete modal -->
 <div id="popup-modal" tabindex="-1"
-    class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden flex justify-center items-center bg-gray-900 bg-opacity-50">
+    class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden 
+     justify-center items-center bg-gray-900 bg-opacity-50">
     <div class="relative w-full max-w-md p-4">
         <!-- Modal Content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">

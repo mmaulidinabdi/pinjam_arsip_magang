@@ -47,17 +47,25 @@
                     @enderror
                 </div>
                 <!-- Password Input -->
-                <div class="mb-4">
-                    <label for="password" class="font-mono block text-gray-800">Password</label>
-                    <input type="password" id="password" name="password"
-                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off">
-                    @error('password')
-                    <div class="text-red-600">
-                        *{{ $message }}
-                    </div>
-                    @enderror
+                <label for="password" class="font-mono block text-gray-800">Password</label>
+                <div class="mb-4 relative">
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 pr-10 focus:outline-none focus:border-blue-500"
+                        autocomplete="off" placeholder="•••••••••">
+                    <span
+                        class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                        onclick="togglePassword('password', this)">
+                        👁️
+                    </span>
                 </div>
+                @error('password')
+                <div class="text-red-600 mb-2">
+                    *{{ $message }}
+                </div>
+                @enderror
 
 
                 <!-- Login Button -->
@@ -110,27 +118,35 @@
                     @enderror
                 </div>
                 <!-- Password Input -->
-                <div class="mb-4">
-                    <label for="password" class="font-mono block text-gray-800">Password</label>
+                <label for="password" class="font-mono block text-gray-800">Password</label>
+                <div class="relative mb-4">
                     <input type="password" id="password" name="password"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off">
-                    @error('password')
-                    <div class="text-red-600">
-                        *{{ $message }}
-                    </div>
-                    @enderror
+                        autocomplete="off" placeholder="•••••••••">
+                    <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onclick="togglePassword('password', this)">
+                        👁️
+                    </span>
                 </div>
+                @error('password')
+                <div class="text-red-600 mb-2">
+                    *{{ $message }}
+                </div>
+                @enderror
+
                 <!-- Confirm Password Input -->
-                <div class="mb-4">
-                    <label for="confirm_password" class="font-mono block text-gray-800">Confirm Password</label>
+                <label for="confirm_password" class="font-mono block text-gray-800">Confirm Password</label>
+                <div class="relative mb-4">
                     <input type="password" id="confirm_password" name="confirm_password"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                        autocomplete="off">
-                    @if (session()->has('registErr'))
-                    <span class="text-red-600">*{{ session('registErr') }}</span>
-                    @endif
+                        autocomplete="off" placeholder="•••••••••">
+                    <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onclick="togglePassword('confirm_password', this)">
+                        👁️
+                    </span>
                 </div>
+                @if (session()->has('registErr'))
+                <div class="text-red-600 mb-2">*{{ session('registErr') }}</div>
+                @endif
+
                 <!-- penyetujuan Checkbox -->
                 <div class="flex items-start mb-5">
                     <div class="flex items-center h-5">
@@ -156,6 +172,23 @@
 
 
 <script>
+    //  toggle password
+    function togglePassword(inputId, icon) {
+        const passwordInput = document.getElementById(inputId);
+
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordInput.placeholder = '';
+            icon.textContent = '🙈';
+
+        } else {
+            passwordInput.type = 'password';
+            passwordInput.placeholder = '•••••••••';
+            icon.textContent = '👁️';
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         const alert = document.getElementById('alert');
 
