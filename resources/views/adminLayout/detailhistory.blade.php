@@ -17,42 +17,59 @@
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
                     Nama Peminjam
                 </th>
-                <td class="px-6 py-3">Muhammad Azhar Sadikin</td>
+                <td class="px-6 py-3">{{ $item->peminjam->nama_lengkap }}</td>
             </tr>
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
                     Arsip
                 </th>
-                <td class="px-6 py-3">IMB-124 1999</td>
+                <td class="px-6 py-3">
+                @if($item->status === 'diacc')
+                        {{ $item->jenis_arsip }}
+                        @if (($item->jenis_arsip = 'imb'))
+                        {{ $item->imb->nomor_dp }}
+                        {{ $item->imb->tahun }}
+                        @elseif(($item->jenis_arsip = 'Arsip1'))
+                        {{ $item->arsip1->nomor_dp }}
+                        {{ $item->arsip1->tahun }}
+                        @elseif(($item->jenis_arsip = 'Arsip2'))
+                        {{ $item->arsip2->nomor_dp }}
+                        {{ $item->arsip2->tahun }}
+                        @endif
+                    @else
+
+                    @endif
+
+                </td>
             </tr>
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
                     Alamat
                 </th>
-                <td class="px-6 py-3">Jl trans kalimantan komplek kebun jeruk 3 rt 9 rw 2 no 31</td>
+                <td class="px-6 py-3">{{ $item->peminjam->alamat }}</td>
             </tr>
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
                     No Telp
                 </th>
-                <td class="px-6 py-3">083141560647</td>
+                <td class="px-6 py-3">{{ $item->peminjam->no_telp }}</td>
             </tr>
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
                     Tujuan
                 </th>
-                <td class="px-6 py-3">Menjual rumah</td>
+                <td class="px-6 py-3">{{ $item->tujuan_peminjam }}</td>
             </tr>
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
                     Tanggal Peminjaman
                 </th>
-                <td class="px-6 py-3">25 September 2024</td>
+                <td class="px-6 py-3">{{ $item->tanggal_peminjaman }}</td>
             </tr>
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
@@ -60,7 +77,7 @@
                     File KTP
                 </th>
                 <td class="px-6 py-3">
-                    <a href="{{ asset('storage/ktp/imb_1_1999.pdf') }}" target="_blank"
+                    <a href="{{ asset($item->peminjam->ktp) }}" target="_blank"
                         class="text-blue-600 hover:underline">
                         Lihat File PDF
                     </a>
@@ -72,12 +89,8 @@
                     File Pendukung
                 </th>
                 <td class="px-6 py-3">
-                    <a href="{{ asset('storage/ktp/imb_1_1999.pdf') }}" target="_blank"
+                    <a href="{{ asset($item->dokumen_pendukung) }}" target="_blank"
                         class="text-blue-600 hover:underline">
-                        Lihat File PDF
-                    </a>
-                    <a href="{{ asset('storage/ktp/imb_1_1999.pdf') }}" target="_blank"
-                        class="text-blue-600 hover:underline mt-2 block">
                         Lihat File PDF
                     </a>
                 </td>
@@ -88,7 +101,7 @@
                     Status
                 </th>
                 <td class="px-6 py-3">
-    
+                {{ $item->status }}
                 </td>
                 
             </tr>
@@ -104,8 +117,10 @@
 
 
 <div class="mt-4">
-<button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back</button>
-<button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Save</button>    
+<a href="{{ url('admin/histori') }}"
+                class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                Back
+            </a>
 </div>
 
 <script>
