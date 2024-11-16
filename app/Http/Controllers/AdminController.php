@@ -11,6 +11,7 @@ use App\Models\Histori;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Expr\FuncCall;
 use Psy\Command\HistoryCommand;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -224,5 +225,18 @@ class AdminController extends Controller
     public function history()
     {
 
+    }
+
+    public function konfirmasiPengembalian($id)
+    {
+        // Cari data berdasarkan ID
+        $history = Histori::findOrFail($id);
+
+        // Perbarui tanggal_pengembalian dengan tanggal saat ini
+        $history->tanggal_pengembalian = Carbon::now()->toDateString();
+        $history->save();
+
+        // Redirect atau kembalikan respons sukses
+        return redirect()->back()->with('success', 'Tanggal pengembalian berhasil diperbarui.');
     }
 }
