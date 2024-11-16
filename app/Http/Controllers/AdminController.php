@@ -162,6 +162,8 @@ class AdminController extends Controller
 
     public function kelolapeminjaman()
     {
+        Histori::where('status', 'ditolak')->delete();
+
         $items = TransaksiPeminjaman::with('peminjam')
         ->where('status', 'diperiksa')
         ->get();
@@ -202,7 +204,6 @@ class AdminController extends Controller
             'alasan_ditolak' => 'required|max:255',
         ]);
 
-
         $validateData['peminjaman_id'] = $transaksi->id;
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
         $validateData['nama_arsip'] = $transaksi->nama_arsip;
@@ -212,11 +213,10 @@ class AdminController extends Controller
         $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
         $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
 
-
-
         Histori::create($validateData);
 
-        TransaksiPeminjaman::where('id', $transaksi->id)->delete();
+        $transaksi->status = 'ditolak';
+        $transaksi->save();
 
         return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
     }
