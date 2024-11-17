@@ -152,22 +152,21 @@
                     <a type="button" href="/admin/terima/{{ $peminjam->id }}">
                         PERIKSA
                     </a>
-                </button>
-                <button type="button" onclick="openModal({{ $peminjam->id }})"
-                    class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                    Ditolak
-                </button>
-                @else
-                <button type="button"
-                    class="min-w-[60px] whitespace-nowrap text-white bg-green-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                    DI ACC
-                </button>
-                @endif
+                    <button type="button" onclick="openModal({{ $peminjam->id }})"
+                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        Ditolak
+                    </button>
+                    @else
+                    <button type="button"
+                        class="min-w-[60px] whitespace-nowrap text-white bg-green-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        DI ACC
+                    </button>
+                    @endif
             </td>
             <td>
                 <!-- hapus -->
                 <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                    onclick="confirmDelete({{ $peminjam->id }})"
+                    onclick="confirmDelete('{{ $peminjam->id, $peminjam->nama_lengkap }}')"
                     class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                     type="button">
                     Hapus
@@ -180,7 +179,9 @@
                     type="button">
                     Edit
                 </button>
-                
+
+
+
             </td>
         </tr>
 
@@ -248,19 +249,27 @@
                                     placeholder="Ex. Apple">
                             </div>
                             <div class="mb-6">
-                                <label for="password"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                <input type="password" id="password" name="password"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="•••••••••" required />
+                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="password" name="password"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="•••••••••" required />
+                                    <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onclick="togglePassword('password', this)">
+                                        👁️
+                                    </span>
+                                </div>
                             </div>
+
                             <div class="mb-6">
-                                <label for="confirm_password"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
-                                    password</label>
-                                <input type="password" id="confirm_password" name="confirm_password"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="•••••••••" required />
+                                <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+                                <div class="relative">
+                                    <input type="password" id="confirm_password" name="confirm_password"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="•••••••••" required />
+                                    <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onclick="togglePassword('confirm_password', this)">
+                                        👁️
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
@@ -285,6 +294,23 @@
 
 
 <script>
+    //  toggle password
+    function togglePassword(inputId, icon) {
+        const passwordInput = document.getElementById(inputId);
+
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordInput.placeholder = '';
+            icon.textContent = '🙈';
+
+        } else {
+            passwordInput.type = 'password';
+            passwordInput.placeholder = '•••••••••';
+            icon.textContent = '👁️';
+        }
+    }
+
     if (document.getElementById("filter-table") && typeof simpleDatatables.DataTable !== 'undefined') {
         const dataTable = new simpleDatatables.DataTable("#filter-table", {
             tableRender: (_data, table, type) => {
@@ -343,20 +369,16 @@
         }
     }
 
-    // Fungsi untuk menampilkan modal
-    function showDeleteModal() {
-        document.getElementById('deleteConfirmationModal').classList.remove('hidden');
-    }
-
-    // Fungsi untuk menyembunyikan modal
-    function closeDeleteModal() {
-        document.getElementById('deleteConfirmationModal').classList.add('hidden');
-    }
-
     // Fungsi untuk mengirim form saat konfirmasi penghapusan
-    function confirmDelete(id) {
-        document.getElementById('formDelete').action = `/admin/hapusUser/${id}`;
-    }
+    function confirmDelete(id, nama) {
+    // Update form action dynamically
+    const formDelete = document.getElementById('formDelete');
+    formDelete.action = `/admin/hapusUser/${id}`;
+
+    // Update modal message dynamically
+    // const modalMessage = document.querySelector('#popup-modal h3');
+    // modalMessage.textContent = `Yakin Ingin Hapus User "${nama}"?`;
+}
 
     // modal update
     // document.addEventListener("DOMContentLoaded", function(event) {

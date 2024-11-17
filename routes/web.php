@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeminjamController;
+use App\Http\Middleware\Admin;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -62,9 +63,10 @@ Route::get('/admin/imb', [AdminController::class, 'manajemenImb'])->middleware('
 
 Route::get('/admin/suratLain', [AdminController::class, 'manajemenSuratLain'])->middleware('admin')->name('admin.manajemenSuratLain');
 
-Route::get('/admin/tambahImb', [AdminController::class, 'tambahImb'])->middleware('admin')->name('admin.tambahImb');
 
-Route::get('/admin/tambahSuratLain', [AdminController::class, 'tambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
+
+Route::get('/admin/tambahSuratLain', [AdminController::class, 'viewTambahSuratLain'])->middleware('admin')->name('admin.viewTambahSuratLain');
+Route::post('/admin/tambahSuratLain', [AdminController::class, 'tambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
 
 Route::get('/admin/lanjutan/{id}', [AdminController::class, 'datalanjutan'])->middleware('admin')->name('adminlanjut');
 
@@ -80,7 +82,18 @@ Route::post('/admin/kelola/simpan-ke-history/{transaksi}', [AdminController::cla
 
 Route::get('/admin/detail/{id}', [AdminController::class, 'datadetail'])->middleware('admin')->name('admindetail');
 
+<<<<<<< HEAD
+// untuk imb
+Route::get('/admin/tambahImb', [AdminController::class, 'viewTambahImb'])->middleware('admin')->name('admin.viewTambahImb');
+Route::post('/admin/tambahImb', [AdminController::class, 'tambahImb'])->middleware('admin')->name('admin.tambahImb');
+// lihat file imb
+Route::get('/admin/lihat/{name}',[AdminController::class, 'show'])->middleware('admin')->name('admin.lihat');
+// edit imb
+Route::put('/admin/edit/imb/{id}',[AdminController::class, 'updateImb'])->middleware('admin')->name('edit.imb');
+Route::get('/admin/delete/imb/{id}', [AdminController::class,'deleteImb'])->middleware('admin')->name('delete.imb');
+=======
 Route::post('admin/kelola/{id}', [AdminController::class, 'konfirmasiPengembalian'])->name('konfirmasi.pengembalian');
+>>>>>>> 36823777866b4ff607fefa6da37fab34cad63331
 
 Route::get('/tes', function () {
     return view('tes');
