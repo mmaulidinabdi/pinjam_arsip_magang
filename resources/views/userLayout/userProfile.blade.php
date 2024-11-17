@@ -50,6 +50,11 @@
                 <input type="text" id="phone" name="no_telp"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value="{{ Auth::user()->no_telp }}" placeholder="" required />
+                @error('no_telp')
+                    <div class="text-red-600">
+                        *{{ $message }}
+                    </div>
+                @enderror
             </div>
 
         </div>
@@ -59,6 +64,11 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 value="{{ Auth::user()->email }}" placeholder="john.doe@company.com" required />
         </div>
+        @error('email')
+            <div class="text-red-600">
+                *{{ $message }}
+            </div>
+        @enderror
 
 
         <div class="flex items-center justify-center w-full my-4">
