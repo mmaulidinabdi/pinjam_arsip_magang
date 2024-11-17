@@ -63,8 +63,7 @@ Route::get('/admin/imb', [AdminController::class, 'manajemenImb'])->middleware('
 
 Route::get('/admin/suratLain', [AdminController::class, 'manajemenSuratLain'])->middleware('admin')->name('admin.manajemenSuratLain');
 
-Route::get('/admin/tambahImb', [AdminController::class, 'viewTambahImb'])->middleware('admin')->name('admin.viewTambahImb');
-Route::post('/admin/tambahImb', [AdminController::class, 'tambahImb'])->middleware('admin')->name('admin.tambahImb');
+
 
 Route::get('/admin/tambahSuratLain', [AdminController::class, 'viewTambahSuratLain'])->middleware('admin')->name('admin.viewTambahSuratLain');
 Route::post('/admin/tambahSuratLain', [AdminController::class, 'tambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
@@ -84,10 +83,13 @@ Route::post('/admin/kelola/simpan-ke-history/{transaksi}', [AdminController::cla
 Route::get('/admin/detail/{id}', [AdminController::class, 'datadetail'])->middleware('admin')->name('admindetail');
 
 // untuk imb
-
+Route::get('/admin/tambahImb', [AdminController::class, 'viewTambahImb'])->middleware('admin')->name('admin.viewTambahImb');
+Route::post('/admin/tambahImb', [AdminController::class, 'tambahImb'])->middleware('admin')->name('admin.tambahImb');
 // lihat file imb
 Route::get('/admin/lihat/{name}',[AdminController::class, 'show'])->middleware('admin')->name('admin.lihat');
-
+// edit imb
+Route::put('/admin/edit/imb/{id}',[AdminController::class, 'updateImb'])->middleware('admin')->name('edit.imb');
+Route::get('/admin/delete/imb/{id}', [AdminController::class,'deleteImb'])->middleware('admin')->name('delete.imb');
 
 Route::get('/tes', function () {
     return view('tes');

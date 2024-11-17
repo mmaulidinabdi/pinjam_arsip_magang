@@ -59,7 +59,6 @@
 
 
 <!-- Tambahkan library pdf-lib dari CDN -->
-<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
 
 <script>
     document.getElementById('mergeButton').addEventListener('click', async () => {

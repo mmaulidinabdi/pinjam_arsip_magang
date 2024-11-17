@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Imb;
+use App\Models\Arsip1;
+use App\Models\Arsip2;
+use App\Models\Histori;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
+use Psy\Command\HistoryCommand;
 use PhpParser\Node\Expr\FuncCall;
 use App\Models\TransaksiPeminjaman;
-use App\Models\Histori;
 use Illuminate\Support\Facades\Hash;
-use Psy\Command\HistoryCommand;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -46,10 +50,10 @@ class AdminController extends Controller
 
     public function historyadmin()
     {
-        
-        $items = Histori::with('Peminjam','Imb','Arsip1','Arsip2')
-        ->get();
-        
+
+        $items = Histori::with('Peminjam', 'Imb', 'Arsip1', 'Arsip2')
+            ->get();
+
 
         return view('adminlayout/history', [
             'title' => 'kelola',
@@ -206,13 +210,12 @@ class AdminController extends Controller
 
     public function datalanjutan($id)
     {
-        $data = TransaksiPeminjaman::with('peminjam','imb','arsip1','arsip2')->findOrFail($id);
+        $data = TransaksiPeminjaman::with('peminjam', 'imb', 'arsip1', 'arsip2')->findOrFail($id);
         return view('adminlayout/lanjutan', [
             'title' => 'kelola',
             'item' => $data,
             'active' => 'peminjaman'
         ]);
-
     }
 
     public function datadetail($id)
@@ -223,7 +226,6 @@ class AdminController extends Controller
             'item' => $data,
             'active' => 'peminjaman'
         ]);
-
     }
 
     public function simpanKeHistory(request $request, TransaksiPeminjaman $transaksi)
@@ -258,5 +260,98 @@ class AdminController extends Controller
         return response()->file($path, [
             'Content-Type' => 'application/pdf'
         ]);
+    }
+
+    public function updateImb($id, Request $request)
+    {
+        // Ambil data IMB berdasarkan ID
+        $imb = Imb::findOrFail($id);
+
+        // Validasi data input
+        $validateData = $request->validate([
+            'nomor_dp' => 'required|numeric',
+            'nama_pemilik' => 'nullable',
+            'alamat' => 'nullable',
+            'lokasi' => 'nullable',
+            'box' => 'nullable',
+            'keterangan' => 'nullable',
+            'tahun' => 'nullable',
+            'imbs' => 'nullable|string',
+        ]);
+
+        // Cek apakah ada file IMB baru yang diunggah
+        if ($request->filled('imbs')) {
+            // Hapus file lama jika ada
+            if ($imb->imbs && Storage::disk('public')->exists('imbs/' . $imb->imbs)) {
+                Storage::disk('public')->delete('imbs/' . $imb->imbs);
+            }
+
+            // Decode file PDF dari base64
+            $base64Pdf = $request->input('imbs');
+            $pdfContent = base64_decode(preg_replace('#^data:application/pdf;base64,#i', '', $base64Pdf));
+
+            // Generate nama file baru
+            $fileName = 'imb_' . $validateData['nomor_dp'] . '_' . $validateData['tahun'] . '_' . time() . '.pdf';
+            $validateData['imbs'] = $fileName;
+
+            // Simpan file baru ke storage
+            Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);
+        } else {
+            // Periksa apakah ada perubahan pada `nomor_dp` atau `tahun`
+            $nomorDpChanged = $validateData['nomor_dp'] != $imb->nomor_dp;
+            $tahunChanged = $validateData['tahun'] != $imb->tahun;
+
+            if (($nomorDpChanged || $tahunChanged) && $imb->imbs) {
+                $currentFileName = $imb->imbs;
+                $currentPath = 'imbs/' . $currentFileName;
+
+                $parts = explode('_', pathinfo($currentFileName, PATHINFO_FILENAME));
+
+                if (count($parts) >= 4) {
+                    // Format nama file baru
+                    $newFileName = 'imb_' . $validateData['nomor_dp'] . '_' . $validateData['tahun'] . '_' . $parts[3] . '.' . pathinfo($currentFileName, PATHINFO_EXTENSION);
+
+                    if (!Storage::disk('public')->exists('imbs/' . $newFileName)) {
+                        // Rename file
+                        Storage::disk('public')->move($currentPath, 'imbs/' . $newFileName);
+                        $validateData['imbs'] = $newFileName;
+                    } else {
+                        // Tambahkan timestamp jika nama file baru sudah ada
+                        $newFileName = 'imb_' . $validateData['nomor_dp'] . '_' . $validateData['tahun'] . '_' . time() . '.' . pathinfo($currentFileName, PATHINFO_EXTENSION);
+                        Storage::disk('public')->move($currentPath, 'imbs/' . $newFileName);
+                        $validateData['imbs'] = $newFileName;
+                    }
+                } else {
+                    $validateData['imbs'] = $currentFileName;
+                }
+            } else {
+                $validateData['imbs'] = $imb->imbs;
+            }
+        }
+
+        // Update data IMB
+        $imb->update($validateData);
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'IMB berhasil diperbarui!');
+    }
+
+
+
+    public function deleteImb($id)
+    {
+        $imb = Imb::where('id', $id)->firstOrFail();
+        // Ambil semua parameter query string saat ini
+        $queryString = request()->query();
+
+        if ($imb->imbs) {
+            // dd($imb->imbs); 
+            Storage::disk('public')->delete('imbs/' . $imb->imbs);
+        }
+
+        $imb->delete();
+
+        return redirect()->route('admin.manajemenImb')->with('success', 'Data IMB berhasil dihapus!!');
+        // return redirect()->route('management', $queryString)->with('success', 'Data IMB berhasil dihapus !!');
     }
 }

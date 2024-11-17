@@ -8,6 +8,8 @@
 
     <title>{{ $title }}</title>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
+
 </head>
 
 <body>
@@ -242,8 +244,8 @@
     </aside>
 
 
-    <div class="mx-auto min-h-screen p-4 sm:ml-64 bg-[#fefeff]" >
-        <div class="relative p-4 dark:border-gray-700 mt-14" >
+    <div class="mx-auto min-h-screen p-4 sm:ml-64 bg-[#fefeff]">
+        <div class="relative p-4 dark:border-gray-700 mt-14">
             @yield('peminjamLayout')
         </div>
     </div>
