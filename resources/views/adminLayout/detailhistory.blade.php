@@ -19,23 +19,24 @@
                 </th>
                 <td class="px-6 py-3">{{ $item->peminjam->nama_lengkap }}</td>
             </tr>
+            @if($item->status === 'diacc')
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
                     Arsip
                 </th>
                 <td class="px-6 py-3">
-                @if($item->status === 'diacc')
+                    @if($item->status === 'diacc')
                         {{ $item->jenis_arsip }}
                         @if (($item->jenis_arsip = 'imb'))
-                        {{ $item->imb->nomor_dp }}
-                        {{ $item->imb->tahun }}
+                            {{ $item->imb->nomor_dp }}
+                            {{ $item->imb->tahun }}
                         @elseif(($item->jenis_arsip = 'Arsip1'))
-                        {{ $item->arsip1->nomor_dp }}
-                        {{ $item->arsip1->tahun }}
+                            {{ $item->arsip1->nomor_dp }}
+                            {{ $item->arsip1->tahun }}
                         @elseif(($item->jenis_arsip = 'Arsip2'))
-                        {{ $item->arsip2->nomor_dp }}
-                        {{ $item->arsip2->tahun }}
+                            {{ $item->arsip2->nomor_dp }}
+                            {{ $item->arsip2->tahun }}
                         @endif
                     @else
 
@@ -43,6 +44,7 @@
 
                 </td>
             </tr>
+            @endif
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
@@ -77,8 +79,7 @@
                     File KTP
                 </th>
                 <td class="px-6 py-3">
-                    <a href="{{ asset($item->peminjam->ktp) }}" target="_blank"
-                        class="text-blue-600 hover:underline">
+                    <a href="{{ asset($item->peminjam->ktp) }}" target="_blank" class="text-blue-600 hover:underline">
                         Lihat File PDF
                     </a>
                 </td>
@@ -101,30 +102,43 @@
                     Status
                 </th>
                 <td class="px-6 py-3">
-                {{ $item->status }}
+                    {{ $item->status }}
                 </td>
-                
             </tr>
+
+            @if($item->status === 'ditolak')
+                <tr
+                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
+                        Alasan Ditolak
+                    </th>
+                    <td class="px-6 py-3">
+                        {{ $item->alasan_ditolak }}
+                    </td>
+                </tr>
+            @endif
+
         </tbody>
     </table>
 </div>
 
 <div id="alasanContainer" class="hidden mt-2">
-            <label for="alasan" class="block text-sm font-medium text-gray-700">Alasan Penolakan</label>
-            <textarea id="alasan" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200"></textarea>
+    <label for="alasan" class="block text-sm font-medium text-gray-700">Alasan Penolakan</label>
+    <textarea id="alasan" rows="3"
+        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200"></textarea>
 
-        </div>
+</div>
 
 
 <div class="mt-4">
-<a href="{{ url('admin/histori') }}"
-                class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                Back
-            </a>
+    <a href="{{ url('admin/histori') }}"
+        class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+        Back
+    </a>
 </div>
 
 <script>
-    document.getElementById('statusSelect').addEventListener('change', function() {
+    document.getElementById('statusSelect').addEventListener('change', function () {
         const alasanContainer = document.getElementById('alasanContainer');
         if (this.value === 'tolak') {
             alasanContainer.classList.remove('hidden');
@@ -133,7 +147,7 @@
         }
     });
 
-    document.getElementById('confirmButton').addEventListener('click', function() {
+    document.getElementById('confirmButton').addEventListener('click', function () {
         const alasan = document.getElementById('alasan').value;
         if (alasan) {
             console.log('Alasan Penolakan:', alasan);

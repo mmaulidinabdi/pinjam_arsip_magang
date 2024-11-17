@@ -13,7 +13,7 @@ use Psy\Command\HistoryCommand;
 use PhpParser\Node\Expr\FuncCall;
 use App\Models\TransaksiPeminjaman;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -197,6 +197,8 @@ class AdminController extends Controller
 
     public function kelolapeminjaman()
     {
+        Histori::where('status', 'ditolak')->delete();
+
         $items = TransaksiPeminjaman::with('peminjam')
             ->where('status', 'diperiksa')
             ->get();
@@ -234,7 +236,6 @@ class AdminController extends Controller
             'alasan_ditolak' => 'required|max:255',
         ]);
 
-
         $validateData['peminjaman_id'] = $transaksi->id;
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
         $validateData['nama_arsip'] = $transaksi->nama_arsip;
@@ -244,9 +245,10 @@ class AdminController extends Controller
         $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
         $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
 
-
         Histori::create($validateData);
-        TransaksiPeminjaman::where('id', $transaksi->id)->delete();
+
+        $transaksi->status = 'ditolak';
+        $transaksi->save();
 
         return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
     }
@@ -353,5 +355,24 @@ class AdminController extends Controller
 
         return redirect()->route('admin.manajemenImb')->with('success', 'Data IMB berhasil dihapus!!');
         // return redirect()->route('management', $queryString)->with('success', 'Data IMB berhasil dihapus !!');
+    }
+
+
+    public function history()
+    {
+
+    }
+
+    public function konfirmasiPengembalian($id)
+    {
+        // Cari data berdasarkan ID
+        $history = Histori::findOrFail($id);
+
+        // Perbarui tanggal_pengembalian dengan tanggal saat ini
+        $history->tanggal_pengembalian = Carbon::now()->toDateString();
+        $history->save();
+
+        // Redirect atau kembalikan respons sukses
+        return redirect()->back()->with('success', 'Tanggal pengembalian berhasil diperbarui.');
     }
 }

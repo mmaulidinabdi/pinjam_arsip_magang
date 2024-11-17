@@ -82,6 +82,7 @@ Route::post('/admin/kelola/simpan-ke-history/{transaksi}', [AdminController::cla
 
 Route::get('/admin/detail/{id}', [AdminController::class, 'datadetail'])->middleware('admin')->name('admindetail');
 
+<<<<<<< HEAD
 // untuk imb
 Route::get('/admin/tambahImb', [AdminController::class, 'viewTambahImb'])->middleware('admin')->name('admin.viewTambahImb');
 Route::post('/admin/tambahImb', [AdminController::class, 'tambahImb'])->middleware('admin')->name('admin.tambahImb');
@@ -90,6 +91,9 @@ Route::get('/admin/lihat/{name}',[AdminController::class, 'show'])->middleware('
 // edit imb
 Route::put('/admin/edit/imb/{id}',[AdminController::class, 'updateImb'])->middleware('admin')->name('edit.imb');
 Route::get('/admin/delete/imb/{id}', [AdminController::class,'deleteImb'])->middleware('admin')->name('delete.imb');
+=======
+Route::post('admin/kelola/{id}', [AdminController::class, 'konfirmasiPengembalian'])->name('konfirmasi.pengembalian');
+>>>>>>> 36823777866b4ff607fefa6da37fab34cad63331
 
 Route::get('/tes', function () {
     return view('tes');
