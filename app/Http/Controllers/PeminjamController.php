@@ -56,7 +56,7 @@ class PeminjamController extends Controller
             'nama_lengkap' => 'required|max:255',
             'alamat' => 'required',
             'no_telp' => 'required|unique:peminjams',
-            'email' => 'required|email|unique:peminjams',
+            'email' => 'required|email|unique:peminjams,email,'.$peminjam->id,
             'ktp' => 'nullable'
         ]);
 
