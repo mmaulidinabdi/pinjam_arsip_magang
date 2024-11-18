@@ -106,4 +106,4 @@ Route::get('/tes', function () {
     return view('tes');
 });
 
-Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');
+// Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');

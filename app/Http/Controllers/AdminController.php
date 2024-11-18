@@ -51,13 +51,12 @@ class AdminController extends Controller
 
     public function historyadmin()
     {
-
         $items = Histori::with('Peminjam', 'Imb', 'Arsip1', 'Arsip2')
             ->get();
 
 
         return view('adminlayout/history', [
-            'title' => 'kelola',
+            'title' => 'histori',
             'items' => $items,
             'active' => 'peminjaman'
         ]);
@@ -203,22 +202,20 @@ class AdminController extends Controller
     // Keuangan
     public function viewTambahKeuangan()
     {
-        return view('adminLayout.tambahKeuangan',[
-            'title'=>'Input Arsip Keuangan',
-            'active'=>'tambahArsip'
+        return view('adminLayout.tambahKeuangan', [
+            'title' => 'Input Arsip Keuangan',
+            'active' => 'tambahArsip'
         ]);
     }
 
     public function kelolapeminjaman()
     {
-        Histori::where('status', 'ditolak')->delete();
-
         $items = TransaksiPeminjaman::with('peminjam')
             ->where('status', 'diperiksa')
             ->get();
 
         return view('adminlayout/kelolapeminjaman', [
-            'title' => 'History',
+            'title' => 'Kelola',
             'items' => $items,
             'active' => 'peminjaman'
         ]);
@@ -250,7 +247,6 @@ class AdminController extends Controller
             'alasan_ditolak' => 'required|max:255',
         ]);
 
-        $validateData['peminjaman_id'] = $transaksi->id;
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
         $validateData['nama_arsip'] = $transaksi->nama_arsip;
         $validateData['status'] = 'ditolak';
@@ -261,8 +257,7 @@ class AdminController extends Controller
 
         Histori::create($validateData);
 
-        $transaksi->status = 'ditolak';
-        $transaksi->save();
+        $transaksi->delete();
 
         return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
     }
@@ -372,10 +367,7 @@ class AdminController extends Controller
     }
 
 
-    public function history()
-    {
-
-    }
+    public function history() {}
 
     public function konfirmasiPengembalian($id)
     {
