@@ -17,7 +17,7 @@ class PeminjamController extends Controller
     {
         return view('userLayout/userDashboard', [
             'title' => 'User Dashboard',
-            'transaksis' => TransaksiPeminjaman::where('peminjam_id', auth()->guard('webg')->user()->id)->get(),
+            'transaksis' => TransaksiPeminjaman::where('peminjam_id', auth()->guard('web')->user()->id)->get(),
         ]);
     }
 
