@@ -1,6 +1,6 @@
 @extends('adminLayout.adminLayout')
 
-@section('peminjamLayout')
+@section('adminLayout')
 
 <div class=" font-bold">
     <h2 class="text-xl">

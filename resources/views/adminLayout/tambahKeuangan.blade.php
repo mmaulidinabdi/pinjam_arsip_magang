@@ -2,7 +2,7 @@
 
 @section('adminLayout')
 
-<form method="post" action="/admin/tambahImb">
+<form method="post" action="/admin/tambahKeuangan">
     @csrf
     <div class="grid gap-6 mb-6 md:grid-cols-2">
         <div class="col-span-2">
@@ -10,11 +10,11 @@
         </div>
         <div>
             <label for="nomor_dp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor DP</label>
-            <input type="text" id="nomor_dp" name="nomor_dp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('nomor_dp')}}"  />
+            <input type="text" id="nomor_dp" name="nomor_dp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('nomor_dp')}}" />
         </div>
         <div>
             <label for="nama_pemilik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pemilik</label>
-            <input type="text" id="nama_pemilik" name="nama_pemilik" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('nama_pemilik')}}"  />
+            <input type="text" id="nama_pemilik" name="nama_pemilik" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('nama_pemilik')}}" />
         </div>
         <div>
             <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>

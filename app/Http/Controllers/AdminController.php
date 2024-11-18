@@ -188,11 +188,24 @@ class AdminController extends Controller
         return redirect()->route('admin.manajemenImb')->with('success', 'Data Berhasil Masuk!!');
     }
 
-    public function viewTambahSuratLain()
+
+    // SK
+
+    public function viewTambahSK()
     {
-        return view('adminLayout.tambahSuratlain', [
-            'title' => 'Input Surat Lain',
+        return view('adminLayout.tambahSK', [
+            'title' => 'Input SK',
             'active' => 'tambahArsip'
+        ]);
+    }
+
+
+    // Keuangan
+    public function viewTambahKeuangan()
+    {
+        return view('adminLayout.tambahKeuangan',[
+            'title'=>'Input Arsip Keuangan',
+            'active'=>'tambahArsip'
         ]);
     }
 
