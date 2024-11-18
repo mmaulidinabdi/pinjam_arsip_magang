@@ -1,6 +1,6 @@
 @extends('adminLayout.adminLayout')
 
-@section('peminjamLayout')
+@section('adminLayout')
 <style>
     /* Style for the search input box in the table header */
     .datatable-input {
@@ -152,7 +152,7 @@
                     <a type="button" href="/admin/terima/{{ $peminjam->id }}">
                         PERIKSA
                     </a>
-                    <button type="button" onclick="openModal({{ $peminjam->id }})"
+                    <button type="button" onclick="openModal('{{ $peminjam->id }}')"
                         class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                         Ditolak
                     </button>
@@ -189,7 +189,7 @@
         <!-- Modal khusus untuk peminjam ini -->
         <div id="myModal-{{ $peminjam->id }}" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="closeModal({{ $peminjam->id }})">&times;</span>
+                <span class="close" onclick="closeModal('{{ $peminjam->id }}')">&times;</span>
                 <h3>Alasan Ditolak</h3>
                 <form action="/admin/tolak/{{ $peminjam->id }}" method="POST">
                     @csrf
