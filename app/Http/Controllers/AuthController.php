@@ -35,7 +35,7 @@ class AuthController extends Controller
 
         if (Auth::guard('web')->attempt($validateData)) {
             $request->session()->regenerate();
-            return redirect()->intended('/user/dashboard/'. Auth::user()->id);
+            return redirect()->intended('/user/dashboard');
         }
 
         if (Auth::guard('admin')->attempt($validateData)) {
