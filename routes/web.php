@@ -30,7 +30,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // USER
 // Dashboard
-Route::get('/user/dashboard/{peminjam}', [PeminjamController::class, 'index'])->middleware('auth')->name('user.dashboard');
+Route::get('/user/dashboard', [PeminjamController::class, 'index'])->middleware('auth')->name('user.dashboard');
 
 Route::get('/user/profile', [PeminjamController::class, 'userProfile'])->middleware('auth')->name('user.profile');
 

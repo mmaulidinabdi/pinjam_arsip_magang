@@ -13,11 +13,11 @@ class PeminjamController extends Controller
 {
     //
 
-    public function index(Peminjam $peminjam)
+    public function index()
     {
         return view('userLayout/userDashboard', [
             'title' => 'User Dashboard',
-            'transaksis' => TransaksiPeminjaman::where('peminjam_id', $peminjam->id)->get(),
+            'transaksis' => TransaksiPeminjaman::where('peminjam_id', auth()->guard('webg')->user()->id)->get(),
         ]);
     }
 
