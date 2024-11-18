@@ -75,7 +75,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="nomor_dp" id="edit_nomor_dp"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_nomor_dp"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nomor
                         DP</label>
@@ -84,7 +84,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="nama_pemilik" id="edit_nama"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_nama"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nama</label>
                 </div>
@@ -92,7 +92,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="alamat" id="edit_alamat"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_alamat"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Alamat</label>
                 </div>
@@ -100,7 +100,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="lokasi" id="edit_lokasi"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_lokasi"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Lokasi</label>
                 </div>
@@ -108,7 +108,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="box" id="edit_box"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_box"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Box</label>
                 </div>
@@ -124,7 +124,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="tahun" id="edit_tahun"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_tahun"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tahun</label>
                 </div>
@@ -156,6 +156,13 @@
         </form>
     </div>
 </div>
+
+<div class="mb-4">
+    <button id="print-table" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Print Table
+    </button>
+</div>
+
 
 <table id="filter-table">
     <thead>
@@ -294,8 +301,6 @@
 
 
 <script>
-    
-
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('mergeButton').addEventListener('click', async () => {
             const files = document.getElementById('multiple_files').files;
@@ -333,7 +338,7 @@
         });
     })
 
-    
+
 
     // delay alert
     const alertSuccess = document.getElementById("alertSuccess");
@@ -381,7 +386,20 @@
                 return table;
             }
         });
+        // Fungsi Print
+        document.querySelector("#print-table").addEventListener("click", function() {
+            const originalContent = document.body.innerHTML;
+            const printContent = document.querySelector("#filter-table").outerHTML;
+
+            document.body.innerHTML = `<html><head><title>Print Table</title></head><body>${printContent}</body></html>`;
+            window.print();
+            document.body.innerHTML = originalContent;
+            window.location.reload(); // Reload halaman agar fungsi kembali normal
+        });
     }
+
+
+
 
 
 
