@@ -55,8 +55,8 @@ class PeminjamController extends Controller
         $validateData = $request->validate([
             'nama_lengkap' => 'required|max:255',
             'alamat' => 'required',
-            'no_telp' => 'required',
-            'email' => 'required|email',
+            'no_telp' => 'required|unique:peminjams',
+            'email' => 'required|email|unique:peminjams',
             'ktp' => 'nullable'
         ]);
 
