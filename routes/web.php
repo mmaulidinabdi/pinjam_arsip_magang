@@ -55,7 +55,6 @@ Route::get('/admin/histori', [AdminController::class, 'historyadmin'])->middlewa
 
 Route::get('/admin/lanjutan', [AdminController::class, 'lanjutan'])->middleware('admin')->name('admin.lanjutan');
 
-Route::get('/admin/detail', [AdminController::class, 'detail'])->middleware('admin')->name('admin.detail');
 
 Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middleware('admin')->name('admin.useradmin');
 
