@@ -392,15 +392,10 @@ class AdminController extends Controller
 
     public function autocomplete(Request $request)
     {
-        $arsips = [];
-
-        if ($request->has('q')) {
-            $search = $request->q;
-            $arsips = imb::select('id', 'name')
-                ->where('nomor_dp', 'LIKE', "%$search%")
-                ->get();
-        }
-
-        return response()->json($arsips);
+        $query = $request->get('query');
+        $results = Imb::where('nomor_dp', 'LIKE', '%' . $request . '%')
+            ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
+            ->pluck('nama_pemilik');
+        return response()->json($results);
     }
 }

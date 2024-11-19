@@ -107,7 +107,7 @@ Route::get('/tes', function () {
     return view('tes');
 });
 
-Route::get('/autocomplete', [AdminController::class, 'autocomplete'])->name('autocomplete');
+Route::get('cari', [AdminController::class, 'autocomplete']);
 
 
 // Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');

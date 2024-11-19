@@ -1,8 +1,8 @@
 @extends('adminLayout.adminLayout')
 
 @section('adminLayout')
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div class=" font-bold">
         <h2 class="text-xl">
             Data Peminjam
@@ -133,24 +133,24 @@
                                 <!-- Search Box -->
                                 <div class="w-full">
                                     <form class="w-full mx-auto">
-                                        <label for="default-search"
+                                        <label for="search"
                                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                                         <div class="relative">
                                             <div
-                                                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
                                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                                     <path stroke="currentColor" stroke-linecap="round"
                                                         stroke-linejoin="round" stroke-width="2"
                                                         d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                                 </svg>
                                             </div>
-                                            <input type="search" id="default-search"
+                                            <input type="search" id="search" name="search"
                                                 class="block w-full px-4 py-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-blue-500 focus:border-blue-500"
-                                                placeholder="Search files..." required>
-                                            <div id="autocomplete-results"
-                                                class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1">
-                                            </div>
+                                                placeholder="Search files..." autocomplete="off">
+                                            <ul id="autocomplete-results"
+                                                class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1 hidden">
+                                            </ul>
                                         </div>
                                     </form>
                                 </div>
@@ -180,8 +180,73 @@
         </div>
 
     </form>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Ambil CSRF token dari meta tag
+            const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Ketika user mengetik di input
+            $('#search').on('input', function() {
+                const query = $(this).val();
+                const resultsContainer = $('#autocomplete-results');
+
+                // Hapus hasil sebelumnya
+                resultsContainer.empty().addClass('hidden');
+
+                if (query.length < 2) {
+                    // Jangan cari jika panjang query terlalu pendek
+                    return;
+                }
+
+                // AJAX request
+                $.ajax({
+                    url: "{{ url('cari') }}",
+                    method: 'GET',
+                    data: {
+                        query
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    success: function(data) {
+                        if (data.length > 0) {
+                            data.forEach(function(item) {
+                                resultsContainer.append(`
+                                <li class="px-4 py-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600">
+                                    ${item}
+                                </li>
+                            `);
+                            });
+                            resultsContainer.removeClass('hidden');
+                        }
+                    },
+                    error: function() {
+                        console.error("Error fetching autocomplete results.");
+                    }
+                });
+            });
+
+            // Menangani klik pada hasil
+            $(document).on('click', '#autocomplete-results li', function() {
+                const selected = $(this).text();
+                $('#search').val(selected);
+                $('#autocomplete-results').empty().addClass('hidden');
+            });
+
+            // Menutup dropdown jika klik di luar
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#autocomplete-results, #search').length) {
+                    $('#autocomplete-results').empty().addClass('hidden');
+                }
+            });
+        });
+    </script>
+
     <script>
         document.getElementById('statusSelect').addEventListener('change', function() {
             const alasanContainer = document.getElementById('alasanContainer');
