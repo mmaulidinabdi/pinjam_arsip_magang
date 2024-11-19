@@ -125,4 +125,14 @@ class PeminjamController extends Controller
                 ->get(),
         ]);
     }
+
+    public function userdetail($id)
+    {
+        $history = Histori::with('peminjam')->findOrFail($id);
+        return view('userLayout/userDetail', [
+            'title' => 'kelola',
+            'history' => $history,
+            'active' => 'peminjaman'
+        ]);
+    }
 }
