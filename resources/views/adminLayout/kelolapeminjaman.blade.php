@@ -1,6 +1,6 @@
 @extends('adminLayout.adminLayout')
 
-@section('peminjamLayout')
+@section('adminLayout')
 
 <div class=" font-bold">
     <h2 class="text-xl">
@@ -85,7 +85,6 @@
 <script>
     if (document.getElementById("filter-table") && typeof simpleDatatables.DataTable !== 'undefined') {
         const dataTable = new simpleDatatables.DataTable("#filter-table", {
-            // paging:false
             tableRender: (_data, table, type) => {
                 if (type === "print") {
                     return table;

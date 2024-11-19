@@ -1,6 +1,6 @@
 @extends('adminLayout.adminLayout')
 
-@section('peminjamLayout')
+@section('adminLayout')
     <h2>manajemen surat lain</h2>
 @endsection
 

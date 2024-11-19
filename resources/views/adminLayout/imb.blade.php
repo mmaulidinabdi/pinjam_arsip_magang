@@ -1,6 +1,6 @@
 @extends('adminLayout.adminLayout')
 
-@section('peminjamLayout')
+@section('adminLayout')
 <style>
     /* Style for the search input box in the table header */
     .datatable-input {
@@ -75,7 +75,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="nomor_dp" id="edit_nomor_dp"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_nomor_dp"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nomor
                         DP</label>
@@ -84,7 +84,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="nama_pemilik" id="edit_nama"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_nama"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nama</label>
                 </div>
@@ -92,7 +92,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="alamat" id="edit_alamat"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_alamat"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Alamat</label>
                 </div>
@@ -100,7 +100,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="lokasi" id="edit_lokasi"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_lokasi"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Lokasi</label>
                 </div>
@@ -108,7 +108,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="box" id="edit_box"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_box"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Box</label>
                 </div>
@@ -124,7 +124,7 @@
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="tahun" id="edit_tahun"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" " value=""  />
+                        placeholder=" " value="" />
                     <label for="floating_tahun"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tahun</label>
                 </div>
@@ -156,6 +156,13 @@
         </form>
     </div>
 </div>
+
+<div class="mb-4">
+    <button id="print-table" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Print Table
+    </button>
+</div>
+
 
 <table id="filter-table">
     <thead>
@@ -257,7 +264,7 @@
                 </a>
             </td>
             <td class="px-6 py-4 hidden-print">
-                <a href="#" onclick="openEditModal({{ json_encode($imb) }})"
+                <a href="#" onclick="openEditModal('{{ json_encode($imb) }}')"
                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -268,7 +275,7 @@
 
             </td>
             <td class="px-6 py-4">
-                <a href="/admin/delete/imb/{{$imb->id}}" onclick=" return confirmDelete({{$imb->id}})">
+                <a href="/admin/delete/imb/{{$imb->id}}" onclick=" return confirmDelete('{{$imb->id}}')">
                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd" />
                     </svg>
@@ -294,7 +301,6 @@
 
 
 <script>
-
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('mergeButton').addEventListener('click', async () => {
             const files = document.getElementById('multiple_files').files;
@@ -332,7 +338,7 @@
         });
     })
 
-    
+
 
     // delay alert
     const alertSuccess = document.getElementById("alertSuccess");
@@ -380,7 +386,20 @@
                 return table;
             }
         });
+        // Fungsi Print
+        document.querySelector("#print-table").addEventListener("click", function() {
+            const originalContent = document.body.innerHTML;
+            const printContent = document.querySelector("#filter-table").outerHTML;
+
+            document.body.innerHTML = `<html><head><title>Print Table</title></head><body>${printContent}</body></html>`;
+            window.print();
+            document.body.innerHTML = originalContent;
+            window.location.reload(); // Reload halaman agar fungsi kembali normal
+        });
     }
+
+
+
 
 
 
@@ -423,7 +442,7 @@
 
     document.querySelectorAll('.print-pdf').forEach(function(element) {
         element.addEventListener('click', function(e) {
-            e.preventDefault(); // Mencegah link default
+            // e.preventDefault(); // Mencegah link default
             let pdfFile = this.getAttribute('data-file'); // Ambil URL PDF dari data-file
 
             // Buka PDF di tab baru

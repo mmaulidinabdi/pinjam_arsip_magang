@@ -22,7 +22,6 @@ class historiFactory extends Factory
 
 
         return [
-            'peminjaman_id' => $transaksi->id,
             'peminjam_id' => $transaksi->peminjam_id,
             'imb_id' => $status === 'diacc' ? $this->faker->randomElement(['1', '2', '3', '4', '5', '6', '7']) : null,
             'nama_arsip' => $this->faker->sentence(),

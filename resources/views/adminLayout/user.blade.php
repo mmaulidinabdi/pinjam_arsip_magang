@@ -1,6 +1,6 @@
 @extends('adminLayout.adminLayout')
 
-@section('peminjamLayout')
+@section('adminLayout')
 <style>
     /* Style for the search input box in the table header */
     .datatable-input {
@@ -135,45 +135,44 @@
     </thead>
     <tbody>
         @foreach ($peminjams as $peminjam)
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $peminjam->nama_lengkap }}
-                </td>
-                <td>{{ $peminjam->alamat }}</td>
-                <td>{{ $peminjam->email }}</td>
-                <td>{{ $peminjam->no_telp }}</td>
-                <td>
-                    <a href="{{ asset('storage/' . $peminjam->ktp) }}" target="_blank"
-                        class="text-blue-600 hover:underline">
-                        Lihat File PDF
+        <tr>
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $peminjam->nama_lengkap }}
+            </td>
+            <td>{{ $peminjam->alamat }}</td>
+            <td>{{ $peminjam->email }}</td>
+            <td>{{ $peminjam->no_telp }}</td>
+            <td>
+                <a href="{{ asset('storage/' . $peminjam->ktp) }}" target="_blank"
+                    class="text-blue-600 hover:underline">
+                    Lihat File PDF
+                </a>
+            </td>
+            <td>
+                @if ($peminjam->isVerificate == 'diperiksa')
+                <button
+                    class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                    <a type="button" href="/admin/terima/{{ $peminjam->id }}">
+                        PERIKSA
                     </a>
-                </td>
-                <td>
-                    @if ($peminjam->isVerificate == 'diperiksa')
-                        <button
-                            class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                            <a type="button" href="/admin/terima/{{ $peminjam->id }}">
-                                PERIKSA
-                            </a>
-                            <button type="button" onclick="openModal({{ $peminjam->id }})"
-                                class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                                Ditolak
-                            </button>
+                    <button type="button" onclick="openModal('{{ $peminjam->id }}')"
+                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        Ditolak
+                    </button>
                     @else
                         <button type="button"
                             class="min-w-[60px] whitespace-nowrap text-white bg-green-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                             DI ACC
                         </button>
                     @endif
-                </td>
-                <td>
-                    <!-- hapus -->
-                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                        onclick="confirmDelete('{{ $peminjam->id }}', '{{ $peminjam->nama_lengkap }}')"
-                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-                        type="button">
-                        Hapus
-                    </button>
-
+            </td>
+            <td>
+                <!-- hapus -->
+                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                onclick="confirmDelete('{{ $peminjam->id, $peminjam->nama_lengkap }}')"
+                    class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                    type="button">
+                    Hapus
+                </button>
 
                     <!-- edit -->
                     <button data-modal-target="updateProductModal{{ $peminjam->id }}"
@@ -189,22 +188,22 @@
             </tr>
 
 
-            <!-- Modal khusus untuk peminjam ini -->
-            <div id="myModal-{{ $peminjam->id }}" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal({{ $peminjam->id }})">&times;</span>
-                    <h3>Alasan Ditolak</h3>
-                    <form action="/admin/tolak/{{ $peminjam->id }}" method="POST">
-                        @csrf
-                        <textarea placeholder="Alasan ditolak..." name="alasan_ditolak"
-                            class="w-full p-2 border rounded-md dark:bg-gray-800 dark:text-white"></textarea>
-                        <button type="submit"
-                            class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                            Konfirmasi
-                        </button>
-                    </form>
-                </div>
+        <!-- Modal khusus untuk peminjam ini -->
+        <div id="myModal-{{ $peminjam->id }}" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('{{ $peminjam->id }}')">&times;</span>
+                <h3>Alasan Ditolak</h3>
+                <form action="/admin/tolak/{{ $peminjam->id }}" method="POST">
+                    @csrf
+                    <textarea placeholder="Alasan ditolak..." name="alasan_ditolak"
+                        class="w-full p-2 border rounded-md dark:bg-gray-800 dark:text-white"></textarea>
+                    <button type="submit"
+                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        Konfirmasi
+                    </button>
+                </form>
             </div>
+        </div>
 
             <!-- update modal -->
             <div id="updateProductModal{{ $peminjam->id }}" tabindex="-1" aria-hidden="true"

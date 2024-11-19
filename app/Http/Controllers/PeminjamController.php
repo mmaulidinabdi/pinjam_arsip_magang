@@ -13,11 +13,11 @@ class PeminjamController extends Controller
 {
     //
 
-    public function index(Peminjam $peminjam)
+    public function index()
     {
         return view('userLayout/userDashboard', [
             'title' => 'User Dashboard',
-            'transaksis' => TransaksiPeminjaman::where('peminjam_id', $peminjam->id)->get(),
+            'transaksis' => TransaksiPeminjaman::where('peminjam_id', auth()->guard('web')->user()->id)->get(),
         ]);
     }
 
@@ -56,7 +56,7 @@ class PeminjamController extends Controller
             'nama_lengkap' => 'required|max:255',
             'alamat' => 'required',
             'no_telp' => 'required|unique:peminjams',
-            'email' => 'required|email|unique:peminjams',
+            'email' => 'required|email|unique:peminjams,email,'.$peminjam->id,
             'ktp' => 'nullable'
         ]);
 
@@ -119,6 +119,16 @@ class PeminjamController extends Controller
             'histories' => Histori::where('peminjam_id', $peminjam->id)
                 ->where('status', '!=', 'diperiksa')
                 ->get(),
+        ]);
+    }
+
+    public function userdetail($id)
+    {
+        $history = Histori::with('peminjam')->findOrFail($id);
+        return view('userLayout/userDetail', [
+            'title' => 'kelola',
+            'history' => $history,
+            'active' => 'peminjaman'
         ]);
     }
 }

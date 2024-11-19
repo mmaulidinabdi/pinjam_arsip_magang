@@ -124,7 +124,7 @@
                     <!-- Dropdown menu -->
                     <ul id="dropdown-example" class=" {{ $active == 'peminjaman' ? '' : 'hidden' }} py-2 space-y-2">
                         <li>
-                            <a href="kelola"
+                            <a href="/admin/kelola"
                                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{ Route::is('admin.kelola') ? ' bg-gray-500' : 'text-white' }}">
                                 Kelola Peminjaman
                             </a>
@@ -202,12 +202,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{Route('admin.viewTambahSuratLain')}}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.viewTambahSuratLain' ? 'bg-gray-500' : 'text-white')}}">Surat
-                                lain</a>
+                            <a href="{{Route('admin.viewTambahSK')}}"
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.viewTambahSK') ? 'bg-gray-500' : 'text-white'}}">SK</a>
+                        </li>
+                        <li>
+                            <a href="{{Route('admin.viewTambahKeuangan')}}"
+                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.viewTambahKeuangan') ? 'bg-gray-500' : 'text-white'}}">Surat Keuangan</a>
                         </li>
                     </ul>
-                </li>
 
                 <li>
                     <a href="useradmin"
@@ -246,7 +248,7 @@
 
     <div class="mx-auto min-h-screen p-4 sm:ml-64 bg-[#fefeff]">
         <div class="relative p-4 dark:border-gray-700 mt-14">
-            @yield('peminjamLayout')
+            @yield('adminLayout')
         </div>
     </div>
 

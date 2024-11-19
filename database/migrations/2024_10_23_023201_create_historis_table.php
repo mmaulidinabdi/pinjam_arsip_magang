@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('historis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('peminjaman_id')->constrained('transaksi_peminjamans')->onDelete('cascade');
             $table->foreignId('peminjam_id')->constrained('peminjams')->onDelete('cascade');
             $table->unsignedBigInteger('imb_id')->nullable(); // Membuat kolom nullable
             $table->foreign('imb_id')->references('id')->on('imbs')->onDelete('cascade')->nullable();

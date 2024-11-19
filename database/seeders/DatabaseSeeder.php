@@ -37,7 +37,6 @@ class DatabaseSeeder extends Seeder
     Peminjam::factory(10)->create()->each(function ($peminjam) {
         TransaksiPeminjaman::factory(3)->create(['peminjam_id' => $peminjam->id])->each(function ($transaksi) use ($peminjam) {
             Histori::factory(1)->create([
-                'peminjaman_id' => $transaksi->id,
                 'peminjam_id' => $peminjam->id,
                 'imb_id' => Imb::inRandomOrder()->first()->id, // Pastikan `imb_id` mengacu pada data yang ada
             ]);

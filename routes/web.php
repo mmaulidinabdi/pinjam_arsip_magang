@@ -30,7 +30,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // USER
 // Dashboard
-Route::get('/user/dashboard/{peminjam}', [PeminjamController::class, 'index'])->middleware('auth')->name('user.dashboard');
+Route::get('/user/dashboard', [PeminjamController::class, 'index'])->middleware('auth')->name('user.dashboard');
 
 Route::get('/user/profile', [PeminjamController::class, 'userProfile'])->middleware('auth')->name('user.profile');
 
@@ -44,6 +44,8 @@ Route::put('/user/{peminjam}/updateProfile', [PeminjamController::class, 'Update
 // history
 Route::get('/user/history/{peminjam}', [PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
 
+//detail history
+Route::get('/user/detail/{id}', [peminjamController::class, 'userdetail'])->middleware('auth')->name('user.detail');
 
 //admin
 //Dashboard
@@ -55,7 +57,6 @@ Route::get('/admin/histori', [AdminController::class, 'historyadmin'])->middlewa
 
 Route::get('/admin/lanjutan', [AdminController::class, 'lanjutan'])->middleware('admin')->name('admin.lanjutan');
 
-Route::get('/admin/detail', [AdminController::class, 'detail'])->middleware('admin')->name('admin.detail');
 
 Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middleware('admin')->name('admin.useradmin');
 
@@ -65,8 +66,6 @@ Route::get('/admin/suratLain', [AdminController::class, 'manajemenSuratLain'])->
 
 
 
-Route::get('/admin/tambahSuratLain', [AdminController::class, 'viewTambahSuratLain'])->middleware('admin')->name('admin.viewTambahSuratLain');
-Route::post('/admin/tambahSuratLain', [AdminController::class, 'tambahSuratLain'])->middleware('admin')->name('admin.tambahSuratLain');
 
 Route::get('/admin/lanjutan/{id}', [AdminController::class, 'datalanjutan'])->middleware('admin')->name('adminlanjut');
 
@@ -87,16 +86,25 @@ Route::get('/admin/detail/{id}', [AdminController::class, 'datadetail'])->middle
 Route::get('/admin/tambahImb', [AdminController::class, 'viewTambahImb'])->middleware('admin')->name('admin.viewTambahImb');
 Route::post('/admin/tambahImb', [AdminController::class, 'tambahImb'])->middleware('admin')->name('admin.tambahImb');
 // lihat file imb
-Route::get('/admin/lihat/{name}',[AdminController::class, 'show'])->middleware('admin')->name('admin.lihat');
+Route::get('/admin/lihat/{name}', [AdminController::class, 'show'])->middleware('admin')->name('admin.lihat');
 // edit imb
-Route::put('/admin/edit/imb/{id}',[AdminController::class, 'updateImb'])->middleware('admin')->name('edit.imb');
-Route::get('/admin/delete/imb/{id}', [AdminController::class,'deleteImb'])->middleware('admin')->name('delete.imb');
+Route::put('/admin/edit/imb/{id}', [AdminController::class, 'updateImb'])->middleware('admin')->name('edit.imb');
+Route::get('/admin/delete/imb/{id}', [AdminController::class, 'deleteImb'])->middleware('admin')->name('delete.imb');
 
 Route::post('admin/kelola/{id}', [AdminController::class, 'konfirmasiPengembalian'])->name('konfirmasi.pengembalian');
+
+//untuk SK
+Route::get('/admin/tambahSK', [AdminController::class, 'viewTambahSK'])->middleware('admin')->name('admin.viewTambahSK');
+Route::post('/admin/tambahSK', [AdminController::class, 'tambahSK'])->middleware('admin')->name('admin.tambahSK');
+
+
+// untuk Keuangan
+Route::get('/admin/tambahKeuangan', [AdminController::class, 'viewTambahKeuangan'])->middleware('admin')->name('admin.viewTambahKeuangan');
+ROute::post('/admin/tambahKeuangan', [AdminController::class, 'tambahKeuangan'])->middleware('admin')->name('admin.tambahKeuangan');
 
 
 Route::get('/tes', function () {
     return view('tes');
 });
 
-Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');
+// Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');
