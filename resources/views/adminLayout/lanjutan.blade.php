@@ -1,6 +1,8 @@
 @extends('adminLayout.adminLayout')
 
 @section('adminLayout')
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <div class=" font-bold">
         <h2 class="text-xl">
             Data Peminjam
@@ -113,31 +115,50 @@
                     </tr>
                     <tr id="accContainer" class="hidden mt-2">
                         <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
-                            file
+                            File
                         </th>
                         <td class="px-6 py-3">
-                            <div>
-                                <form class="w-full mx-auto">
-                                    <label for="default-search"
-                                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                            </svg>
+                            <div class="flex items-center space-x-4">
+                                <!-- Dropdown -->
+                                <div>
+                                    <select id="fileTypeDropdown"
+                                        class="px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                        <option value="">Select File Type</option>
+                                        @foreach ($jenis as $jen)
+                                            <option value="{{ $jen }}">{{ $jen }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- Search Box -->
+                                <div class="w-full">
+                                    <form class="w-full mx-auto">
+                                        <label for="default-search"
+                                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                                </svg>
+                                            </div>
+                                            <input type="search" id="default-search"
+                                                class="block w-full px-4 py-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-blue-500 focus:border-blue-500"
+                                                placeholder="Search files..." required>
+                                            <div id="autocomplete-results"
+                                                class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1">
+                                            </div>
                                         </div>
-                                        <!-- <input type="search" id="default-search"
-                                            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Search Mockups, Logos..." required /> -->
-
-                                    </div>
-                                </form>
-
+                                    </form>
+                                </div>
                             </div>
                         </td>
                     </tr>
+
+
 
                     </tr>
 
@@ -159,6 +180,8 @@
         </div>
 
     </form>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script>
         document.getElementById('statusSelect').addEventListener('change', function() {
             const alasanContainer = document.getElementById('alasanContainer');
