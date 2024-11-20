@@ -2,50 +2,48 @@
 
 @section('adminLayout')
 
-<form method="post" action="/admin/tambahSK">
+<form method="post" action="{{route('admin.tambahSK')}}">
+    @method('post')
     @csrf
     <div class="grid gap-6 mb-6 md:grid-cols-2">
         <div class="col-span-2">
             <h2 class="font-sans font-bold text-2xl">{{ $title }}</h2>
         </div>
         <div>
-            <label for="nomor_dp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor DP</label>
-            <input type="text" id="nomor_dp" name="nomor_dp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('nomor_dp')}}" />
+            <label for="nomor_sk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Surat Keputusan </label>
+            <input type="text" id="nomor_sk" name="nomor_sk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('nomor_sk')}}" />
         </div>
         <div>
-            <label for="nama_pemilik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pemilik</label>
-            <input type="text" id="nama_pemilik" name="nama_pemilik" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('nama_pemilik')}}" />
-        </div>
-        <div>
-            <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
-            <input type="text" id="alamat" name="alamat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('alamat')}}" />
-        </div>
-        <div>
-            <label for="lokasi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lokasi</label>
-            <input type="text" id="lokasi" name="lokasi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('lokasi')}}" />
-        </div>
-        <div>
-            <label for="box" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Box</label>
-            <input type="number" id="box" name="box" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('box')}}" />
+            <label for="tahun" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tahun </label>
+            <input type="number" id="tahun" name="tahun" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('tahun')}}" />
         </div>
     </div>
+
     <div class="mb-6">
-        <label for="tahun" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tahun</label>
-        <input type="number" id="tahun" name="tahun" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{old('tahun')}}" />
+        <label for="tanggal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Penetapan</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                </svg>
+            </div>
+            <input datepicker id="tanggal" type="text" name="tanggal_penetapan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" value="{{old('tanggal_penetapan')}}" >
+        </div>
+
     </div>
     <div class="mb-6">
-        <label for="keterangan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
-        <textarea id="keterangan" rows="4" name="keterangan" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Contoh: Salinan untuk Kadis"></textarea>
+        <label for="tentang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tentang</label>
+        <textarea id="tentang" rows="4" name="tentang" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Contoh: TIM PENYUSUN...."></textarea>
     </div>
 
     <div class="mb-14">
 
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">Upload File
-            IMB (.PDF)</label>
+            SK (.PDF)</label>
         <input
             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-            id="multiple_files" type="file" name="imbs[]" multiple accept=".pdf">
-        <input type="hidden" id="merge_imbs" name="imbs">
+            id="multiple_files" type="file" name="sk[]" multiple accept=".pdf">
+        <input type="hidden" id="merge_sk" name="sk">
     </div>
 
     <button type="button" id="mergeButton"
@@ -92,7 +90,7 @@
         reader.readAsDataURL(mergedPdfBlob);
         reader.onloadend = function() {
             const base64data = reader.result;
-            document.getElementById('merge_imbs').value = base64data;
+            document.getElementById('merge_sk').value = base64data;
             alert('File PDF berhasil digabungkan dan siap untuk disubmit.');
         };
     });
