@@ -242,26 +242,19 @@ class AdminController extends Controller
 
     public function simpanKeHistory(request $request, TransaksiPeminjaman $transaksi)
     {
-
         if ($request->status == 'tolak') {
+
             $validateData = $request->validate([
+                'jenis_arsip' => 'required',
                 'alasan_ditolak' => 'required|max:255',
+                'status' => 'required',
             ]);
 
-            $validateData['peminjam_id'] = $transaksi->peminjam_id;
-            $validateData['nama_arsip'] = $transaksi->nama_arsip;
             $validateData['status'] = 'ditolak';
-            $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
-            $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
-            $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
-            $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
 
-            Histori::create($validateData);
 
-            $transaksi->delete();
-
-            return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
         } elseif ($request->status == 'acc') {
+
             $validateData = $request->validate([
                 'jenis_arsip' => 'required',
                 'arsip' => 'required',
@@ -271,8 +264,21 @@ class AdminController extends Controller
 
             $arsip = imb::where('nomor_dp', $dp)->first();
 
-            dd($arsip);
+            $validateData['imb_id'] = $arsip->id;
+            $validateData['status'] = 'diacc';
         }
+
+        $validateData['peminjam_id'] = $transaksi->peminjam_id;
+        $validateData['nama_arsip'] = $transaksi->nama_arsip;
+        $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
+        $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
+        $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
+
+        Histori::create($validateData);
+
+        $transaksi->delete();
+
+        return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
     }
 
 
