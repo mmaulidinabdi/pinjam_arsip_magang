@@ -131,5 +131,55 @@
     </div>
 </div>
 
+<!-- Table peminjaman yg tenggat nya 10 hari -->
+<div class="flex flex-col sm:flex-row mt-4">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                Proses peminjaman yang belum dikembalikan (-10 hari)
+            </caption>
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Nama Peminjamn
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Arsip
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Tanggal
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        p </th>
+                    <td class="px-6 py-4">
+                        o
+                    </td>
+                    <td class="px-6 py-4">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, adipisci.
+                    </td>
+                    <td class="px-6 py-4">
+                        fiohsd
+                    </td>
+                    <td>
+                        <a href="{{Route('admin.kelola')}}"
+                            class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            Tindak Lanjut
+                        </a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 @endsection
