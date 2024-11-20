@@ -217,10 +217,16 @@ class AdminController extends Controller
     public function datalanjutan($id)
     {
         $data = TransaksiPeminjaman::with('peminjam', 'imb', 'arsip1', 'arsip2')->findOrFail($id);
+        $jenis = [
+            'IMB',
+            'SK',
+            'Keuangan',
+        ];
         return view('adminlayout/lanjutan', [
             'title' => 'kelola',
             'item' => $data,
-            'active' => 'peminjaman'
+            'active' => 'peminjaman',
+            'jenis' => $jenis,
         ]);
     }
 
@@ -389,5 +395,16 @@ class AdminController extends Controller
 
         // Redirect atau kembalikan respons sukses
         return redirect()->back()->with('success', 'Tanggal pengembalian berhasil diperbarui.');
+    }
+
+
+
+    public function autocomplete(Request $request)
+    {
+        $query = $request->get('query');
+        $results = Imb::where('nomor_dp', 'LIKE', '%' . $request . '%')
+            ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
+            ->pluck('nama_pemilik');
+        return response()->json($results);
     }
 }

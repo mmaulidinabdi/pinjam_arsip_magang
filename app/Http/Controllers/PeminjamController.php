@@ -16,19 +16,23 @@ class PeminjamController extends Controller
     public function index()
     {
         return view('userLayout/userDashboard', [
-            'title' => 'User Dashboard',
+            'title' => 'SIPEKA | Dashboard ',
             'transaksis' => TransaksiPeminjaman::where('peminjam_id', auth()->guard('web')->user()->id)->get(),
         ]);
     }
 
     public function userProfile()
     {
-        return view('userLayout/userProfile', ['title' => 'Profile']);
+        return view('userLayout/userProfile', [
+            'title' => 'SIPEKA | Profile',
+        ]);
     }
 
     public function userPeminjaman()
     {
-        return view('userLayout/userPeminjaman', ['title' => 'Form Peminjaman']);
+        return view('userLayout/userPeminjaman', [
+            'title' => 'SIPEKA | Peminjaman',
+        ]);
     }
 
     public function create(Request $request)
@@ -112,13 +116,23 @@ class PeminjamController extends Controller
         return back()->with('success', 'Peminjaman Berhasil Diajukan !!');
     }
 
-    public function userHistory(Peminjam $peminjam)
+    public function userHistory()
     {
         return view('userLayout/userhistory', [
-            'title' => 'User History',
-            'histories' => Histori::where('peminjam_id', $peminjam->id)
+            'title' => 'SIPEKA | Histori',
+            'histories' => Histori::where('peminjam_id', auth()->guard('web')->user()->id)
                 ->where('status', '!=', 'diperiksa')
                 ->get(),
+        ]);
+    }
+
+    public function userdetail($id)
+    {
+        $history = Histori::with('peminjam')->findOrFail($id);
+        return view('userLayout/userDetail', [
+            'title' => 'kelola',
+            'history' => $history,
+            'active' => 'peminjaman'
         ]);
     }
 }

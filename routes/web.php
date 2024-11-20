@@ -45,8 +45,10 @@ Route::post('/user/peminjaman', [PeminjamController::class, 'Pinjam']);
 Route::put('/user/{peminjam}/updateProfile', [PeminjamController::class, 'Update'])->middleware('auth')->name('user.update');
 
 // history
-Route::get('/user/history/{peminjam}', [PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
+Route::get('/user/history', [PeminjamController::class, 'userHistory'])->middleware('auth')->name('user.history');
 
+//detail history
+Route::get('/user/detail/{id}', [peminjamController::class, 'userdetail'])->middleware('auth')->name('user.detail');
 
 //admin
 //Dashboard
@@ -114,5 +116,8 @@ ROute::post('/admin/tambahKeuangan', [AdminController::class, 'tambahKeuangan'])
 Route::get('/tes', function () {
     return view('tes');
 });
+
+Route::get('cari', [AdminController::class, 'autocomplete']);
+
 
 // Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');
