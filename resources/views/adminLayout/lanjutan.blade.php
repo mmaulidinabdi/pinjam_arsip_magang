@@ -35,6 +35,7 @@
                             jenis
                         </th>
                         <td class="px-6 py-3">{{ $item->jenis_arsip }}</td>
+                        <input type="hidden" value="{{ $item->jenis_arsip }}" name="jenis_arsip">
                     </tr>
                     <tr
                         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
@@ -94,7 +95,7 @@
                             Status
                         </th>
                         <td class="px-6 py-3">
-                            <select id="statusSelect"
+                            <select id="statusSelect" name="status"
                                 class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200">
                                 <option value="diperiksa" {{ $item->status === 'diperiksa' ? 'selected' : '' }}>Diperiksa
                                 </option>
@@ -134,7 +135,7 @@
                                                         d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                                 </svg>
                                             </div>
-                                            <input type="search" id="search" name="search"
+                                            <input type="search" id="search" name="arsip"
                                                 class="block w-full px-4 py-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-blue-500 focus:border-blue-500"
                                                 placeholder="Search files..." autocomplete="off">
                                             <ul id="autocomplete-results"

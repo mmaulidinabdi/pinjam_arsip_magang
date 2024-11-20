@@ -189,7 +189,7 @@ class AdminController extends Controller
     }
 
 
-   
+
 
 
     // Keuangan
@@ -242,23 +242,37 @@ class AdminController extends Controller
 
     public function simpanKeHistory(request $request, TransaksiPeminjaman $transaksi)
     {
-        $validateData = $request->validate([
-            'alasan_ditolak' => 'required|max:255',
-        ]);
 
-        $validateData['peminjam_id'] = $transaksi->peminjam_id;
-        $validateData['nama_arsip'] = $transaksi->nama_arsip;
-        $validateData['status'] = 'ditolak';
-        $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
-        $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
-        $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
-        $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
+        if ($request->status == 'tolak') {
+            $validateData = $request->validate([
+                'alasan_ditolak' => 'required|max:255',
+            ]);
 
-        Histori::create($validateData);
+            $validateData['peminjam_id'] = $transaksi->peminjam_id;
+            $validateData['nama_arsip'] = $transaksi->nama_arsip;
+            $validateData['status'] = 'ditolak';
+            $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
+            $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
+            $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
+            $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
 
-        $transaksi->delete();
+            Histori::create($validateData);
 
-        return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
+            $transaksi->delete();
+
+            return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
+        } elseif ($request->status == 'acc') {
+            $validateData = $request->validate([
+                'jenis_arsip' => 'required',
+                'arsip' => 'required',
+            ]);
+
+            list($dp, $nama) = explode(' - ', $validateData['arsip'], 2);
+
+            $arsip = imb::where('nomor_dp', $dp)->first();
+
+            dd($arsip);
+        }
     }
 
 
