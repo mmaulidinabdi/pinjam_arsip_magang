@@ -35,6 +35,7 @@
                             jenis
                         </th>
                         <td class="px-6 py-3">{{ $item->jenis_arsip }}</td>
+                        <input type="hidden" value="{{ $item->jenis_arsip }}" name="jenis_arsip">
                     </tr>
                     <tr
                         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
@@ -94,7 +95,7 @@
                             Status
                         </th>
                         <td class="px-6 py-3">
-                            <select id="statusSelect"
+                            <select id="statusSelect" name="status"
                                 class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200">
                                 <option value="diperiksa" {{ $item->status === 'diperiksa' ? 'selected' : '' }}>Diperiksa
                                 </option>
@@ -119,17 +120,6 @@
                         </th>
                         <td class="px-6 py-3">
                             <div class="flex items-center space-x-4">
-                                <!-- Dropdown -->
-                                <div>
-                                    <select id="fileTypeDropdown"
-                                        class="px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                        <option value="">Select File Type</option>
-                                        @foreach ($jenis as $jen)
-                                            <option value="{{ $jen }}">{{ $jen }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
                                 <!-- Search Box -->
                                 <div class="w-full">
                                     <form class="w-full mx-auto">
@@ -145,7 +135,7 @@
                                                         d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                                 </svg>
                                             </div>
-                                            <input type="search" id="search" name="search"
+                                            <input type="search" id="search" name="arsip"
                                                 class="block w-full px-4 py-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-blue-500 focus:border-blue-500"
                                                 placeholder="Search files..." autocomplete="off">
                                             <ul id="autocomplete-results"
@@ -187,61 +177,54 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Ambil CSRF token dari meta tag
-            const csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-            // Ketika user mengetik di input
             $('#search').on('input', function() {
-                const query = $(this).val();
-                const resultsContainer = $('#autocomplete-results');
+                let query = $(this).val();
 
-                // Hapus hasil sebelumnya
-                resultsContainer.empty().addClass('hidden');
+                if (query.length > 2) { // Mulai pencarian jika input lebih dari 2 karakter
+                    $.ajax({
+                        url: "{{ url('cari') }}",
+                        method: 'GET',
+                        data: {
+                            query: query
+                        },
+                        success: function(data) {
+                            let resultsDiv = $('#autocomplete-results');
+                            resultsDiv.empty(); // Kosongkan hasil sebelumnya
 
-                if (query.length < 2) {
-                    // Jangan cari jika panjang query terlalu pendek
-                    return;
-                }
-
-                // AJAX request
-                $.ajax({
-                    url: "{{ url('cari') }}",
-                    method: 'GET',
-                    data: {
-                        query
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken,
-                    },
-                    success: function(data) {
-                        if (data.length > 0) {
-                            data.forEach(function(item) {
-                                resultsContainer.append(`
-                                <li class="px-4 py-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600">
-                                    ${item}
+                            if (data.length > 0) {
+                                data.forEach(item => {
+                                    // Tambahkan nomor_dp dan nama_pemilik ke dropdown hasil
+                                    resultsDiv.append(`
+                                <li class="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
+                                    <span class="font-bold">${item.nomor_dp}</span> - ${item.nama_pemilik}
                                 </li>
                             `);
-                            });
-                            resultsContainer.removeClass('hidden');
+                                });
+                                resultsDiv.removeClass('hidden');
+                            } else {
+                                resultsDiv.html(
+                                    `<li class="px-4 py-2 text-gray-500">No results found</li>`
+                                    );
+                                resultsDiv.removeClass('hidden');
+                            }
                         }
-                    },
-                    error: function() {
-                        console.error("Error fetching autocomplete results.");
-                    }
-                });
+                    });
+                } else {
+                    $('#autocomplete-results').addClass('hidden'); // Sembunyikan dropdown jika input kosong
+                }
             });
 
-            // Menangani klik pada hasil
-            $(document).on('click', '#autocomplete-results li', function() {
-                const selected = $(this).text();
-                $('#search').val(selected);
-                $('#autocomplete-results').empty().addClass('hidden');
+            // Klik hasil dropdown
+            $('#autocomplete-results').on('click', 'li', function() {
+                $('#search').val($(this).text()); // Isi input dengan teks yang diklik
+                $('#autocomplete-results').addClass('hidden'); // Sembunyikan dropdown
             });
 
-            // Menutup dropdown jika klik di luar
-            $(document).click(function(e) {
-                if (!$(e.target).closest('#autocomplete-results, #search').length) {
-                    $('#autocomplete-results').empty().addClass('hidden');
+            // Sembunyikan dropdown saat klik di luar
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('#search').length && !$(e.target).closest('#autocomplete-results')
+                    .length) {
+                    $('#autocomplete-results').addClass('hidden');
                 }
             });
         });

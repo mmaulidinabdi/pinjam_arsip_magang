@@ -235,17 +235,37 @@ class AdminController extends Controller
 
     public function simpanKeHistory(request $request, TransaksiPeminjaman $transaksi)
     {
-        $validateData = $request->validate([
-            'alasan_ditolak' => 'required|max:255',
-        ]);
+        if ($request->status == 'tolak') {
+
+            $validateData = $request->validate([
+                'jenis_arsip' => 'required',
+                'alasan_ditolak' => 'required|max:255',
+                'status' => 'required',
+            ]);
+
+            $validateData['status'] = 'ditolak';
+
+
+        } elseif ($request->status == 'acc') {
+
+            $validateData = $request->validate([
+                'jenis_arsip' => 'required',
+                'arsip' => 'required',
+            ]);
+
+            list($dp, $nama) = explode(' - ', $validateData['arsip'], 2);
+
+            $arsip = imb::where('nomor_dp', $dp)->first();
+
+            $validateData['imb_id'] = $arsip->id;
+            $validateData['status'] = 'diacc';
+        }
 
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
         $validateData['nama_arsip'] = $transaksi->nama_arsip;
-        $validateData['status'] = 'ditolak';
         $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
         $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
         $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
-        $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
 
         Histori::create($validateData);
 
@@ -395,9 +415,9 @@ class AdminController extends Controller
     public function autocomplete(Request $request)
     {
         $query = $request->get('query');
-        $results = Imb::where('nomor_dp', 'LIKE', '%' . $request . '%')
+        $results = Imb::where('nomor_dp', 'LIKE', '%' . $query . '%')
             ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
-            ->pluck('nama_pemilik');
+            ->get(['nomor_dp', 'nama_pemilik']);
         return response()->json($results);
     }
 }
