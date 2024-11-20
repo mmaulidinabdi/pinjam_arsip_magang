@@ -393,9 +393,9 @@ class AdminController extends Controller
     public function autocomplete(Request $request)
     {
         $query = $request->get('query');
-        $results = Imb::where('nomor_dp', 'LIKE', '%' . $request . '%')
+        $results = Imb::where('nomor_dp', 'LIKE', '%' . $query . '%')
             ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
-            ->pluck('nama_pemilik');
+            ->get(['nomor_dp', 'nama_pemilik']);
         return response()->json($results);
     }
 }
