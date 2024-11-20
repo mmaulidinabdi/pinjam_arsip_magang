@@ -21,7 +21,7 @@
                 $table->string('no_arsip')->nullable();
                 $table->string('nama_arsip');
                 $table->string('data_arsip')->nullable();
-                $table->enum('jenis_arsip', ['Arsip1', 'arsip2', 'IMB'])->notNull();
+                $table->enum('jenis_arsip', ['SK', 'arsip2', 'IMB'])->notNull();
                 $table->timestamps();
             });
         }

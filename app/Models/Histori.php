@@ -43,10 +43,10 @@ class Histori extends Model
         return $this->belongsTo(Imb::class, 'imb_id');
     }
     
-    public function arsip1()
+    public function sk()
     {
         // Menghubungkan dengan tabel `arsip1` menggunakan `imb_id`
-        return $this->belongsTo(Arsip1::class, 'imb_id');
+        return $this->belongsTo(SK::class, 'sk_id');
     }
     
     public function arsip2()

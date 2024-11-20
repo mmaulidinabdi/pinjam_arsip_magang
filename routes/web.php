@@ -64,7 +64,6 @@ Route::get('/admin/lanjutan', [AdminController::class, 'lanjutan'])->middleware(
 Route::get('/admin/useradmin', [AdminController::class, 'useradmin'])->middleware('admin')->name('admin.useradmin');
 
 
-Route::get('/admin/suratLain', [AdminController::class, 'manajemenSuratLain'])->middleware('admin')->name('admin.manajemenSuratLain');
 
 
 
@@ -90,7 +89,7 @@ Route::get('/admin/imb', [AdminController::class, 'manajemenImb'])->middleware('
 Route::get('/admin/tambahImb', [AdminController::class, 'viewTambahImb'])->middleware('admin')->name('admin.viewTambahImb');
 Route::post('/admin/tambahImb', [AdminController::class, 'tambahImb'])->middleware('admin')->name('admin.tambahImb');
 // lihat file imb
-Route::get('/admin/lihat/{name}', [AdminController::class, 'show'])->middleware('admin')->name('admin.lihat');
+Route::get('/admin/lihat/imb/{name}', [AdminController::class, 'show'])->middleware('admin')->name('admin.lihatImb');
 // edit imb
 Route::put('/admin/edit/imb/{id}', [AdminController::class, 'updateImb'])->middleware('admin')->name('edit.imb');
 // delete imb
@@ -104,8 +103,11 @@ Route::get('/admin/imb/printAll',[ImbController::class,'printAll'])->middleware(
 Route::post('admin/kelola/{id}', [AdminController::class, 'konfirmasiPengembalian'])->name('konfirmasi.pengembalian');
 
 //untuk SK
+Route::get('/admin/sk',[SKController::class,'manajemenSK'])->middleware('admin')->name('admin.manajemenSK');
 Route::get('/admin/tambahSK', [SKController::class, 'viewTambahSK'])->middleware('admin')->name('admin.viewTambahSK');
 Route::post('/admin/tambahSK', [SKController::class, 'tambahSK'])->middleware('admin')->name('admin.tambahSK');
+
+Route::get('/admin/lihat/sk/{name}',[SKController::class,'show'])->middleware('admin')->name('admin.lihatSK');
 
 
 // untuk Keuangan

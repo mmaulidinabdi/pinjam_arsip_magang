@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('arsip1s', function (Blueprint $table) {
+        Schema::create('sk', function (Blueprint $table) {
             $table->id();
-            $table->integer('nomor_dp')->nullable();
-            $table->string('nama_pemilik')->nullable();
-            $table->text('alamat')->nullable();
-            $table->text('lokasi')->nullable();
-            $table->string('box')->nullable();
-            $table->text('keterangan')->nullable();
+            $table->integer('nomor_sk')->nullable();
             $table->year('tahun')->nullable();
-            $table->string('imbs')->nullable();
+            $table->date('tanggal_penetapan')->nullable();
+            $table->text('tentang')->nullable();
+            $table->string('sk')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('arsip1s');
+        Schema::dropIfExists('sk');
     }
 };

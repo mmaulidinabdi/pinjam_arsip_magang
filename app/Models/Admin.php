@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use function PHPUnit\Framework\returnSelf;
+
 class Admin extends Authenticatable
 {
     //
@@ -27,5 +29,9 @@ class Admin extends Authenticatable
 
     // Tambahkan relasi arsip yg lain
 
+    public function sk()
+    {
+        return $this->hasMany(SK::class);
+    }
 
 }
