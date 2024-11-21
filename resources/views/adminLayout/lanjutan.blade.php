@@ -1,6 +1,8 @@
 @extends('adminLayout.adminLayout')
 
 @section('adminLayout')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div class=" font-bold">
         <h2 class="text-xl">
             Data Peminjam
@@ -33,6 +35,7 @@
                             jenis
                         </th>
                         <td class="px-6 py-3">{{ $item->jenis_arsip }}</td>
+                        <input type="hidden" value="{{ $item->jenis_arsip }}" name="jenis_arsip">
                     </tr>
                     <tr
                         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
@@ -92,7 +95,7 @@
                             Status
                         </th>
                         <td class="px-6 py-3">
-                            <select id="statusSelect"
+                            <select id="statusSelect" name="status"
                                 class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200">
                                 <option value="diperiksa" {{ $item->status === 'diperiksa' ? 'selected' : '' }}>Diperiksa
                                 </option>
@@ -113,31 +116,39 @@
                     </tr>
                     <tr id="accContainer" class="hidden mt-2">
                         <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
-                            file
+                            File
                         </th>
                         <td class="px-6 py-3">
-                            <div>
-                                <form class="w-full mx-auto">
-                                    <label for="default-search"
-                                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                            </svg>
+                            <div class="flex items-center space-x-4">
+                                <!-- Search Box -->
+                                <div class="w-full">
+                                    <form class="w-full mx-auto">
+                                        <label for="search"
+                                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                                </svg>
+                                            </div>
+                                            <input type="search" id="search" name="arsip"
+                                                class="block w-full px-4 py-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-blue-500 focus:border-blue-500"
+                                                placeholder="Search files..." autocomplete="off">
+                                            <ul id="autocomplete-results"
+                                                class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white mt-1 hidden">
+                                            </ul>
                                         </div>
-                                        <!-- <input type="search" id="default-search"
-                                            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Search Mockups, Logos..." required /> -->
-
-                                    </div>
-                                </form>
-
+                                    </form>
+                                </div>
                             </div>
                         </td>
                     </tr>
+
+
 
                     </tr>
 
@@ -159,6 +170,66 @@
         </div>
 
     </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#search').on('input', function() {
+                let query = $(this).val();
+
+                if (query.length > 2) { // Mulai pencarian jika input lebih dari 2 karakter
+                    $.ajax({
+                        url: "{{ url('cari') }}",
+                        method: 'GET',
+                        data: {
+                            query: query
+                        },
+                        success: function(data) {
+                            let resultsDiv = $('#autocomplete-results');
+                            resultsDiv.empty(); // Kosongkan hasil sebelumnya
+
+                            if (data.length > 0) {
+                                data.forEach(item => {
+                                    // Tambahkan nomor_dp dan nama_pemilik ke dropdown hasil
+                                    resultsDiv.append(`
+                                <li class="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
+                                    <span class="font-bold">${item.nomor_dp}</span> - ${item.nama_pemilik}
+                                </li>
+                            `);
+                                });
+                                resultsDiv.removeClass('hidden');
+                            } else {
+                                resultsDiv.html(
+                                    `<li class="px-4 py-2 text-gray-500">No results found</li>`
+                                    );
+                                resultsDiv.removeClass('hidden');
+                            }
+                        }
+                    });
+                } else {
+                    $('#autocomplete-results').addClass('hidden'); // Sembunyikan dropdown jika input kosong
+                }
+            });
+
+            // Klik hasil dropdown
+            $('#autocomplete-results').on('click', 'li', function() {
+                $('#search').val($(this).text()); // Isi input dengan teks yang diklik
+                $('#autocomplete-results').addClass('hidden'); // Sembunyikan dropdown
+            });
+
+            // Sembunyikan dropdown saat klik di luar
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('#search').length && !$(e.target).closest('#autocomplete-results')
+                    .length) {
+                    $('#autocomplete-results').addClass('hidden');
+                }
+            });
+        });
+    </script>
+
     <script>
         document.getElementById('statusSelect').addEventListener('change', function() {
             const alasanContainer = document.getElementById('alasanContainer');
