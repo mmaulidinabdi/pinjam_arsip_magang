@@ -3,7 +3,7 @@
 @section('peminjamLayout')
     @if (Auth::user()->isVerificate == 'ditolak')
         <p class="inset-x-0 top-0 p-4 mb-4 text-sm text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-red-400">
-            Verifikasi ditolak !! {{ Auth::user()->alasan_ditolak }}, Mohon isi kembali
+            Verifikasi ditolak !! dengan alasan {{ Auth::user()->alasan_ditolak }}, Mohon isi kembali
         </p>
     @elseif (Auth::user()->isVerificate == 'diperiksa')
         <p class="inset-x-0 top-0 p-4 mb-4 text-sm text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-red-400">
