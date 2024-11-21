@@ -6,7 +6,7 @@
             <tr>
                 <th>
                     <span class="flex items-center">
-                        Nama Arsip
+                        Nama Arsip saat pengajuan
                     </span>
                 </th>
                 <th>
@@ -37,21 +37,7 @@
                 <tr>
                     <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         
-                    @if($history->status === 'diacc')
-                        {{ $history->jenis_arsip }}
-                        @if (($history->jenis_arsip = 'imb'))
-                            {{ $history->imb->nomor_dp }}
-                            {{ $history->imb->tahun }}
-                        @elseif(($history->jenis_arsip = 'Arsip1'))
-                            {{ $history->arsip1->nomor_dp }}
-                            {{ $history->arsip1->tahun }}
-                        @elseif(($history->jenis_arsip = 'Arsip2'))
-                            {{ $history->arsip2->nomor_dp }}
-                            {{ $history->arsip2->tahun }}
-                        @endif
-                    @else
-                        <p>Peminjaman di tolak</p>
-                    @endif
+                    {{ $history->nama_arsip }}
                     </td>
                     <td>{{ $history->jenis_arsip }}</td>
                     <td>{{ $history->tanggal_peminjaman }}</td>

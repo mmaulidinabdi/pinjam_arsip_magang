@@ -244,8 +244,6 @@ class AdminController extends Controller
             ]);
 
             $validateData['status'] = 'ditolak';
-
-
         } elseif ($request->status == 'acc') {
 
             $validateData = $request->validate([
@@ -253,12 +251,23 @@ class AdminController extends Controller
                 'arsip' => 'required',
             ]);
 
-            list($dp, $nama) = explode(' - ', $validateData['arsip'], 2);
+            if ($validateData['jenis_arsip'] == 'IMB') {
 
-            $arsip = imb::where('nomor_dp', $dp)->first();
+                list($dp, $nama) = explode(' - ', $validateData['arsip'], 2);
 
-            $validateData['imb_id'] = $arsip->id;
-            $validateData['status'] = 'diacc';
+                $arsip = imb::where('nomor_dp', $dp)->first();
+
+                $validateData['imb_id'] = $arsip->id;
+                $validateData['status'] = 'diacc';
+            } elseif ($validateData['jenis_arsip'] == 'sk') {
+
+                list($sk, $tahun) = explode(' - ', $validateData['arsip'], 2);
+
+                $arsip = sk::where('nomor_sk', $sk)->first();
+
+                $validateData['sk_id'] = $arsip->id;
+                $validateData['status'] = 'diacc';
+            }
         }
 
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
@@ -415,9 +424,25 @@ class AdminController extends Controller
     public function autocomplete(Request $request)
     {
         $query = $request->get('query');
-        $results = Imb::where('nomor_dp', 'LIKE', '%' . $query . '%')
-            ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
-            ->get(['nomor_dp', 'nama_pemilik']);
+        $jenis = $request->get('jenis_arsip');
+
+        if ($jenis == 'IMB') {
+
+            $results = Imb::where('nomor_dp', 'LIKE', '%' . $query . '%')
+                ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
+                ->get(['nomor_dp', 'nama_pemilik']);
+
+        } elseif($jenis == 'SK' ){
+            
+            $results = sk::where('nomor_sk', 'LIKE', '%' . $query . '%')
+            ->orWhere('tahun', 'LIKE', '%' . $query . '%')
+            ->get(['nomor_sk', 'tahun']);
+
+        } 
+
+
+
+
         return response()->json($results);
     }
 }
