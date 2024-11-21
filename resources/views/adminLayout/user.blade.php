@@ -29,6 +29,7 @@
         margin: 15% auto;
         padding: 20px;
         border: 1px solid #888;
+        border-radius: 10px;
         width: 80%;
     }
 
@@ -189,14 +190,14 @@
 
 
         <!-- Modal khusus untuk peminjam ini -->
-        <div id="myModal-{{ $peminjam->id }}" class="modal">
-            <div class="modal-content">
+        <div id="myModal-{{ $peminjam->id }}" class="modal rounded-md">
+            <div class="modal-content ">
                 <span class="close" onclick="closeModal('{{ $peminjam->id }}')">&times;</span>
                 <h3>Alasan Ditolak</h3>
                 <form action="/admin/tolak/{{ $peminjam->id }}" method="POST">
                     @csrf
                     <textarea placeholder="Alasan ditolak..." name="alasan_ditolak"
-                        class="w-full p-2 border rounded-md dark:bg-gray-800 dark:text-white"></textarea>
+                        class="w-full mb-2 p-2 border rounded-md dark:bg-gray-800 dark:text-white"></textarea>
                     <button type="submit"
                         class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                         Konfirmasi
