@@ -71,7 +71,7 @@
                             File KTP
                         </th>
                         <td class="px-6 py-3">
-                            <a href="{{ asset($item->peminjam->ktp) }}" target="_blank"
+                            <a href="{{ asset( 'storage/' . $item->peminjam->ktp) }}" target="_blank"
                                 class="text-blue-600 hover:underline">
                                 Lihat File PDF
                             </a>
@@ -83,7 +83,7 @@
                             File Pendukung
                         </th>
                         <td class="px-6 py-3">
-                            <a href="{{ asset($item->dokumen_pendukung) }}" target="_blank"
+                            <a href="{{ asset('storage/' . $item->dokumen_pendukung) }}" target="_blank"
                                 class="text-blue-600 hover:underline">
                                 Lihat File PDF
                             </a>
