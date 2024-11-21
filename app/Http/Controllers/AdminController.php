@@ -429,8 +429,9 @@ class AdminController extends Controller
         if ($jenis == 'IMB') {
 
             $results = Imb::where('nomor_dp', 'LIKE', '%' . $query . '%')
+                ->orWhere('tahun', 'LIKE', '%' . $query . '%')
                 ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
-                ->get(['nomor_dp', 'nama_pemilik']);
+                ->get(['nomor_dp', 'tahun', 'nama_pemilik']);
 
         } elseif($jenis == 'SK' ){
             
@@ -439,9 +440,6 @@ class AdminController extends Controller
             ->get(['nomor_sk', 'tahun']);
 
         } 
-
-
-
 
         return response()->json($results);
     }
