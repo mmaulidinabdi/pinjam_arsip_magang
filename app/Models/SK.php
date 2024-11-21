@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Arsip1 extends Model
+class SK extends Model
 {
     //
     use HasFactory;
     //
+
+    protected $table ='sk'; 
+
     protected $fillable = [
-        'nomor_dp',
-        'nama_pemilik',
-        'alamat',
-        'lokasi',
-        'box',
-        'keterangan',
+        'nomor_sk',
         'tahun',
+        'tanggal_penetapan',
+        'tentang',
+        'sk'
     ];
 
     public function admin()

@@ -35,7 +35,7 @@
                             jenis
                         </th>
                         <td class="px-6 py-3">{{ $item->jenis_arsip }}</td>
-                        <input type="hidden" value="{{ $item->jenis_arsip }}" name="jenis_arsip">
+                        <input type="hidden" value="{{ $item->jenis_arsip }}" name="jenis_arsip" id="jenis_arsip">
                     </tr>
                     <tr
                         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
@@ -179,26 +179,27 @@
         $(document).ready(function() {
             $('#search').on('input', function() {
                 let query = $(this).val();
+                let jenisArsip = $('#jenis_arsip').val();
 
-                if (query.length > 2) { // Mulai pencarian jika input lebih dari 2 karakter
+                if (query.length > 2) {
                     $.ajax({
                         url: "{{ url('cari') }}",
                         method: 'GET',
                         data: {
-                            query: query
+                            query: query,
+                            jenis_arsip: jenisArsip
                         },
                         success: function(data) {
                             let resultsDiv = $('#autocomplete-results');
-                            resultsDiv.empty(); // Kosongkan hasil sebelumnya
+                            resultsDiv.empty();
 
                             if (data.length > 0) {
                                 data.forEach(item => {
-                                    // Tambahkan nomor_dp dan nama_pemilik ke dropdown hasil
                                     resultsDiv.append(`
-                                <li class="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
-                                    <span class="font-bold">${item.nomor_dp}</span> - ${item.nama_pemilik}
-                                </li>
-                            `);
+                                    <li class="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
+                                        <span class="font-bold">${item.nomor_dp}</span> - ${item.nama_pemilik}
+                                    </li>
+                                `);
                                 });
                                 resultsDiv.removeClass('hidden');
                             } else {
@@ -210,17 +211,15 @@
                         }
                     });
                 } else {
-                    $('#autocomplete-results').addClass('hidden'); // Sembunyikan dropdown jika input kosong
+                    $('#autocomplete-results').addClass('hidden');
                 }
             });
 
-            // Klik hasil dropdown
             $('#autocomplete-results').on('click', 'li', function() {
-                $('#search').val($(this).text()); // Isi input dengan teks yang diklik
-                $('#autocomplete-results').addClass('hidden'); // Sembunyikan dropdown
+                $('#search').val($(this).text());
+                $('#autocomplete-results').addClass('hidden');
             });
 
-            // Sembunyikan dropdown saat klik di luar
             $(document).on('click', function(e) {
                 if (!$(e.target).closest('#search').length && !$(e.target).closest('#autocomplete-results')
                     .length) {

@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\SK;
+use App\Models\Imb;
 use App\Models\Admin;
 use App\Models\Arsip1;
 use App\Models\Arsip2;
-use App\Models\Imb;
-use App\Models\Peminjam;
 use App\Models\Histori;
+use App\Models\Peminjam;
 use Illuminate\Database\Seeder;
 use App\Models\TransaksiPeminjaman;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +31,7 @@ class DatabaseSeeder extends Seeder
 
         // Buat data di tabel `imbs`
     Imb::factory(10)->create();
-    Arsip1::factory(5)->create();
+    SK::factory(5)->create();
     Arsip2::factory(5)->create();
 
     // Lalu lanjutkan dengan `Peminjam`, `TransaksiPeminjaman`, dan `Histori`

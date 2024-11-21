@@ -6,6 +6,7 @@ use App\Models\Imb;
 use App\Models\Arsip1;
 use App\Models\Arsip2;
 use App\Models\Peminjam;
+use App\Models\SK;
 use App\Models\TransaksiPeminjaman;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -35,7 +36,7 @@ class TransaksiPeminjamanFactory extends Factory
     private function getRandomArsip()
     {
         // Memilih model arsip secara acak
-        $arsipModel = $this->faker->randomElement([Imb::class, Arsip1::class, Arsip2::class]);
+        $arsipModel = $this->faker->randomElement([Imb::class, SK::class, Arsip2::class]);
         return $arsipModel::factory()->create(); // Membuat instance arsip acak dan mengembalikannya
     }
 }

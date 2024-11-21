@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\SK;
 use Carbon\Carbon;
 use App\Models\Imb;
-use App\Models\Arsip1;
 use App\Models\Arsip2;
 use App\Models\Histori;
 use App\Models\Peminjam;
@@ -24,9 +24,9 @@ class AdminController extends Controller
         $jumlahPeminjam = Peminjam::count();
 
         $jumlahImb = Imb::count();
-        $jumlahArsip1 = Arsip1::count();
+        $jumlahSK = SK::count();
         $jumlahArsip2  = Arsip2::count();
-        $jumlahArsip = $jumlahImb + $jumlahArsip1 + $jumlahArsip2;
+        $jumlahArsip = $jumlahImb + $jumlahSK + $jumlahArsip2;
 
         // ambil transaksi peminjaman dengan status diperiksa
         $transaksiPending = TransaksiPeminjaman::with('peminjam')->where('status', 'diperiksa')->limit(5)->get();
@@ -36,9 +36,9 @@ class AdminController extends Controller
             'title' => 'Admin dashboard',
             'active' => 'dashboard',
             'imb' => 'IMB',
-            'arsip1' => 'Arsip 1',
+            'sk' => 'SK',
             'arsip2' => 'Arsip 2',
-        ], compact('jumlahPeminjam', 'jumlahArsip', 'jumlahImb', 'jumlahArsip1', 'jumlahArsip2', 'transaksiPending'));
+        ], compact('jumlahPeminjam', 'jumlahArsip', 'jumlahImb', 'jumlahSK', 'jumlahArsip2', 'transaksiPending'));
     }
 
     public function kelola()
@@ -51,7 +51,7 @@ class AdminController extends Controller
 
     public function historyadmin()
     {
-        $items = Histori::with('Peminjam', 'Imb', 'Arsip1', 'Arsip2')
+        $items = Histori::with('Peminjam', 'Imb', 'SK', 'Arsip2')
             ->get();
 
 
@@ -142,13 +142,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function manajemenSuratLain()
-    {
-        return view('adminLayout.suratlain', [
-            'title' => 'Management Surat Lain',
-            'active' => 'manajemen'
-        ]);
-    }
 
 
     public function viewTambahImb()
@@ -216,7 +209,7 @@ class AdminController extends Controller
 
     public function datalanjutan($id)
     {
-        $data = TransaksiPeminjaman::with('peminjam', 'imb', 'arsip1', 'arsip2')->findOrFail($id);
+        $data = TransaksiPeminjaman::with('peminjam', 'imb', 'SK', 'arsip2')->findOrFail($id);
         $jenis = [
             'IMB',
             'SK',
@@ -242,37 +235,52 @@ class AdminController extends Controller
 
     public function simpanKeHistory(request $request, TransaksiPeminjaman $transaksi)
     {
-
         if ($request->status == 'tolak') {
+
             $validateData = $request->validate([
+                'jenis_arsip' => 'required',
                 'alasan_ditolak' => 'required|max:255',
+                'status' => 'required',
             ]);
 
-            $validateData['peminjam_id'] = $transaksi->peminjam_id;
-            $validateData['nama_arsip'] = $transaksi->nama_arsip;
             $validateData['status'] = 'ditolak';
-            $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
-            $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
-            $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
-            $validateData['jenis_arsip'] = $transaksi->jenis_arsip;
-
-            Histori::create($validateData);
-
-            $transaksi->delete();
-
-            return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
         } elseif ($request->status == 'acc') {
+
             $validateData = $request->validate([
                 'jenis_arsip' => 'required',
                 'arsip' => 'required',
             ]);
 
-            list($dp, $nama) = explode(' - ', $validateData['arsip'], 2);
+            if ($validateData['jenis_arsip'] == 'IMB') {
 
-            $arsip = imb::where('nomor_dp', $dp)->first();
+                list($dp, $nama) = explode(' - ', $validateData['arsip'], 2);
 
-            dd($arsip);
+                $arsip = imb::where('nomor_dp', $dp)->first();
+
+                $validateData['imb_id'] = $arsip->id;
+                $validateData['status'] = 'diacc';
+            } elseif ($validateData['jenis_arsip'] == 'sk') {
+
+                list($sk, $tahun) = explode(' - ', $validateData['arsip'], 2);
+
+                $arsip = sk::where('nomor_sk', $sk)->first();
+
+                $validateData['sk_id'] = $arsip->id;
+                $validateData['status'] = 'diacc';
+            }
         }
+
+        $validateData['peminjam_id'] = $transaksi->peminjam_id;
+        $validateData['nama_arsip'] = $transaksi->nama_arsip;
+        $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
+        $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
+        $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
+
+        Histori::create($validateData);
+
+        $transaksi->delete();
+
+        return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
     }
 
 
@@ -416,9 +424,25 @@ class AdminController extends Controller
     public function autocomplete(Request $request)
     {
         $query = $request->get('query');
-        $results = Imb::where('nomor_dp', 'LIKE', '%' . $query . '%')
-            ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
-            ->get(['nomor_dp', 'nama_pemilik']);
+        $jenis = $request->get('jenis_arsip');
+
+        if ($jenis == 'IMB') {
+
+            $results = Imb::where('nomor_dp', 'LIKE', '%' . $query . '%')
+                ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
+                ->get(['nomor_dp', 'nama_pemilik']);
+
+        } elseif($jenis == 'SK' ){
+            
+            $results = sk::where('nomor_sk', 'LIKE', '%' . $query . '%')
+            ->orWhere('tahun', 'LIKE', '%' . $query . '%')
+            ->get(['nomor_sk', 'tahun']);
+
+        } 
+
+
+
+
         return response()->json($results);
     }
 }

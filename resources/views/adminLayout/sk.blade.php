@@ -2,9 +2,8 @@
 
 @section('adminLayout')
 
-
 <div class="font-bold">
-    <h2 class="text-xl">Manajemen IMB</h2>
+    <h2 class="text-xl">Manajemen SK</h2>
     <br>
 </div>
 
@@ -31,38 +30,24 @@
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="nomor_dp">No Dp</button>
+                        data-filter="nomor_dp">No SK</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="nama_pemilik">Nama</button>
+                        data-filter="nama_pemilik">Tahun</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="alamat">Alamat</button>
+                        data-filter="alamat">Tanggal Penetapan</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="lokasi">Lokasi</button>
+                        data-filter="lokasi">Tentang</button>
                 </li>
-                <li>
-                    <button type="button"
-                        class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="keterangan">Keterangan</button>
-                </li>
-                <li>
-                    <button type="button"
-                        class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="box">Box</button>
-                </li>
-                <li>
-                    <button type="button"
-                        class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="tahun">Tahun</button>
-                </li>
+
             </ul>
         </div>
 
@@ -100,13 +85,10 @@
     <table id="dataTable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">NO DP</th>
-                <th scope="col" class="px-6 py-3">Nama</th>
-                <th scope="col" class="px-6 py-3">Alamat</th>
-                <th scope="col" class="px-6 py-3">Lokasi</th>
-                <th scope="col" class="px-6 py-3">keterangan</th>
-                <th scope="col" class="px-6 py-3">Boks</th>
+                <th scope="col" class="px-6 py-3">NO SK</th>
                 <th scope="col" class="px-6 py-3">Tahun</th>
+                <th scope="col" class="px-6 py-3">Tanggal Penetapan</th>
+                <th scope="col" class="px-6 py-3">Tentang</th>
                 <th scope="col" class="px-6 py-3 hidden-print">Lihat</th>
                 <th scope="col" class="px-6 py-3 hidden-print">Edit</th>
                 <th scope="col" class="px-6 py-3 hidden-print">Hapus</th>
@@ -115,20 +97,18 @@
         </thead>
         <tbody>
 
-            @foreach ($dataImb as $item)
+            @foreach ($dataSK as $item)
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {{ $item->nomor_dp }}
+                    {{ $item->nomor_sk }}
                 </th>
-                <td class="px-6 py-4">{{ $item->nama_pemilik }}</td>
-                <td class="px-6 py-4">{{ $item->alamat }}</td>
-                <td class="px-6 py-4">{{ $item->lokasi }}</td>
-                <td class="px-6 py-4">{{ $item->keterangan }}</td>
-                <td class="px-6 py-4">{{ $item->box }}</td>
                 <td class="px-6 py-4">{{ $item->tahun }}</td>
+                <td class="px-6 py-4">{{ $item->tanggal_penetapan }}</td>
+                <td class="px-6 py-4">{{ $item->tentang }}</td>
+
                 <td class="px-6 py-4 hidden-print">
-                    <a href="/admin/lihat/imb/{{ $item->imbs }}" target="_blank">
+                    <a href="/admin/lihat/sk/{{ $item->sk }}" target="_blank">
                         <svg id="eye-open" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
                             style="cursor: pointer;">
@@ -150,7 +130,7 @@
 
                 </td>
                 <td class="px-6 py-4">
-                    <a href="/admin/delete/imb/{{$item->id}}?page={{ $dataImb->currentPage() }}" onclick=" return confirmDelete({{$item->id}})">
+                    <a href="/admin/delete/imb/{{$item->id}}?page={{ $dataSK->currentPage() }}" onclick=" return confirmDelete({{$item->id}})">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd" />
                         </svg>
@@ -158,7 +138,7 @@
                 </td>
                 <td class="px-6 py-4 hidden-print">
                     <a href="#" class="print-pdf font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                        data-file="{{ asset('storage/imbs/' . $item->imbs) }}">
+                        data-file="{{ asset('storage/sk/' . $item->sk) }}">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
@@ -184,52 +164,12 @@
                         <!-- Menggunakan grid layout -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="relative z-0 w-full mb-5 group">
-                                <input type="text" name="nomor_dp" id="edit_nomor_dp"
+                                <input type="text" name="nomor_sk" id="edit_nomor_sk"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" " value="" required />
-                                <label for="floating_nomor_dp"
+                                <label for="floating_nomor_sk"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nomor
-                                    DP</label>
-                            </div>
-
-                            <div class="relative z-0 w-full mb-5 group">
-                                <input type="text" name="nama_pemilik" id="edit_nama"
-                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="" required />
-                                <label for="floating_nama"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nama</label>
-                            </div>
-
-                            <div class="relative z-0 w-full mb-5 group">
-                                <input type="text" name="alamat" id="edit_alamat"
-                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="" required />
-                                <label for="floating_alamat"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Alamat</label>
-                            </div>
-
-                            <div class="relative z-0 w-full mb-5 group">
-                                <input type="text" name="lokasi" id="edit_lokasi"
-                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="" required />
-                                <label for="floating_lokasi"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Lokasi</label>
-                            </div>
-
-                            <div class="relative z-0 w-full mb-5 group">
-                                <input type="text" name="box" id="edit_box"
-                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="" required />
-                                <label for="floating_box"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Box</label>
-                            </div>
-
-                            <div class="relative z-0 w-full mb-5 group">
-                                <input type="text" name="keterangan" id="edit_keterangan"
-                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="" />
-                                <label for="floating_keterangan"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Keterangan</label>
+                                    SK</label>
                             </div>
 
                             <div class="relative z-0 w-full mb-5 group">
@@ -239,17 +179,33 @@
                                 <label for="floating_tahun"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tahun</label>
                             </div>
+
+                            <div class="relative z-0 w-full mb-5 group">
+                                <input type="text" name="tanggal_penetapan" id="edit_tanggal_penetapan"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " value="" required />
+                                <label for="floating_tanggal_penetapan"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tanggal Penetapan</label>
+                            </div>
+
+                            <div class="relative z-0 w-full mb-5 group">
+                                <input type="text" name="tentang" id="edit_tentang"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " value="" required />
+                                <label for="floating_tentang"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tentang</label>
+                            </div>
                         </div>
                         <div class="mb-14">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 for="multiple_files">Upload
                                 File
-                                IMB</label>
+                                SK</label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="multiple_files" name="imbs[]" type="file" value="" multiple
+                                id="multiple_files" name="sk[]" type="file" value="" multiple
                                 accept=".pdf">
-                            <input type="hidden" id="merge_imbs" name="imbs">
+                            <input type="hidden" id="merge_sk" name="sk">
                         </div>
 
                         <div class="mb-14"></div>
@@ -277,162 +233,21 @@
 
 
 <div class="mt-10">
-    {{ $dataImb->links() }}
+    {{ $dataSK->links() }}
 </div>
 
-
-<!-- <div class="mb-4">
-    <button id="print-table" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Print Table
-    </button>
-</div> -->
-
-
-
-
-
 <script>
-    // delay alert
-    const alertSuccess = document.getElementById("alertSuccess");
-
-    if (alertSuccess) {
-        setTimeout(() => {
-            alertSuccess.style.display = "none";
-        }, 2000);
-    }
-    
-
-
-
-
-    let currentScrollPosition = 0;
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('mergeButton').addEventListener('click', async () => {
-            const files = document.getElementById('multiple_files').files;
-
-            if (files.length === 0) {
-                alert('Pilih setidaknya satu file PDF.');
-                return;
-            }
-
-            const {
-                PDFDocument
-            } = PDFLib;
-            const mergedPdf = await PDFDocument.create();
-
-            for (const file of files) {
-                const pdfBytes = await file.arrayBuffer();
-                const pdfDoc = await PDFDocument.load(pdfBytes);
-                const pages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
-                pages.forEach(page => mergedPdf.addPage(page));
-            }
-
-            const mergedPdfBytes = await mergedPdf.save();
-            const mergedPdfBlob = new Blob([mergedPdfBytes], {
-                type: 'application/pdf'
-            });
-
-            // Convert Blob to Base64
-            const reader = new FileReader();
-            reader.readAsDataURL(mergedPdfBlob);
-            reader.onloadend = function() {
-                const base64data = reader.result;
-                document.getElementById('merge_imbs').value = base64data;
-                alert('File PDF berhasil digabungkan dan siap untuk disubmit.');
-            };
-        });
-    })
-
-
-    // select dropdown 
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.filter-item').forEach(button => {
-            button.addEventListener('click', function() {
-                document.getElementById('field').value = this.getAttribute('data-filter');
-                document.getElementById('dropdown-button').innerHTML =
-                    `${this.dataset.filter} <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>`;
-                document.getElementById('dropdown').classList.add('hidden');
-            });
-        });
-    });
-
-    // Fungsi untuk toggle dropdown visibility
-    document.getElementById('dropdown-button').addEventListener('click', function() {
-        document.getElementById('dropdown').classList.toggle('hidden');
-    });
-
-
-    // lihat
-    document.querySelectorAll('.print-pdf').forEach(function(element) {
-        element.addEventListener('click', function(e) {
-            e.preventDefault(); // Mencegah link default
-            let pdfFile = this.getAttribute('data-file'); // Ambil URL PDF dari data-file
-
-            // Buka PDF di tab baru
-            let win = window.open(pdfFile, '_blank');
-
-            // Cek jika jendela tidak terbuka (misalnya popup diblokir)
-            if (!win) {
-                alert("Silakan izinkan popup untuk membuka dokumen.");
-                return;
-            }
-
-            // Periksa apakah file PDF dapat dimuat
-            win.onload = function() {
-                win.print();
-
-            };
-
-            win.onerror = function() {
-                console.error("Gagal memuat PDF.");
-
-            };
-        });
-    });
-
-
-    // Hapus
-    function confirmDelete(id) {
-        const isConfirmed = confirm("Yakin Ingin Mengahapus?")
-
-        if (isConfirmed) {
-            return true;
-        } else {
-            // Batal, tidak ada tindakan
-            return false;
-        }
-    }
-
-
-
-    // print 
-    function printTable() {
-        let table = document.getElementById('dataTable');
-        if (table) {
-            printWindow.onload = function() {
-                printWindow.print();
-
-            };
-        }
-    }
-
-
     function openEditModal(item) {
         // Simpan posisi scroll saat ini ke localStorage
         currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         localStorage.setItem('scrollPosition', currentScrollPosition);
 
         // Isi form dengan data item
-        document.getElementById('form_id').action = `/admin/edit/imb/${item.id}`;
+        document.getElementById('form_id').action = `/admin/edit/sk/${item.id}`;
         document.getElementById('edit_id').value = item.id;
-        document.getElementById('edit_nomor_dp').value = item.nomor_dp;
-        document.getElementById('edit_nama').value = item.nama_pemilik;
-        document.getElementById('edit_alamat').value = item.alamat;
-        document.getElementById('edit_lokasi').value = item.lokasi;
-        document.getElementById('edit_keterangan').value = item.keterangan;
-        document.getElementById('edit_box').value = item.box;
+        document.getElementById('edit_nomor_sk').value = item.nomor_sk;
+        document.getElementById('edit_tahun').value = item.tahun;
+        document.getElementById('edit_tanggal_penetapan').value = item.tanggal_penetapan;
         document.getElementById('edit_tahun').value = item.tahun;
 
         // Tampilkan modal dan nonaktifkan scroll di body
@@ -441,32 +256,7 @@
     }
 
     function closeModal() {
-        // Sembunyikan modal
         document.getElementById('editModal').classList.add('hidden');
-
-        // Aktifkan kembali scroll di body
-        document.body.style.overflow = 'auto';
-
-        // Kembalikan posisi scroll ke posisi yang disimpan sebelumnya
-        const savedScrollPosition = localStorage.getItem('scrollPosition');
-        if (savedScrollPosition) {
-            window.scrollTo(0, parseInt(savedScrollPosition));
-            localStorage.removeItem('scrollPosition');
-        }
     }
-
-    // Saat form disubmit, simpan posisi scroll ke localStorage
-    document.getElementById('form_id').addEventListener('submit', function() {
-        localStorage.setItem('scrollPosition', currentScrollPosition);
-    });
-
-    // Saat halaman dimuat ulang, kembalikan posisi scroll dari localStorage
-    window.addEventListener('load', function() {
-        const savedScrollPosition = localStorage.getItem('scrollPosition');
-        if (savedScrollPosition) {
-            window.scrollTo(0, parseInt(savedScrollPosition));
-            localStorage.removeItem('scrollPosition'); // Bersihkan setelah digunakan
-        }
-    });
 </script>
 @endsection

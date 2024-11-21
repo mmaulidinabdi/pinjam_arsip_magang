@@ -36,7 +36,7 @@ class historiFactory extends Factory
                     : \Carbon\Carbon::parse($transaksi->tanggal_peminjaman)->addDays(rand(15, 30))->toDateString() // 15-30 hari dari tanggal_peminjaman
                 )
                 : null,
-            'jenis_arsip' => $this->faker->randomElement(['Arsip1', 'Arsip2', 'IMB']),
+            'jenis_arsip' => $this->faker->randomElement(['SK', 'Arsip2', 'IMB']),
         ];
     }
 
