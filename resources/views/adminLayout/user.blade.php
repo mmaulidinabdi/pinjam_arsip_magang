@@ -53,16 +53,16 @@
 </div>
 
 @if (session()->has('passBeda'))
-    <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-green-400"
-        role="alert">
-        <span class="font-medium">{{ session('passBeda') }}</span>
-    </div>
+<div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-green-400"
+    role="alert">
+    <span class="font-medium">{{ session('passBeda') }}</span>
+</div>
 @endif
 @if (session()->has('success'))
-    <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400"
-        role="alert">
-        <span class="font-medium">{{ session('success') }}</span>
-    </div>
+<div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400"
+    role="alert">
+    <span class="font-medium">{{ session('success') }}</span>
+</div>
 @endif
 
 <!-- delete modal -->
@@ -159,33 +159,33 @@
                         Ditolak
                     </button>
                     @else
-                        <button type="button"
-                            class="min-w-[60px] whitespace-nowrap text-white bg-green-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                            DI ACC
-                        </button>
+                    <button type="button"
+                        class="min-w-[60px] whitespace-nowrap text-white bg-green-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        DI ACC
+                    </button>
                     @endif
             </td>
             <td>
                 <!-- hapus -->
                 <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                onclick="confirmDelete('{{ $peminjam->id, $peminjam->nama_lengkap }}')"
+                    onclick="confirmDelete('{{ $peminjam->id, $peminjam->nama_lengkap }}')"
                     class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                     type="button">
                     Hapus
                 </button>
 
-                    <!-- edit -->
-                    <button data-modal-target="updateProductModal{{ $peminjam->id }}"
-                        data-modal-toggle="updateProductModal{{ $peminjam->id }}"
-                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-                        type="button">
-                        Edit
-                    </button>
+                <!-- edit -->
+                <button data-modal-target="updateProductModal{{ $peminjam->id }}"
+                    data-modal-toggle="updateProductModal{{ $peminjam->id }}"
+                    class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                    type="button">
+                    Edit
+                </button>
 
 
 
-                </td>
-            </tr>
+            </td>
+        </tr>
 
 
         <!-- Modal khusus untuk peminjam ini -->
@@ -205,92 +205,93 @@
             </div>
         </div>
 
-            <!-- update modal -->
-            <div id="updateProductModal{{ $peminjam->id }}" tabindex="-1" aria-hidden="true"
-                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-                <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
-                    <!-- Modal content -->
-                    <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-                        <!-- Modal header -->
-                        <div
-                            class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                Update
-                            </h3>
-                            <button type="button"
-                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-toggle="updateProductModal{{ $peminjam->id }}">
-                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                        </div>
-                        <!-- Modal body -->
-                        <form action="/admin/updateUser/{{ $peminjam->id }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class="grid gap-4 mb-4 sm:grid-cols-2">
-                                <div>
-                                    <label for="name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                        Pengguna</label>
-                                    <input type="text" name="nama_lengkap" id="name" disabled
-                                        value="{{ $peminjam->nama_lengkap }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                </div>
-                                <div>
-                                    <label for="email"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                    <input type="text" name="email" id="email" value="{{ $peminjam->email }}" disabled
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        placeholder="Ex. Apple">
-                                </div>
-                                <div class="mb-6">
-                                    <label for="password"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <div class="relative">
-                                        <input type="password" id="password" name="password"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="•••••••••" required />
-                                        <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
-                                            onclick="togglePassword('password', this)">
-                                            👁️
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="mb-6">
-                                    <label for="confirm_password"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
-                                        Password</label>
-                                    <div class="relative">
-                                        <input type="password" id="confirm_password" name="confirm_password"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="•••••••••" required />
-                                        <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
-                                            onclick="togglePassword('confirm_password', this)">
-                                            👁️
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <button data-modal-hide="updateProductModal{{ $peminjam->id }}" type="submit"
-                                    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                    Simpan
-                                </button>
-                                <button data-modal-hide="updateProductModal{{ $peminjam->id }}" type="button"
-                                    class=" bg-red-700 py-2.5 px-5 ms-3 text-sm font-medium focus:outline-none text-white rounded-lg border border-gray-200  hover:bg-red-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No,
-                                    Batal</button>
-                            </div>
-                        </form>
+        <!-- update modal -->
+        <div id="updateProductModal{{ $peminjam->id }}" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+            <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+                <!-- Modal content -->
+                <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                    <!-- Modal header -->
+                    <div
+                        class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Update
+                        </h3>
+                        <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-toggle="updateProductModal{{ $peminjam->id }}">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
                     </div>
+                    <!-- Modal body -->
+                    <form id="updateForm{{ $peminjam->id }}" action="/admin/updateUser/{{ $peminjam->id }}" method="POST" onsubmit="return validateForm({{ $peminjam->id }})">
+                        @csrf
+                        @method('PUT')
+                        <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                            <div>
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                    Pengguna</label>
+                                <input type="text" name="nama_lengkap" id="name{{$peminjam->id}}" disabled
+                                    value="{{ $peminjam->nama_lengkap }}"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            </div>
+                            <div>
+                                <label for="email"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <input type="text" name="email" id="email{{$peminjam->id}}" value="{{ $peminjam->email }}" disabled
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Ex. Apple">
+                            </div>
+                            <div class="mb-6">
+                                <label for="password"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="password{{$peminjam->id}}" name="password"
+                                        class="input-field bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="•••••••••" required />
+                                    <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                                        onclick="togglePassword('password{{$peminjam->id}}', this)">
+                                        👁️
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="confirm_password"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
+                                    Password</label>
+                                <div class="relative">
+                                    <input type="password" id="confirm_password{{$peminjam->id}}" name="confirm_password"
+                                        class="input-field bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="•••••••••" required />
+                                    <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                                        onclick="togglePassword('confirm_password{{$peminjam->id}}', this)">
+                                        👁️
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-red-500 text-sm mb-4 hidden" id="error_message{{$peminjam->id}}">Password dan Confirm Password Tidak Cocok!</div>
+                        <div class="flex items-center space-x-4">
+                            <button type="submit"
+                                class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Simpan
+                            </button>
+                            <button data-modal-hide="updateProductModal{{ $peminjam->id }}" type="button"
+                                class=" bg-red-700 py-2.5 px-5 ms-3 text-sm font-medium focus:outline-none text-white rounded-lg border border-gray-200  hover:bg-red-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No,
+                                Batal</button>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
         @endforeach
 
     </tbody>
@@ -300,10 +301,25 @@
 
 
 <script>
+    function validateForm(id) {
+        // Ambil elemen password dan confirm password berdasarkan ID
+        const password = document.getElementById(`password${id}`).value;
+        const confirmPassword = document.getElementById(`confirm_password${id}`).value;
+        const errorMessage = document.getElementById(`error_message${id}`);
+
+        // Validasi apakah password dan confirm password cocok
+        if (password !== confirmPassword) {
+            errorMessage.classList.remove('hidden'); // Tampilkan pesan error
+            return false; // Mencegah pengiriman formulir
+        }
+
+        errorMessage.classList.add('hidden'); // Sembunyikan pesan error
+        return true; // Izinkan pengiriman formulir
+    }
+
     //  toggle password
     function togglePassword(inputId, icon) {
         const passwordInput = document.getElementById(inputId);
-
 
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
@@ -366,7 +382,7 @@
         modal.style.display = "none"; // Sembunyikan modal yang sesuai
     }
 
-    window.onclick = function (event) {
+    window.onclick = function(event) {
         const modals = document.getElementsByClassName("modal");
         for (let modal of modals) {
             if (event.target === modal) {
@@ -396,7 +412,7 @@
         document.getElementById('updateForm').submit();
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const alert = document.getElementById('alert');
 
         if (alert) {
