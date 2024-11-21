@@ -302,9 +302,6 @@
     }
     
 
-
-
-
     let currentScrollPosition = 0;
 
 

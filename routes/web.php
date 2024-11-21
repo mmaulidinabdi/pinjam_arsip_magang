@@ -96,18 +96,26 @@ Route::put('/admin/edit/imb/{id}', [AdminController::class, 'updateImb'])->middl
 Route::get('/admin/delete/imb/{id}', [AdminController::class, 'deleteImb'])->middleware('admin')->name('delete.imb');
 
 // search
-Route::get('/admin/imb/search',[ImbController::class,'search'])->middleware('admin')->name('search.imb');
+Route::get('/admin/imb/search', [ImbController::class, 'search'])->middleware('admin')->name('search.imb');
 // print all
-Route::get('/admin/imb/printAll',[ImbController::class,'printAll'])->middleware('admin')->name('imb.printAll');
+Route::get('/admin/imb/printAll', [ImbController::class, 'printAll'])->middleware('admin')->name('imb.printAll');
 
 Route::post('admin/kelola/{id}', [AdminController::class, 'konfirmasiPengembalian'])->name('konfirmasi.pengembalian');
 
 //untuk SK
-Route::get('/admin/sk',[SKController::class,'manajemenSK'])->middleware('admin')->name('admin.manajemenSK');
+Route::get('/admin/sk', [SKController::class, 'manajemenSK'])->middleware('admin')->name('admin.manajemenSK');
 Route::get('/admin/tambahSK', [SKController::class, 'viewTambahSK'])->middleware('admin')->name('admin.viewTambahSK');
 Route::post('/admin/tambahSK', [SKController::class, 'tambahSK'])->middleware('admin')->name('admin.tambahSK');
 
-Route::get('/admin/lihat/sk/{name}',[SKController::class,'show'])->middleware('admin')->name('admin.lihatSK');
+Route::get('/admin/lihat/sk/{name}', [SKController::class, 'show'])->middleware('admin')->name('admin.lihatSK');
+// edit imb
+Route::put('/admin/edit/sk/{id}', [SKController::class, 'updateSK'])->middleware('admin')->name('edit.sk');
+// hapus sk
+Route::get('/admin/delete/sk/{id}', [SKController::class, 'deleteSK'])->middleware('admin')->name('hapus.sk');
+// search
+Route::get('/admin/sk/search', [SKController::class, 'search'])->middleware('admin')->name('search.imb');
+// print all
+Route::get('/admin/sk/printAll', [SKController::class, 'printAll'])->middleware('admin')->name('sk.printAll');
 
 
 // untuk Keuangan
