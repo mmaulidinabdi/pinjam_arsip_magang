@@ -17,6 +17,7 @@ class Histori extends Model
         'peminjam_id',
         'nama_arsip',
         'imb_id',
+        'sk_id',
         'status',
         'alasan_ditolak',
         'tanggal_peminjaman',
