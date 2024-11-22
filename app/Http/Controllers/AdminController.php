@@ -253,7 +253,7 @@ class AdminController extends Controller
 
             if ($validateData['jenis_arsip'] == 'IMB') {
 
-                list($dp, $nama) = explode(' - ', $validateData['arsip'], 2);
+                list($dp, $tahun, $nama) = explode(' - ', $validateData['arsip']);
 
                 $arsip = imb::where('nomor_dp', $dp)->first();
 
@@ -265,8 +265,6 @@ class AdminController extends Controller
 
                 $arsip = sk::where('nomor_sk', $sk)->first();
 
-                
-
                 $validateData['sk_id'] = $arsip->id;                
             }
         }
@@ -277,8 +275,6 @@ class AdminController extends Controller
         $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
         $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
         $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
-
-        dd($validateData['sk_id']);
 
         Histori::create($validateData);
 
