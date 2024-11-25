@@ -23,7 +23,7 @@ class AdminController extends Controller
     public function admindashboard()
     {
         $jumlahPeminjam = Peminjam::count();
-        $historis = Histori::where('tanggal_divalidasi', '<=', Carbon::now()->subDays(30))
+        $historis = Histori::where('tanggal_divalidasi', '<=', Carbon::now()->subDays(10))
     ->where('status', 'diacc')
     ->whereNull('tanggal_pengembalian')
     ->get();
