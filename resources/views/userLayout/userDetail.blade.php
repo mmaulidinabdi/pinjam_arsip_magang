@@ -21,13 +21,13 @@
 
                         @if ($history->status === 'diacc')
                             {{ $history->jenis_arsip }}
-                            @if ($history->jenis_arsip == 'IMB')
+                            @if ($history->jenis_arsip === 'IMB')
                                 {{ $history->imb->nomor_dp }}
                                 {{ $history->imb->tahun }}
-                            @elseif($history->jenis_arsip == 'SK')
+                            @elseif($history->jenis_arsip === 'SK')
                                 {{ $history->sk->nomor_sk }}
                                 {{ $history->sk->tahun }}
-                            @elseif($history->jenis_arsip == 'Arsip2')
+                            @elseif($history->jenis_arsip === 'Arsip2')
                                 {{ $history->arsip2->nomor_dp }}
                                 {{ $history->arsip2->tahun }}
                             @endif
@@ -70,7 +70,7 @@
                         File Pendukung
                     </th>
                     <td class="px-6 py-3">
-                        <a href="{{ asset($history->dokumen_pendukung) }}" target="_blank"
+                        <a href="{{ asset('storage/' . $history->dokumen_pendukung) }}" target="_blank"
                             class="text-blue-600 hover:underline">
                             Lihat File PDF
                         </a>
