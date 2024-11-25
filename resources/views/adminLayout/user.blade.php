@@ -306,6 +306,8 @@
 
 
     <script>
+
+        
         function validateForm(id) {
             // Ambil elemen password dan confirm password berdasarkan ID
             const password = document.getElementById(`password${id}`).value;
@@ -340,6 +342,7 @@
 
         if (document.getElementById("filter-table") && typeof simpleDatatables.DataTable !== 'undefined') {
             const dataTable = new simpleDatatables.DataTable("#filter-table", {
+                paging:false,
                 tableRender: (_data, table, type) => {
                     if (type === "print") {
                         return table;
@@ -418,6 +421,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            initModals();
             const alert = document.getElementById('alert');
 
         if (alert) {
