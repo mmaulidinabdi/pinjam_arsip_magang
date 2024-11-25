@@ -54,7 +54,7 @@ class AdminController extends Controller
         $items = Histori::with('Peminjam', 'Imb', 'SK', 'Arsip2')
             ->get();
 
-
+        dd($items);
         return view('adminlayout/history', [
             'title' => 'histori',
             'items' => $items,
@@ -253,23 +253,23 @@ class AdminController extends Controller
 
             if ($validateData['jenis_arsip'] == 'IMB') {
 
-                list($dp, $nama) = explode(' - ', $validateData['arsip'], 2);
+                list($dp, $tahun, $nama) = explode(' - ', $validateData['arsip']);
 
                 $arsip = imb::where('nomor_dp', $dp)->first();
 
                 $validateData['imb_id'] = $arsip->id;
-                $validateData['status'] = 'diacc';
-            } elseif ($validateData['jenis_arsip'] == 'sk') {
+
+            } elseif ($validateData['jenis_arsip'] == 'SK') {
 
                 list($sk, $tahun) = explode(' - ', $validateData['arsip'], 2);
 
                 $arsip = sk::where('nomor_sk', $sk)->first();
 
-                $validateData['sk_id'] = $arsip->id;
-                $validateData['status'] = 'diacc';
+                $validateData['sk_id'] = $arsip->id;                
             }
         }
 
+        $validateData['status'] = 'diacc';
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
         $validateData['nama_arsip'] = $transaksi->nama_arsip;
         $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
