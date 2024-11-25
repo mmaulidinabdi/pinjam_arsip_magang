@@ -56,7 +56,6 @@
 </form>
 
 
-<!-- Tambahkan library pdf-lib dari CDN -->
 
 <script>
     document.getElementById('mergeButton').addEventListener('click', async () => {

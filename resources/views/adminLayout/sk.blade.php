@@ -13,7 +13,7 @@
 </div>
 @endif
 
-<form action="/admin/imb/search" method="GET" class="max-w-lg mx-auto my-3">
+<form action="/admin/sk/search" method="GET" class="max-w-lg mx-auto my-3">
     <div class="flex">
         <button id="dropdown-button" data-dropdown-toggle="dropdown"
             class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
@@ -30,22 +30,22 @@
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="nomor_dp">No SK</button>
+                        data-filter="nomor_sk">No SK</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="nama_pemilik">Tahun</button>
+                        data-filter="tahun">Tahun</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="alamat">Tanggal Penetapan</button>
+                        data-filter="tanggal_penetapan">Tanggal Penetapan</button>
                 </li>
                 <li>
                     <button type="button"
                         class="filter-item inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-filter="lokasi">Tentang</button>
+                        data-filter="tentang">Tentang</button>
                 </li>
 
             </ul>
@@ -68,7 +68,7 @@
         </div>
 
         <!-- tombol print -->
-        <a href="{{ route('imb.printAll', ['query' => request()->input('query'), 'field' => request()->input('field')]) }}" onclick="printTable()"
+        <a href="{{ route('sk.printAll', ['query' => request()->input('query'), 'field' => request()->input('field')]) }}" onclick="printTable()"
             class="flex items-center text-white bg-gray-800 border border-gray-300 focus:outline-none hover:bg-gray-600 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
             <svg class="w-6 h-6 text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24">
@@ -130,7 +130,7 @@
 
                 </td>
                 <td class="px-6 py-4">
-                    <a href="/admin/delete/imb/{{$item->id}}?page={{ $dataSK->currentPage() }}" onclick=" return confirmDelete({{$item->id}})">
+                    <a href="/admin/delete/sk/{{$item->id}}?page={{ $dataSK->currentPage() }}" onclick=" return confirmDelete({{$item->id}})">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd" />
                         </svg>
@@ -163,66 +163,84 @@
 
                         <!-- Menggunakan grid layout -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Nomor SK -->
                             <div class="relative z-0 w-full mb-5 group">
                                 <input type="text" name="nomor_sk" id="edit_nomor_sk"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" " value="" required />
-                                <label for="floating_nomor_sk"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Nomor
-                                    SK</label>
+                                <label for="edit_nomor_sk"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">
+                                    Nomor SK
+                                </label>
                             </div>
 
+                            <!-- Tahun -->
                             <div class="relative z-0 w-full mb-5 group">
                                 <input type="text" name="tahun" id="edit_tahun"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" " value="" required />
-                                <label for="floating_tahun"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tahun</label>
+                                <label for="edit_tahun"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">
+                                    Tahun
+                                </label>
                             </div>
 
-                            <div class="relative z-0 w-full mb-5 group">
-                                <input type="text" name="tanggal_penetapan" id="edit_tanggal_penetapan"
-                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="" required />
-                                <label for="floating_tanggal_penetapan"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tanggal Penetapan</label>
-                            </div>
+                        </div>
+                        <!-- Tentang -->
+                        <div class="relative z-0 w-full mb-5 group">
+                            <input type="text" name="tentang" id="edit_tentang"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " value="" required />
+                            <label for="edit_tentang"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">
+                                Tentang
+                            </label>
+                        </div>
 
-                            <div class="relative z-0 w-full mb-5 group">
-                                <input type="text" name="tentang" id="edit_tentang"
-                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " value="" required />
-                                <label for="floating_tentang"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600">Tentang</label>
+                        <!-- Tanggal Penetapan -->
+                        <label for="edit_tanggal_penetapan"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Tanggal Penetapan
+                        </label>
+                        <div class="relative z-0 w-full mb-5 group">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input datepicker id="edit_tanggal_penetapan" type="text" name="tanggal_penetapan"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="bulan/tanggal/tahun" value="{{ old('tanggal_penetapan') }}">
+
                             </div>
                         </div>
+                        <!-- File Upload -->
                         <div class="mb-14">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                for="multiple_files">Upload
-                                File
-                                SK</label>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">
+                                Upload File SK
+                            </label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="multiple_files" name="sk[]" type="file" value="" multiple
-                                accept=".pdf">
+                                id="multiple_files" name="sk[]" type="file" value="" multiple accept=".pdf">
                             <input type="hidden" id="merge_sk" name="sk">
                         </div>
 
-                        <div class="mb-14"></div>
-
+                        <!-- Buttons -->
                         <div class="flex justify-evenly">
                             <button type="button" onclick="closeModal()"
                                 class="text-white bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded">Cancel</button>
                             <button type="button" id="mergeButton"
-                                class="text-white bg-green-500 hover:bg-green-700 font-bold py-2 px-4 rounded">
-                                Gabungkan PDF
-                            </button>
+                                class="text-white bg-green-500 hover:bg-green-700 font-bold py-2 px-4 rounded">Gabungkan PDF</button>
                             <button type="submit"
                                 class="ml-2 text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded">Save</button>
                         </div>
                     </form>
                 </div>
             </div>
+
         </tbody>
     </table>
     <div>
@@ -237,6 +255,52 @@
 </div>
 
 <script>
+    let currentScrollPosition = 0;
+
+    // delay alert
+    const alertSuccess = document.getElementById("alertSuccess");
+    if (alertSuccess) {
+        setTimeout(() => {
+            alertSuccess.style.display = 'none';
+        }, 2000);
+    }
+
+    document.getElementById('mergeButton').addEventListener('click', async () => {
+        const files = document.getElementById('multiple_files').files;
+
+        if (files.length === 0) {
+            alert('Pilih setidaknya satu file PDF.');
+            return;
+        }
+
+        // Gunakan PDFDocument dari pdf-lib yang diimpor melalui CDN
+        const {
+            PDFDocument
+        } = PDFLib;
+        const mergedPdf = await PDFDocument.create();
+
+        for (const file of files) {
+            const pdfBytes = await file.arrayBuffer();
+            const pdfDoc = await PDFDocument.load(pdfBytes);
+            const pages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
+            pages.forEach(page => mergedPdf.addPage(page));
+        }
+
+        const mergedPdfBytes = await mergedPdf.save();
+        const mergedPdfBlob = new Blob([mergedPdfBytes], {
+            type: 'application/pdf'
+        });
+
+        // Convert Blob to Base64
+        const reader = new FileReader();
+        reader.readAsDataURL(mergedPdfBlob);
+        reader.onloadend = function() {
+            const base64data = reader.result;
+            document.getElementById('merge_sk').value = base64data;
+            alert('File PDF berhasil digabungkan dan siap untuk disubmit.');
+        };
+    });
+
     function openEditModal(item) {
         // Simpan posisi scroll saat ini ke localStorage
         currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
@@ -248,7 +312,7 @@
         document.getElementById('edit_nomor_sk').value = item.nomor_sk;
         document.getElementById('edit_tahun').value = item.tahun;
         document.getElementById('edit_tanggal_penetapan').value = item.tanggal_penetapan;
-        document.getElementById('edit_tahun').value = item.tahun;
+        document.getElementById('edit_tentang').value = item.tentang;
 
         // Tampilkan modal dan nonaktifkan scroll di body
         document.getElementById('editModal').classList.remove('hidden');
@@ -257,6 +321,102 @@
 
     function closeModal() {
         document.getElementById('editModal').classList.add('hidden');
+
+        // Aktifkan kembali scroll di body
+        document.body.style.overflow = 'auto';
+
+        // Kembalikan posisi scroll ke posisi yang disimpan sebelumnya
+        const savedScrollPosition = localStorage.getItem('scrollPosition');
+        if (savedScrollPosition) {
+            window.scrollTo(0, parseInt(savedScrollPosition));
+            localStorage.removeItem('scrollPosition');
+        }
     }
+
+    // select dropdown 
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.filter-item').forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('field').value = this.getAttribute('data-filter');
+                document.getElementById('dropdown-button').innerHTML =
+                    `${this.dataset.filter} <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>`;
+                document.getElementById('dropdown').classList.add('hidden');
+            });
+        });
+    });
+
+    // Fungsi untuk toggle dropdown visibility
+    document.getElementById('dropdown-button').addEventListener('click', function() {
+        document.getElementById('dropdown').classList.toggle('hidden');
+    });
+
+
+    // lihat
+    document.querySelectorAll('.print-pdf').forEach(function(element) {
+        element.addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah link default
+            let pdfFile = this.getAttribute('data-file'); // Ambil URL PDF dari data-file
+
+            // Buka PDF di tab baru
+            let win = window.open(pdfFile, '_blank');
+
+            // Cek jika jendela tidak terbuka (misalnya popup diblokir)
+            if (!win) {
+                alert("Silakan izinkan popup untuk membuka dokumen.");
+                return;
+            }
+
+            // Periksa apakah file PDF dapat dimuat
+            win.onload = function() {
+                win.print();
+
+            };
+
+            win.onerror = function() {
+                console.error("Gagal memuat PDF.");
+
+            };
+        });
+    });
+
+
+    // Hapus
+    function confirmDelete(id) {
+        const isConfirmed = confirm("Yakin Ingin Mengahapus?")
+
+        if (isConfirmed) {
+            return true;
+        } else {
+            // Batal, tidak ada tindakan
+            return false;
+        }
+    }
+
+
+
+    // print 
+    function printTable() {
+        let table = document.getElementById('dataTable');
+        if (table) {
+            printWindow.onload = function() {
+                printWindow.print();
+
+            };
+        }
+    }
+
+    // Saat form disubmit, simpan posisi scroll ke localStorage
+    document.getElementById('form_id').addEventListener('submit', function() {
+        localStorage.setItem('scrollPosition', currentScrollPosition);
+    });
+
+    // Saat halaman dimuat ulang, kembalikan posisi scroll dari localStorage
+    window.addEventListener('load', function() {
+        const savedScrollPosition = localStorage.getItem('scrollPosition');
+        if (savedScrollPosition) {
+            window.scrollTo(0, parseInt(savedScrollPosition));
+            localStorage.removeItem('scrollPosition'); // Bersihkan setelah digunakan
+        }
+    });
 </script>
 @endsection

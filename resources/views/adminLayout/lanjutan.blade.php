@@ -71,7 +71,7 @@
                             File KTP
                         </th>
                         <td class="px-6 py-3">
-                            <a href="{{ asset($item->peminjam->ktp) }}" target="_blank"
+                            <a href="{{ asset( 'storage/' . $item->peminjam->ktp) }}" target="_blank"
                                 class="text-blue-600 hover:underline">
                                 Lihat File PDF
                             </a>
@@ -83,7 +83,7 @@
                             File Pendukung
                         </th>
                         <td class="px-6 py-3">
-                            <a href="{{ asset($item->dokumen_pendukung) }}" target="_blank"
+                            <a href="{{ asset('storage/' . $item->dokumen_pendukung) }}" target="_blank"
                                 class="text-blue-600 hover:underline">
                                 Lihat File PDF
                             </a>
@@ -195,17 +195,25 @@
 
                             if (data.length > 0) {
                                 data.forEach(item => {
-                                    resultsDiv.append(`
+                                    if (jenisArsip === 'IMB') {
+                                        resultsDiv.append(`
                                     <li class="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
-                                        <span class="font-bold">${item.nomor_dp}</span> - ${item.nama_pemilik}
+                                        <span class="font-bold">${item.nomor_dp}</span> - ${item.tahun} - ${item.nama_pemilik}
                                     </li>
                                 `);
+                                    } else if (jenisArsip === 'SK') {
+                                        resultsDiv.append(`
+                                    <li class="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
+                                        <span class="font-bold">${item.nomor_sk}</span> - ${item.tahun}
+                                    </li>
+                                `);
+                                    }
                                 });
                                 resultsDiv.removeClass('hidden');
                             } else {
                                 resultsDiv.html(
                                     `<li class="px-4 py-2 text-gray-500">No results found</li>`
-                                    );
+                                );
                                 resultsDiv.removeClass('hidden');
                             }
                         }
