@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum('status', ['diacc', 'ditolak']);
             $table->string('alasan_ditolak')->nullable();
             $table->date('tanggal_peminjaman');
+            $table->date('tanggal_divalidasi')->nullable();
             $table->datetime('tanggal_pengembalian')->nullable();
             $table->string('tujuan_peminjam');
             $table->string('dokumen_pendukung')->nullable();

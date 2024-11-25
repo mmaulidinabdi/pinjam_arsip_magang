@@ -21,6 +21,7 @@ class Histori extends Model
         'status',
         'alasan_ditolak',
         'tanggal_peminjaman',
+        'tanggal_divalidasi',
         'tujuan_peminjam',
         'dokumen_pendukung',
         'jenis_arsip',
