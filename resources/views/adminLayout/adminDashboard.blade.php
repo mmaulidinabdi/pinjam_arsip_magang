@@ -3,14 +3,14 @@
 @section('adminLayout')
 <div class="grid md:grid-cols-4 gap-4 grid-flow-row-dense">
 
-    <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class=" p-6 bg-blue-300 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h2 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Selamat Datang Atmin</h2>
         </div>
     </div>
 
     <!-- 2 -->
-    <div class="md:col-span-2  p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="md:col-span-2  p-6 bg-blue-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h5 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{$jumlahPeminjam}}</h5>
         </div>
@@ -18,7 +18,7 @@
 
     </div>
     <!-- 3 -->
-    <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class=" p-6 bg-blue-500 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h5 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $jumlahArsip }}</h5>
         </div>
@@ -33,7 +33,7 @@
 <div class=" my-4 grid sm:grid-cols-3  md:grid-row-3 gap-4">
     <!-- Kategtori section -->
     <!-- 3 -->
-    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-6 bg-yellow-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $imb }}</h5>
         </div>
@@ -42,7 +42,7 @@
 
     </div>
     <!-- 4 -->
-    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-6 bg-green-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$sk}}</h5>
         </div>
@@ -52,7 +52,7 @@
     </div>
 
 
-    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-6 bg-purple-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $arsip2 }}</h5>
         </div>

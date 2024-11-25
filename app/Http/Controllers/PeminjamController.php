@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Peminjam;
-use App\Models\TransaksiPeminjaman;
+use App\Models\SK;
+use App\Models\Imb;
+use App\Models\Arsip2;
 use App\Models\Histori;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Peminjam;
+use Illuminate\Http\Request;
+use App\Models\TransaksiPeminjaman;
+use Illuminate\Support\Composer;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class PeminjamController extends Controller
 {
@@ -15,10 +19,19 @@ class PeminjamController extends Controller
 
     public function index()
     {
+
+        $jumlahImb = Imb::count();
+        $jumlahSK = SK::count();
+        $jumlahArsip2  = Arsip2::count();
+        $jumlahArsip = $jumlahImb + $jumlahSK + $jumlahArsip2;
+
         return view('userLayout/userDashboard', [
             'title' => 'SIPEKA | Dashboard ',
+            'imb' => 'IMB',
+            'sk' => 'SK',
+            'arsip2' => 'Arsip 2',
             'transaksis' => TransaksiPeminjaman::where('peminjam_id', auth()->guard('web')->user()->id)->get(),
-        ]);
+        ], compact('jumlahArsip', 'jumlahArsip2', 'jumlahImb', 'jumlahSK'));
     }
 
     public function userProfile()
@@ -60,7 +73,7 @@ class PeminjamController extends Controller
             'nama_lengkap' => 'required|max:255',
             'alamat' => 'required',
             'no_telp' => 'required|unique:peminjams',
-            'email' => 'required|email|unique:peminjams,email,'.$peminjam->id,
+            'email' => 'required|email|unique:peminjams,email,' . $peminjam->id,
             'ktp' => 'nullable'
         ]);
 
