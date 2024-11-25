@@ -22,6 +22,7 @@ class AdminController extends Controller
     public function admindashboard()
     {
         $jumlahPeminjam = Peminjam::count();
+        
 
         $jumlahImb = Imb::count();
         $jumlahSK = SK::count();
