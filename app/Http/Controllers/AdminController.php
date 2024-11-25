@@ -16,14 +16,17 @@ use App\Models\TransaksiPeminjaman;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
+
 class AdminController extends Controller
 {
     //
     public function admindashboard()
     {
         $jumlahPeminjam = Peminjam::count();
-        
-
+        $historis = Histori::where('tanggal_peminjaman', '<=', Carbon::now()->subDays(30))
+    ->where('status', 'diacc')
+    ->whereNull('tanggal_pengembalian')
+    ->get();
         $jumlahImb = Imb::count();
         $jumlahSK = SK::count();
         $jumlahArsip2  = Arsip2::count();
@@ -37,10 +40,28 @@ class AdminController extends Controller
             'title' => 'Admin dashboard',
             'active' => 'dashboard',
             'imb' => 'IMB',
+            'histori' => $historis,
             'sk' => 'SK',
             'arsip2' => 'Arsip 2',
         ], compact('jumlahPeminjam', 'jumlahArsip', 'jumlahImb', 'jumlahSK', 'jumlahArsip2', 'transaksiPending'));
     }
+
+    public function pengembalian($id)
+{
+    
+    // Ambil data histori berdasarkan id
+    $historis = Histori::findOrFail($id);
+
+    // Update tanggal_pengembalian dengan waktu saat ini
+    $historis->tanggal_pengembalian = Carbon::now()->toDateString();
+
+    // Simpan perubahan ke database
+    $historis->save();
+
+    // Redirect ke halaman dashboard dengan pesan sukses
+    return redirect()->back()->with('success', 'Tanggal pengembalian berhasil diperbarui.');
+}
+
 
     public function kelola()
     {
