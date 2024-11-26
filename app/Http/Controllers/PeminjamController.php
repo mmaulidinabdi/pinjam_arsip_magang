@@ -24,13 +24,18 @@ class PeminjamController extends Controller
         $jumlahSK = SK::count();
         $jumlahArsip2  = Arsip2::count();
         $jumlahArsip = $jumlahImb + $jumlahSK + $jumlahArsip2;
+        $userId = auth()->guard('web')->user()->id;
 
         return view('userLayout/userDashboard', [
             'title' => 'SIPEKA | Dashboard ',
             'imb' => 'IMB',
             'sk' => 'SK',
             'arsip2' => 'Arsip 2',
-            'transaksis' => TransaksiPeminjaman::where('peminjam_id', auth()->guard('web')->user()->id)->get(),
+            'peminjamans' => TransaksiPeminjaman::where('peminjam_id', $userId)->get()
+            ->merge(
+                Histori::where('peminjam_id', $userId)->get()
+            ),
+
         ], compact('jumlahArsip', 'jumlahArsip2', 'jumlahImb', 'jumlahSK'));
     }
 
