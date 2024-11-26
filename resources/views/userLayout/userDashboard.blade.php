@@ -65,11 +65,11 @@
         <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Jumlah Arsip yang sudah didata berada di Dinas
             Arsip dan Perpustakaan Banjarmasin</p>
 
+        </div>
+
     </div>
 
-</div>
-
-<!-- Kategori -->
+    <!-- Kategori -->
 
 <div class=" my-4 grid sm:grid-cols-3  md:grid-row-3 gap-4">
     <!-- Kategtori section -->
@@ -92,7 +92,7 @@
         <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Arsip yang tersimpan di Dinas Arsip dan
             Perpusatakaan Banjarmasin</p>
 
-    </div>
+        </div>
 
 
     <div class="p-6 bg-purple-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -103,55 +103,55 @@
         <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Arsip yang tersimpan di Dinas Arsip dan
             Perpusatakaan Banjarmasin</p>
 
+        </div>
     </div>
-</div>
 
 
 
-<!-- Table -->
-<div class="flex flex-col sm:flex-row mt-4">
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <caption
-                class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                Proses peminjaman yang sedang berlangsung
-            </caption>
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Nama Arsip
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Jenis Arsip
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Tanggal
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Status
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($transaksis as $transaksi)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $transaksi->nama_arsip }}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $transaksi->jenis_arsip }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $transaksi->tanggal_peminjaman }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $transaksi->status }}
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <!-- Table -->
+    <div class="flex flex-col sm:flex-row mt-4">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <caption
+                    class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                    Proses peminjaman yang sedang berlangsung
+                </caption>
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Nama Arsip
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Jenis Arsip
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Tanggal
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($peminjamans as $peminjam)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $peminjam->nama_arsip }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $peminjam->jenis_arsip }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $peminjam->tanggal_peminjaman }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $peminjam->status }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 @endsection

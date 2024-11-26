@@ -106,6 +106,9 @@ Route::get('/admin/imb/printAll', [ImbController::class, 'printAll'])->middlewar
 
 Route::post('admin/kelola/{id}', [AdminController::class, 'konfirmasiPengembalian'])->name('konfirmasi.pengembalian');
 
+Route::post('admin/dashboard/{id}', [AdminController::class, 'Pengembalian'])->name('pengembalian.konfirmasi');
+
+
 //untuk SK
 Route::get('/admin/sk', [SKController::class, 'manajemenSK'])->middleware('admin')->name('admin.manajemenSK');
 Route::get('/admin/tambahSK', [SKController::class, 'viewTambahSK'])->middleware('admin')->name('admin.viewTambahSK');
