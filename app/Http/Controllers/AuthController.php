@@ -32,13 +32,15 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $peminjam = Peminjam::where('email',$request->email)->first();
+        $peminjam = Peminjam::where('email', $request->email)->first();
 
-        if (!$peminjam || !$peminjam->is_account_verified) {
-            return back()->with('error', 'Akun belum diverifikasi atau tidak ditemukan.')->withInput();
-        }
+
 
         if (Auth::guard('web')->attempt($validateData)) {
+            if (!$peminjam || !$peminjam->is_account_verified) {
+                return back()->with('error', 'Akun belum diverifikasi atau tidak ditemukan.')->withInput();
+            }
+            
             $request->session()->regenerate();
             return redirect()->intended('/user/dashboard');
         }
@@ -64,7 +66,4 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
-
-    
 }
-
