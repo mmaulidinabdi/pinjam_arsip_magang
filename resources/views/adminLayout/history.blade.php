@@ -86,19 +86,29 @@
                 <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{ $item->peminjam->nama_lengkap }}
                 </td>
+
                 <td>
-                    @if ($item->jenis_arsip === 'imb')
-                        {{ $item->imb->nomor_dp }}
-                        {{ $item->imb->tahun }}
-                    @elseif ($item->jenis_arsip === 'sk')
-                        {{ $item->sk->nomor_sk }}
-                        {{ $item->sk->tahun }}
-                    @elseif ($item->jenis_arsip === 'Arsip2')
-                        {{ $item->arsip2->nomor_dp }}
-                        {{ $item->arsip2->tahun }}
+                    @if($item->status === 'diacc')
+                        @if ($item->jenis_arsip === 'IMB')
+                            {{ $item->jenis_arsip }}
+                            {{ optional($item->imb)->nomor_dp }}
+                            {{ optional($item->imb)->tahun }}
+                        @elseif ($item->jenis_arsip === 'SK')
+                            {{ $item->jenis_arsip }}
+                            {{ optional($item->sk)->nomor_sk }}
+                            {{ optional($item->sk)->tahun }}
+                        @elseif ($item->jenis_arsip === 'arsip2')
+                            {{ $item->jenis_arsip }}
+                            {{ optional($item->arsip2)->nomor_dp }}
+                            {{ optional($item->arsip2)->tahun }}
+                        @endif
+                    @else
                     @endif
 
                 </td>
+
+
+                </t>
 
 
                 <td>
