@@ -73,9 +73,7 @@ class AdminController extends Controller
 
     public function historyadmin()
     {
-        $items = Histori::with('Peminjam', 'Imb', 'SK', 'Arsip2')
-            ->get();
-
+        $items = Histori::all();
         return view('adminlayout/history', [
             'title' => 'histori',
             'items' => $items,

@@ -71,18 +71,18 @@
 
 <!-- chart -->
 <!-- Chart Container -->
-    <div class="my-4 grid md:grid-cols-3 gap-4 grid-flow-row-dense">
+<div class="my-4 grid md:grid-cols-3 gap-4 grid-flow-row-dense">
 
-        <!-- Bar Chart -->
-        <div class="md:col-span-2">
-            <canvas class="h-48 sm:h-64 md:h-80 lg:h-96 w-full" id="myChart"></canvas>
-        </div>
-
-        <!-- Donut Chart -->
-        <div>
-            <canvas class="h-48 sm:h-64 md:h-80 lg:h-96 w-full" id="donutChart"></canvas>
-        </div>
+    <!-- Bar Chart -->
+    <div class="md:col-span-2">
+        <canvas class="h-48 sm:h-64 md:h-80 lg:h-96 w-full" id="myChart"></canvas>
     </div>
+
+    <!-- Donut Chart -->
+    <div>
+        <canvas class="h-48 sm:h-64 md:h-80 lg:h-96 w-full" id="donutChart"></canvas>
+    </div>
+</div>
 
 <!-- Table peminjaman yg baru diajukan hnaya 5 saja -->
 <div class="flex flex-col sm:flex-row mt-4">
@@ -105,6 +105,9 @@
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        
                     </th>
                 </tr>
             </thead>
@@ -160,7 +163,9 @@
                     <th scope="col" class="px-6 py-3">
                         lama peminjaman
                     </th>
-
+                    <th scope="col" class="px-6 py-3">
+                        
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -172,17 +177,20 @@
                         </th>
                         <td class="px-6 py-4">
 
-                            @if ($historis->status === 'diacc')
-                                {{ $historis->jenis_arsip }}
-                                @if ($historis->jenis_arsip = 'imb')
-                                    {{ $historis->imb->nomor_dp }}
-                                    {{ $historis->imb->tahun }}
-                                @elseif($historis->jenis_arsip = 'Arsip1')
-                                    {{ $historis->arsip1->nomor_dp }}
-                                    {{ $historis->arsip1->tahun }}
-                                @elseif($historis->jenis_arsip = 'Arsip2')
-                                    {{ $historis->arsip2->nomor_dp }}
-                                    {{ $historis->arsip2->tahun }}
+
+                            @if($historis->status === 'diacc')
+                                @if ($historis->jenis_arsip === 'IMB')
+                                    {{ $historis->jenis_arsip }}
+                                    {{ optional($historis->imb)->nomor_dp }}
+                                    {{ optional($historis->imb)->tahun }}
+                                @elseif ($historis->jenis_arsip === 'SK')
+                                    {{ $historis->jenis_arsip }}
+                                    {{ optional($historis->sk)->nomor_sk }}
+                                    {{ optional($historis->sk)->tahun }}
+                                @elseif ($historis->jenis_arsip === 'arsip2')
+                                    {{ $historis->jenis_arsip }}
+                                    {{ optional($historis->arsip2)->nomor_dp }}
+                                    {{ optional($historis->arsip2)->tahun }}
                                 @endif
                             @else
                             @endif

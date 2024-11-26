@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         TransaksiPeminjaman::factory(3)->create(['peminjam_id' => $peminjam->id])->each(function ($transaksi) use ($peminjam) {
             Histori::factory(1)->create([
                 'peminjam_id' => $peminjam->id,
-                'imb_id' => Imb::inRandomOrder()->first()->id, // Pastikan `imb_id` mengacu pada data yang ada
+                 // Pastikan `imb_id` mengacu pada data yang ada
             ]);
         });
     });
