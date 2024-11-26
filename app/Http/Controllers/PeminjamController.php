@@ -36,9 +36,6 @@ class PeminjamController extends Controller
             'sk' => 'SK',
             'arsip2' => 'Arsip 2',
             'peminjamans' => TransaksiPeminjaman::where('peminjam_id', $userId)->get()
-            ->merge(
-                Histori::where('peminjam_id', $userId)->get()
-            ),
 
         ], compact('jumlahArsip', 'jumlahArsip2', 'jumlahImb', 'jumlahSK'));
     }

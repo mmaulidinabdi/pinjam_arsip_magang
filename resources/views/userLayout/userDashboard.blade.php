@@ -128,9 +128,6 @@
                     <th scope="col" class="px-6 py-3">
                         Tanggal
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Status
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -145,9 +142,6 @@
                     </td>
                     <td class="px-6 py-4">
                         {{ $peminjam->tanggal_peminjaman }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $peminjam->status }}
                     </td>
                 </tr>
                 @endforeach
