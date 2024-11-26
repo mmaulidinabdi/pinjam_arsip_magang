@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\SKController;
+use Illuminate\Auth\Events\Verified;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -26,6 +27,9 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.process')->
 
 // Route untuk memproses register
 Route::post('/register', [PeminjamController::class, 'create'])->name('register.process')->middleware('guest');;
+
+// route verifikasi email
+Route::get('/verify-email/{token}', [PeminjamController::class, 'verifyEmail'])->name('verify.email')->middleware('guest');
 
 //Route untuk Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

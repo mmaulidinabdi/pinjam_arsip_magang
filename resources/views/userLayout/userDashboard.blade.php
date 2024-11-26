@@ -1,21 +1,23 @@
 @extends('userLayout.userLayout')
 
 @section('peminjamLayout')
+
+
 <div class="grid md:grid-cols-4 gap-4 grid-flow-row-dense">
 
         <div
-            class=" md:col-span-3  p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            class=" md:col-span-3  p-6 bg-blue-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div>
                 <h2 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Selamat Datang
                     {{ Auth::user()->nama_lengkap }}</h2>
             </div>
             @if (Auth::user()->isVerificate == 'diperiksa')
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lengkapi data anda terlebih dahulu sebelum
+                <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Lengkapi data anda terlebih dahulu sebelum
                     melakukan
                     melakukan peminjaman!</p>
                 <div class="">
                     <a href="{{ Route('user.profile') }}"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center border-0 text-black hover:border-2   border-black focus:ring-4 focus:outline-none focus:ring-blue-300 ">
                         Lengkapi Data Diri
                         <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 14 10">
@@ -60,7 +62,7 @@
         <div>
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $jumlahArsip }}</h5>
         </div>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Jumlah Arsip yang sudah didata berada di Dinas
+        <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Jumlah Arsip yang sudah didata berada di Dinas
             Arsip dan Perpustakaan Banjarmasin</p>
 
     </div>
@@ -77,7 +79,7 @@
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $imb }}</h5>
         </div>
         <span class="text-2xl font-semibold">{{ $jumlahImb }}</span>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Arsip yang tersimpan di Dinas Arsip dan
+        <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Arsip yang tersimpan di Dinas Arsip dan
             Perpusatakaan Banjarmasin</p>
 
     </div>
@@ -87,7 +89,7 @@
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $sk }}</h5>
         </div>
         <span class="text-2xl font-semibold">{{ $jumlahSK }}</span>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Arsip yang tersimpan di Dinas Arsip dan
+        <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Arsip yang tersimpan di Dinas Arsip dan
             Perpusatakaan Banjarmasin</p>
 
     </div>
@@ -98,7 +100,7 @@
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $arsip2 }}</h5>
         </div>
         <span class="text-2xl font-semibold">{{$jumlahArsip2}}</span>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Arsip yang tersimpan di Dinas Arsip dan
+        <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Arsip yang tersimpan di Dinas Arsip dan
             Perpusatakaan Banjarmasin</p>
 
     </div>

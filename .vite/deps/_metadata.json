@@ -1,0 +1,43 @@
+{
+  "hash": "d3334eba",
+  "configHash": "fd8e40ce",
+  "lockfileHash": "fe7569e1",
+  "browserHash": "a37f17a5",
+  "optimized": {
+    "flowbite": {
+      "src": "../../node_modules/flowbite/lib/esm/index.js",
+      "file": "flowbite.js",
+      "fileHash": "fae2782f",
+      "needsInterop": false
+    },
+    "alpinejs": {
+      "src": "../../node_modules/alpinejs/dist/module.esm.js",
+      "file": "alpinejs.js",
+      "fileHash": "dc64b8eb",
+      "needsInterop": false
+    },
+    "simple-datatables": {
+      "src": "../../node_modules/simple-datatables/dist/module.js",
+      "file": "simple-datatables.js",
+      "fileHash": "374456c7",
+      "needsInterop": false
+    },
+    "chart.js/auto": {
+      "src": "../../node_modules/chart.js/auto/auto.js",
+      "file": "chart__js_auto.js",
+      "fileHash": "2d42cb45",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "b660a820",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-UVKRO5ER": {
+      "file": "chunk-UVKRO5ER.js"
+    }
+  }
+}

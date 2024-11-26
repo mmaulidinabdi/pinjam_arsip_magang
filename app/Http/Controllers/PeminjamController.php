@@ -7,11 +7,15 @@ use App\Models\Imb;
 use App\Models\Arsip2;
 use App\Models\Histori;
 use App\Models\Peminjam;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\TransaksiPeminjaman;
 use Illuminate\Support\Composer;
+use Illuminate\Support\Facades\DB;
+use App\Models\TransaksiPeminjaman;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\VerifyEmailNotification;
 
 class PeminjamController extends Controller
 {
@@ -60,11 +64,50 @@ class PeminjamController extends Controller
             return back()->with('registErr', 'password berbeda')->withInput();
         }
 
-        $validateData['password'] = Hash::make($validateData['password']);
+        $verificationToken = Str::random(30);
 
-        Peminjam::create($validateData);
+        // simpan data sementara ke table pending_users
+        DB::table('pending_users')->insert([
+            'nama_lengkap' => $validateData['nama_lengkap'],
+            'email' => $validateData['email'],
+            'password' => Hash::make($validateData['password']),
+            'verification_token' => $verificationToken,
+        ]);
 
-        return redirect('/login')->with('success', 'Registrasi berhasil !!');
+        // $validateData['password'] = Hash::make($validateData['password']);
+        // $validateData['verification_token'] = Str::random(30);
+
+        // Peminjam::create($validateData);
+
+        // Kirim Email Verifikasi
+        $verificationUrl = route('verify.email', ['token' => $verificationToken]);
+        Notification::route('mail', $validateData['email'])
+            ->notify(new VerifyEmailNotification($verificationUrl, $validateData['nama_lengkap']));
+
+        return redirect('/login')->with('success', 'Silakan cek email Anda untuk verifikasi.');
+    }
+
+    public function verifyEmail($token)
+    {
+        // cari pengguna di table pending_users
+        $pendingUser = DB::table('pending_users')->where('verification_token',$token)->first();
+
+        if (!$pendingUser) {
+            return redirect('/login')->with('error', 'Token verifikasi tidak valid atau telah kadaluarsa.');
+        }
+
+        // Simpan ke database
+        Peminjam::create([
+            'nama_lengkap' => $pendingUser->nama_lengkap,
+            'email' => $pendingUser->email,
+            'password' => $pendingUser->password,
+            'is_verified' => true,
+        ]);
+
+        // Hapus dari table pending_users
+        DB::table('pending_users')->where('id',$pendingUser->id)->delete();
+
+        return redirect('/login')->with('success', 'Email berhasil diverifikasi! Anda dapat login sekarang.');
     }
 
     public function update(Request $request, Peminjam $peminjam)

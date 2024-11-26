@@ -54,7 +54,6 @@ class AdminController extends Controller
         $items = Histori::with('Peminjam', 'Imb', 'SK', 'Arsip2')
             ->get();
 
-        dd($items);
         return view('adminlayout/history', [
             'title' => 'histori',
             'items' => $items,

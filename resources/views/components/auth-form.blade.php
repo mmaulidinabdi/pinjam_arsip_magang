@@ -22,11 +22,11 @@
             @endif
 
             <!-- alert gagal login -->
-            @if (session()->has('loginError'))
+            @if (session()->has('error'))
             <div id="alert"
                 class=" w-full p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                 role="alert" role="alert">
-                <span class="font-medium">{{ session('loginError') }}</span>
+                <span class="font-medium">{{ session('error') }}</span>
             </div>
             @endif
 
