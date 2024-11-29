@@ -37,7 +37,7 @@
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium bg-black md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
                     @if (Auth::guard('admin')->check() || Auth::guard('web')->check())
                     <li>
-                        <a href="{{Auth::guard('admin') ? '/admin/dashboard' : '/user/dashboard'}}" class="block py-2 px-3 text-white hover:text-black hover:bg-gray-100 rounded md:hover:bg-transparent md:p-0 md:hover:text-blue-700" aria-current="page">Dashboard</a>
+                        <a href="{{Auth::guard('admin')->check() ? '/admin/dashboard' : '/user/dashboard'}}" class="block py-2 px-3 text-white hover:text-black hover:bg-gray-100 rounded md:hover:bg-transparent md:p-0 md:hover:text-blue-700" aria-current="page">Dashboard</a>
                     </li>
                     @endif
 
