@@ -110,7 +110,8 @@ class PeminjamController extends Controller
         ]);
 
         // Hapus dari table pending_users
-        DB::table('pending_users')->where('id',$pendingUser->id)->delete();
+        DB::table('pending_users')->where('verification_token', $token)->delete();
+        
 
         return redirect('/login')->with('success', 'Email berhasil diverifikasi! Anda dapat login sekarang.');
     }

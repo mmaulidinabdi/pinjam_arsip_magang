@@ -9,42 +9,52 @@
 </head>
 
 <body>
-<nav id="navbar" class="p-5 transition-all duration-300 ease-in-out bg-black md:bg-transparent fixed w-full z-20 top-0 start-0">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
-        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="{{asset('img/dispersip_logo.png')}}" class="h-8" alt="Flowbite Logo">
-        </a>
-        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <a href="{{Route('login')}}" id="btnLogin" class="text-white bg-blue-500 md:bg-transparent hover:bg-blue-800 focus:ring-4  font-medium rounded-lg text-sm px-4 py-2 text-center">
-                Login
+    <nav id="navbar" class="p-5 transition-all duration-300 ease-in-out bg-black md:bg-transparent fixed w-full z-20 top-0 start-0">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="{{asset('img/dispersip_logo.png')}}" class="h-8" alt="Flowbite Logo">
             </a>
-            <button id="hamburgerBtn" data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                </svg>
-            </button>
-        </div>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                @if (Auth::guard('admin')->check() || Auth::guard('web')->check())
+                <a id="btnName" href="{{ Auth::guard('admin')->check() ? '/admin/dashboard' : '/user/dashboard' }}" class="text-white bg-blue-500 md:bg-transparent hover:bg-blue-800 focus:ring-4  font-medium rounded-lg text-sm px-4 py-2 text-center">
+                    {{ Auth::guard('web')->check() ? Auth::user()->nama_lengkap : 'Admin'  }}
+                </a>
+                @else
+                <a href="{{Route('login')}}" id="btnLogin" class="text-white bg-blue-500 md:bg-transparent hover:bg-blue-800 focus:ring-4  font-medium rounded-lg text-sm px-4 py-2 text-center">
+                    Login
+                </a>
+                @endif
+                <button id="hamburgerBtn" data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
 
-        <!-- Navbar Menu -->
-        <div class="items-center mt-5 md:mt-0 justify-between hidden w-full md:flex md:w-auto md:order-1 bg-black md:bg-transparent" id="navbar-sticky">
-            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium bg-black md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
-                <li>
-                    <a href="#" class="block py-2 px-3 text-white hover:text-black hover:bg-gray-100 rounded md:hover:bg-transparent md:p-0 md:hover:text-blue-700" aria-current="page">Home</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-                </li>
-            </ul>
+            <!-- Navbar Menu -->
+            <div class="items-center mt-5 md:mt-0 justify-between hidden w-full md:flex md:w-auto md:order-1 bg-black md:bg-transparent" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium bg-black md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
+                    @if (Auth::guard('admin')->check() || Auth::guard('web')->check())
+                    <li>
+                        <a href="{{Auth::guard('admin') ? '/admin/dashboard' : '/user/dashboard'}}" class="block py-2 px-3 text-white hover:text-black hover:bg-gray-100 rounded md:hover:bg-transparent md:p-0 md:hover:text-blue-700" aria-current="page">Dashboard</a>
+                    </li>
+                    @endif
+
+                    <li>
+                        <a href="#about" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                    </li>
+                    <li>
+                        <a href="#article" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Article</a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="block py-2 px-3 text-white rounded hover:text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
 
 
 
@@ -56,7 +66,7 @@
         </div>
 
         <!-- Main content container -->
-        <div
+        <div id="about"
             class="z-10 bg-white max-w-[90%] md:max-w-[1144px] mt-10 mx-auto mb-10 rounded-lg p-4 md:p-12 border-2 shadow-lg">
             <h1 class="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl md:text-4xl lg:text-5xl">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
@@ -102,7 +112,7 @@
     </div>
 
     <!-- card -->
-    <div class="max-w-[1144px] mt-8 mx-auto mb-20 rounded-lg p-5">
+    <div id="article" class="max-w-[1144px] mt-8 mx-auto mb-20 rounded-lg p-5">
         <section class="flex flex-col flex-wrap">
             <h2
                 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
@@ -213,7 +223,7 @@
 
 
     <!-- footer -->
-    <footer class="bg-gray-900 ">
+    <footer id="contact" class="bg-gray-900 ">
         <div class="mx-auto w-full  max-w-screen-xl p-4 py-6 lg:py-8">
             <div class="md:flex md:justify-between">
                 <div class="mb-6 md:mb-0 flex items-center">
@@ -276,36 +286,56 @@
         window.addEventListener('scroll', function() {
             const btn = document.getElementById('btnLogin');
             const navbar = document.getElementById('navbar');
+            const btnName = document.getElementById('btnName');
             const navbarSticky = document.getElementById('navbar-sticky');
 
-    if (window.scrollY > 5) {
-        navbar.classList.add('bg-black', 'text-white');
-        btn.classList.add('md:bg-blue-500');
-        btn.classList.remove('md:bg-transparent');
-        navbar.classList.remove('md:bg-transparent');
-    } else {
-        navbar.classList.add('md:bg-transparent');
-        btn.classList.remove('md:bg-blue-500');
-        btn.classList.add('md:bg-transparent');
-    }
-});
 
-// Fungsi saat tombol hamburger diklik
-// document.getElementById('hamburgerBtn').addEventListener('click', function() {
-//     const navbar = document.getElementById('navbar');
-//     const navbarSticky = document.getElementById('navbar-sticky');
+            if (navbar) {
+                if (window.scrollY > 5) {
+                    navbar.classList.add('bg-black', 'text-white');
+                    navbar.classList.remove('md:bg-transparent');
+                    if (btnName) {
+                        btnName.classList.remove('md:bg-transparent')
+                    }
 
-//     // Toggle navbar sticky visibility
-//     navbarSticky.classList.toggle('hidden');
+                } else {
+                    if (btnName) {
+                        btnName.classList.add('md:bg-transparent')
+                    }
+                    navbar.classList.add('md:bg-transparent');
 
-//     // Atur background navbar hanya jika navbar sticky terlihat
-//     if (!navbarSticky.classList.contains('hidden')) {
-//         navbar.classList.add('bg-black');
-//     } else {
-//         navbar.classList.remove('bg-black');
-//     }
-// });
+                }
+            }
 
+
+            // Cek apakah btnLogin ada
+            if (btn) {
+                if (window.scrollY > 5) {
+                    btn.classList.add('md:bg-blue-500');
+                    btn.classList.remove('md:bg-transparent');
+                } else {
+                    btn.classList.remove('md:bg-blue-500');
+                    btn.classList.add('md:bg-transparent');
+                }
+            }
+
+        });
+
+        // Fungsi saat tombol hamburger diklik
+        // document.getElementById('hamburgerBtn').addEventListener('click', function() {
+        //     const navbar = document.getElementById('navbar');
+        //     const navbarSticky = document.getElementById('navbar-sticky');
+
+        //     // Toggle navbar sticky visibility
+        //     navbarSticky.classList.toggle('hidden');
+
+        //     // Atur background navbar hanya jika navbar sticky terlihat
+        //     if (!navbarSticky.classList.contains('hidden')) {
+        //         navbar.classList.add('bg-black');
+        //     } else {
+        //         navbar.classList.remove('bg-black');
+        //     }
+        // });
     </script>
 </body>
 

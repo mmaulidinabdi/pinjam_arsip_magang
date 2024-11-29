@@ -9,11 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.9",
         "iio/libmergepdf": "^3.1",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "setasign/fpdf": "^1.8",
         "setasign/fpdi": "^2.6",
+        "symfony/http-client": "^7.1",
+        "symfony/mailgun-mailer": "^7.1",
         "tecnickcom/tcpdf": "^6.7",
         "webklex/laravel-pdfmerger": "^1.3"
     },
