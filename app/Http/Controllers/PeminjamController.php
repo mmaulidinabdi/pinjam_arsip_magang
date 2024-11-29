@@ -7,6 +7,7 @@ use App\Models\Imb;
 use App\Models\Arsip2;
 use App\Models\Histori;
 use App\Models\Peminjam;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Composer;
@@ -24,11 +25,35 @@ class PeminjamController extends Controller
     public function index()
     {
 
-        $jumlahImb = Imb::count();
-        $jumlahSK = SK::count();
-        $jumlahArsip2  = Arsip2::count();
-        $jumlahArsip = $jumlahImb + $jumlahSK + $jumlahArsip2;
+         
         $userId = auth()->guard('web')->user()->id;
+        $jumlahminjam = Histori::where('peminjam_id', $userId)
+            ->whereNull('tanggal_pengembalian')
+            ->where('status', 'diacc')
+            ->count();
+        
+$histori = Histori::where('peminjam_id', $userId)
+        ->wherenull('tanggal_pengembalian')
+    ->where('status', 'diacc')
+    ->orderByRaw('DATEDIFF(CURDATE(), tanggal_divalidasi) desc') // Urutkan berdasarkan selisih waktu terbesar
+    ->first(); // Ambil data dengan perbedaan terbesar
+
+$hariTersisa = null;
+if ($histori) {
+    $hariTersisa = null;
+    if ($histori) {
+        // Hitung selisih hari antara tanggal divalidasi dan tanggal sekarang
+        $tanggalDivalidasi = Carbon::parse($histori->tanggal_divalidasi);
+
+// Hitung selisih hari antara tanggal divalidasi dan 30 hari sebelumnya, pastikan hasilnya positif
+$hariTersisa = floor(abs($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(30))));
+
+
+    }
+
+}
+
+
 
         return view('userLayout/userDashboard', [
             'title' => 'SIPEKA | Dashboard ',
@@ -37,7 +62,7 @@ class PeminjamController extends Controller
             'arsip2' => 'Arsip 2',
             'peminjamans' => TransaksiPeminjaman::where('peminjam_id', $userId)->get()
 
-        ], compact('jumlahArsip', 'jumlahArsip2', 'jumlahImb', 'jumlahSK'));
+        ], compact( 'hariTersisa', 'histori', 'jumlahminjam',));
     }
 
     public function userProfile()
@@ -92,7 +117,7 @@ class PeminjamController extends Controller
     public function verifyEmail($token)
     {
         // cari pengguna di table pending_users
-        $pendingUser = DB::table('pending_users')->where('verification_token',$token)->first();
+        $pendingUser = DB::table('pending_users')->where('verification_token', $token)->first();
 
         if (!$pendingUser) {
             return redirect('/login')->with('error', 'Token verifikasi tidak valid atau telah kadaluarsa.');
@@ -107,7 +132,7 @@ class PeminjamController extends Controller
         ]);
 
         // Hapus dari table pending_users
-        DB::table('pending_users')->where('id',$pendingUser->id)->delete();
+        DB::table('pending_users')->where('id', $pendingUser->id)->delete();
 
         return redirect('/login')->with('success', 'Email berhasil diverifikasi! Anda dapat login sekarang.');
     }
