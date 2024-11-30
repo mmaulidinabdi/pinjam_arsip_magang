@@ -2,13 +2,15 @@
 
 use App\Models\Imb;
 use App\Http\Middleware\Admin;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SKController;
 use App\Http\Controllers\ImbController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PeminjamController;
-use App\Http\Controllers\SKController;
-use Illuminate\Auth\Events\Verified;
+use App\Http\Controllers\ForgotPasswordController;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -33,6 +35,13 @@ Route::get('/verify-email/{token}', [PeminjamController::class, 'verifyEmail'])-
 
 //Route untuk Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// forgot password dan reset password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
 
 
 // USER

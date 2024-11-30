@@ -91,6 +91,7 @@ $hariTersisa = floor(abs($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(3
             return back()->with('registErr', 'password berbeda')->withInput();
         }
 
+        //generate token
         $verificationToken = Str::random(30);
 
         // simpan data sementara ke table pending_users
@@ -101,10 +102,7 @@ $hariTersisa = floor(abs($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(3
             'verification_token' => $verificationToken,
         ]);
 
-        // $validateData['password'] = Hash::make($validateData['password']);
-        // $validateData['verification_token'] = Str::random(30);
-
-        // Peminjam::create($validateData);
+        
 
         // Kirim Email Verifikasi
         $verificationUrl = route('verify.email', ['token' => $verificationToken]);

@@ -15,6 +15,11 @@
 
         <!-- Alert Success Registration -->
         <div class="relative lg:p-25 md:p-12 sm:p-8 p-4 w-full lg:w-1/2">
+        @if (session()->has('status'))
+            <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400" role="alert">
+                <span class="font-medium">{{ session('status') }}</span>
+            </div>
+            @endif
             @if (session()->has('success'))
             <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400" role="alert">
                 <span class="font-medium">{{ session('success') }}</span>
@@ -73,9 +78,15 @@
                     class="font-mono bg-red-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
             </form>
             <!-- Sign up Link -->
-            <div class="mt-6 text-green-500 text-center">
-                <a href="/register" class="hover:underline">Belum punya akun? daftar</a>
+            <div class="flex justify-between">
+                <div class="mt-6 text-green-500 text-center">
+                    <a href="/register" class="hover:underline">Belum punya akun? daftar</a>
+                </div>
+                <div class="mt-6 text-green-500 text-center">
+                    <a href="/forgot-password" class="hover:underline">Lupa Password? Reset</a>
+                </div>
             </div>
+
         </div>
     </div>
     @else
@@ -195,7 +206,7 @@
         if (alert) {
             setTimeout(() => {
                 alert.style.display = 'none'
-            }, 2000);
+            }, 4000);
         }
     })
 </script>

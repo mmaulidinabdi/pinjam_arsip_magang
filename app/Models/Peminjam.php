@@ -23,4 +23,9 @@ class Peminjam extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Histori::class, 'peminjam_id');
     }
+
+    public function getRememberTokenName()
+    {
+        return null;
+    }
 }
