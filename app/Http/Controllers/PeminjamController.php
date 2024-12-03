@@ -22,36 +22,42 @@ class PeminjamController extends Controller
 {
     //
 
+    public function testSendReminderEmails()
+    {
+        // Dapatkan instance dari Kernel
+        $kernel = app(\App\Console\Kernel::class);
+
+        // Panggil fungsi sendReminderEmails
+        $kernel->sendReminderEmails();
+
+        return 'Reminder Emails sent!';
+    }
+
     public function index()
     {
-
-         
         $userId = auth()->guard('web')->user()->id;
         $jumlahminjam = Histori::where('peminjam_id', $userId)
             ->whereNull('tanggal_pengembalian')
             ->where('status', 'diacc')
             ->count();
-        
-$histori = Histori::where('peminjam_id', $userId)
-        ->wherenull('tanggal_pengembalian')
-    ->where('status', 'diacc')
-    ->orderByRaw('DATEDIFF(CURDATE(), tanggal_divalidasi) desc') // Urutkan berdasarkan selisih waktu terbesar
-    ->first(); // Ambil data dengan perbedaan terbesar
 
-$hariTersisa = null;
-if ($histori) {
-    $hariTersisa = null;
-    if ($histori) {
-        // Hitung selisih hari antara tanggal divalidasi dan tanggal sekarang
-        $tanggalDivalidasi = Carbon::parse($histori->tanggal_divalidasi);
+        $histori = Histori::where('peminjam_id', $userId)
+            ->wherenull('tanggal_pengembalian')
+            ->where('status', 'diacc')
+            ->orderByRaw('DATEDIFF(CURDATE(), tanggal_divalidasi) desc') // Urutkan berdasarkan selisih waktu terbesar
+            ->first(); // Ambil data dengan perbedaan terbesar
 
-// Hitung selisih hari antara tanggal divalidasi dan 30 hari sebelumnya, pastikan hasilnya positif
-$hariTersisa = floor(abs($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(30))));
+        $hariTersisa = null;
+        if ($histori) {
+            $hariTersisa = null;
+            if ($histori) {
+                // Hitung selisih hari antara tanggal divalidasi dan tanggal sekarang
+                $tanggalDivalidasi = Carbon::parse($histori->tanggal_divalidasi);
 
-
-    }
-
-}
+                // Hitung selisih hari antara tanggal divalidasi dan 30 hari sebelumnya, pastikan hasilnya positif
+                $hariTersisa = floor(abs($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(30))));
+            }
+        }
 
 
 
@@ -62,7 +68,7 @@ $hariTersisa = floor(abs($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(3
             'arsip2' => 'Arsip 2',
             'peminjamans' => TransaksiPeminjaman::where('peminjam_id', $userId)->get()
 
-        ], compact( 'hariTersisa', 'histori', 'jumlahminjam',));
+        ], compact('hariTersisa', 'histori', 'jumlahminjam',));
     }
 
     public function userProfile()
@@ -102,7 +108,7 @@ $hariTersisa = floor(abs($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(3
             'verification_token' => $verificationToken,
         ]);
 
-        
+
 
         // Kirim Email Verifikasi
         $verificationUrl = route('verify.email', ['token' => $verificationToken]);
@@ -131,7 +137,7 @@ $hariTersisa = floor(abs($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(3
 
         // Hapus dari table pending_users
         DB::table('pending_users')->where('verification_token', $token)->delete();
-        
+
 
         return redirect('/login')->with('success', 'Email berhasil diverifikasi! Anda dapat login sekarang.');
     }

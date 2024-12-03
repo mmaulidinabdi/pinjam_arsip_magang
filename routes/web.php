@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Models\Peminjam;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -145,5 +146,8 @@ Route::get('/tes', function () {
 
 Route::get('cari', [AdminController::class, 'autocomplete']);
 
+
+// testing
+Route::get('/test-reminder-emails', [PeminjamController::class, 'testSendReminderEmails']);
 
 // Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');
