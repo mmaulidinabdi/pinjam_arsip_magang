@@ -38,7 +38,7 @@ class TenggatWaktuNotification extends Notification
         return (new MailMessage)
             ->subject('Peringatan Tenggat Waktu Peminjaman')
             ->greeting("Halo, {$this->namaLengkap}!")
-            ->line("Peminjaman Anda dengan ID {$this->histori->id} akan habis dalam {$this->hariTersisa} hari.")
+            ->line("Peminjaman Anda dengan ID {$this->histori->nama_arsip} akan habis dalam {$this->hariTersisa} hari.")
             ->line('Segera lakukan pengembalian untuk menghindari denda.')
             ->line('Terima kasih telah menggunakan layanan kami!');
     }
