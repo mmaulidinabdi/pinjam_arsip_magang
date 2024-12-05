@@ -124,7 +124,7 @@
 
 <div id="alasanContainer" class="hidden mt-2">
     <label for="alasan" class="block text-sm font-medium text-gray-700">Alasan Penolakan</label>
-    <textarea id="alasan" rows="3"
+    <textarea id="alasan" rows="3
         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200"></textarea>
 
 </div>

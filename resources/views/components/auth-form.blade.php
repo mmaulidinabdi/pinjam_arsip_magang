@@ -15,7 +15,7 @@
 
         <!-- Alert Success Registration -->
         <div class="relative lg:p-25 md:p-12 sm:p-8 p-4 w-full lg:w-1/2">
-        @if (session()->has('status'))
+            @if (session()->has('status'))
             <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400" role="alert">
                 <span class="font-medium">{{ session('status') }}</span>
             </div>
