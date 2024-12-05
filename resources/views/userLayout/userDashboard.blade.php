@@ -61,7 +61,8 @@
     <!-- 2 -->
     <div class=" p-6 bg-blue-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div>
-            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Jumlah Transaksi peminjaman yang sudah di ajukan</h5>
+            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Jumlah Transaksi peminjaman yang sudah di diproses</h5>
+            <span class="text-2xl font-semibold">{{ $jumlahselesai }}</span>
         </div>
         <p class="mb-3 font-bold text-gray-700 dark:text-gray-400"></p>
 

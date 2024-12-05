@@ -41,6 +41,10 @@ class PeminjamController extends Controller
             ->where('status', 'diacc')
             ->count();
 
+        $jumlahselesai = Histori::where('peminjam_id', $userId)
+        ->where('status','diacc')
+        ->count();
+
         $histori = Histori::where('peminjam_id', $userId)
             ->wherenull('tanggal_pengembalian')
             ->where('status', 'diacc')
@@ -68,7 +72,7 @@ class PeminjamController extends Controller
             'arsip2' => 'Arsip 2',
             'peminjamans' => TransaksiPeminjaman::where('peminjam_id', $userId)->get()
 
-        ], compact('hariTersisa', 'histori', 'jumlahminjam',));
+        ], compact('hariTersisa', 'histori', 'jumlahminjam','jumlahselesai'));
     }
 
     public function userProfile()

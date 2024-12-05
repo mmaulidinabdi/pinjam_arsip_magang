@@ -71,18 +71,7 @@
 
 <!-- chart -->
 <!-- Chart Container -->
-<div class="my-4 grid md:grid-cols-3 gap-4 grid-flow-row-dense">
 
-    <!-- Bar Chart -->
-    <div class="md:col-span-2">
-        <canvas class="h-48 sm:h-64 md:h-80 lg:h-96 w-full" id="myChart"></canvas>
-    </div>
-
-    <!-- Donut Chart -->
-    <div>
-        <canvas class="h-48 sm:h-64 md:h-80 lg:h-96 w-full" id="donutChart"></canvas>
-    </div>
-</div>
 
 <!-- Table peminjaman yg baru diajukan hnaya 5 saja -->
 <div class="flex flex-col sm:flex-row mt-4">
