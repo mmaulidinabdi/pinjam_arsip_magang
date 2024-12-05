@@ -2,6 +2,12 @@
 
 @section('adminLayout')
 
+@if (session()->has('success'))
+<div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400" role="alert">
+    <span class="font-medium">{{ session('success') }}</span>
+</div>
+@endif
+
 <div class=" font-bold">
     <h2 class="text-xl">
         KELOLA PEMINJAMAN
@@ -61,20 +67,20 @@
     </thead>
     <tbody>
         @foreach ($items as $item)
-            <tr>
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $item->peminjam->nama_lengkap }}
-                </td>
-                <td>{{ $item->tujuan_peminjam }}</td>
-                <td>{{ $item->tanggal_peminjaman }}</td>
-                <td>{{ $item->status }}</td>
-                <td>
-                    <a href="{{ url('admin/lanjutan', $item->id) }}"
-                        class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                        Tindak Lanjut
-                    </a>
+        <tr>
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $item->peminjam->nama_lengkap }}
+            </td>
+            <td>{{ $item->tujuan_peminjam }}</td>
+            <td>{{ $item->tanggal_peminjaman }}</td>
+            <td>{{ $item->status }}</td>
+            <td>
+                <a href="{{ url('admin/lanjutan', $item->id) }}"
+                    class="whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                    Tindak Lanjut
+                </a>
 
-                </td>
-            </tr>
+            </td>
+        </tr>
         @endforeach
     </tbody>
 
@@ -98,20 +104,20 @@
                     childNodes: tHead.childNodes[0].childNodes.map((_th, index) => {
 
                         if (index === tHead.childNodes[0].childNodes.length - 1) {
-                            return { nodeName: "TH" };
+                            return {
+                                nodeName: "TH"
+                            };
                         }
                         return {
                             nodeName: "TH",
-                            childNodes: [
-                                {
-                                    nodeName: "INPUT",
-                                    attributes: {
-                                        class: "datatable-input",
-                                        type: "search",
-                                        "data-columns": "[" + index + "]"
-                                    }
+                            childNodes: [{
+                                nodeName: "INPUT",
+                                attributes: {
+                                    class: "datatable-input",
+                                    type: "search",
+                                    "data-columns": "[" + index + "]"
                                 }
-                            ]
+                            }]
                         };
                     })
                 };
@@ -119,6 +125,14 @@
                 return table;
             }
         });
+    }
+
+    const alert = document.getElementById('alert');
+
+    if (alert) {
+        setTimeout(() => {
+            alert.style.display = 'none'
+        }, 4000);
     }
 </script>
 

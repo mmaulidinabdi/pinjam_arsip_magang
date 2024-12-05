@@ -24,9 +24,9 @@ class AdminController extends Controller
     {
         $jumlahPeminjam = Peminjam::count();
         $historis = Histori::where('tanggal_divalidasi', '<=', Carbon::now()->subDays(10))
-    ->where('status', 'diacc')
-    ->whereNull('tanggal_pengembalian')
-    ->get();
+            ->where('status', 'diacc')
+            ->whereNull('tanggal_pengembalian')
+            ->get();
         $jumlahImb = Imb::count();
         $jumlahSK = SK::count();
         $jumlahArsip2  = Arsip2::count();
@@ -47,20 +47,20 @@ class AdminController extends Controller
     }
 
     public function pengembalian($id)
-{
-    
-    // Ambil data histori berdasarkan id
-    $historis = Histori::findOrFail($id);
+    {
 
-    // Update tanggal_pengembalian dengan waktu saat ini
-    $historis->tanggal_pengembalian = Carbon::now()->toDateString();
+        // Ambil data histori berdasarkan id
+        $historis = Histori::findOrFail($id);
 
-    // Simpan perubahan ke database
-    $historis->save();
+        // Update tanggal_pengembalian dengan waktu saat ini
+        $historis->tanggal_pengembalian = Carbon::now()->toDateString();
 
-    // Redirect ke halaman dashboard dengan pesan sukses
-    return redirect()->back()->with('success', 'Tanggal pengembalian berhasil diperbarui.');
-}
+        // Simpan perubahan ke database
+        $historis->save();
+
+        // Redirect ke halaman dashboard dengan pesan sukses
+        return redirect()->back()->with('success', 'Tanggal pengembalian berhasil diperbarui.');
+    }
 
 
     public function kelola()
@@ -255,17 +255,15 @@ class AdminController extends Controller
 
     public function simpanKeHistory(request $request, TransaksiPeminjaman $transaksi)
     {
-        if ($request->status == 'tolak') {
 
-            
+        if ($request->status == 'tolak') {
             $validateData = $request->validate([
                 'jenis_arsip' => 'required',
                 'alasan_ditolak' => 'required|max:255',
                 'status' => 'required',
             ]);
 
-            $status = 'ditolak';
-            
+            $validateData['status'] = 'ditolak';
         } elseif ($request->status == 'acc') {
 
             $validateData = $request->validate([
@@ -280,27 +278,26 @@ class AdminController extends Controller
                 $arsip = imb::where('nomor_dp', $dp)->first();
 
                 $validateData['imb_id'] = $arsip->id;
-
             } elseif ($validateData['jenis_arsip'] == 'SK') {
 
                 list($sk, $tahun) = explode(' - ', $validateData['arsip'], 2);
 
                 $arsip = sk::where('nomor_sk', $sk)->first();
 
-                $validateData['sk_id'] = $arsip->id;                
+                $validateData['sk_id'] = $arsip->id;
             }
 
-            $status = 'diacc';
+            $validateData['status'] = 'diacc';
+        } elseif ($request->status == 'diperiksa') {
+            return back()->with('success','Pastikan Status Peminjaman Sudah Valid!');
         }
 
-        $validateData['status'] = $status;
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
         $validateData['nama_arsip'] = $transaksi->nama_arsip;
         $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
         $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
         $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
         $validateData['tanggal_divalidasi'] = Carbon::now();
-
         Histori::create($validateData);
 
         $transaksi->delete();
@@ -457,14 +454,12 @@ class AdminController extends Controller
                 ->orWhere('tahun', 'LIKE', '%' . $query . '%')
                 ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
                 ->get(['nomor_dp', 'tahun', 'nama_pemilik']);
+        } elseif ($jenis == 'SK') {
 
-        } elseif($jenis == 'SK' ){
-            
             $results = sk::where('nomor_sk', 'LIKE', '%' . $query . '%')
-            ->orWhere('tahun', 'LIKE', '%' . $query . '%')
-            ->get(['nomor_sk', 'tahun']);
-
-        } 
+                ->orWhere('tahun', 'LIKE', '%' . $query . '%')
+                ->get(['nomor_sk', 'tahun']);
+        }
 
         return response()->json($results);
     }
