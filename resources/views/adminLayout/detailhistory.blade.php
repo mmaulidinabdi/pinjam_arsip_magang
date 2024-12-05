@@ -26,21 +26,21 @@
                     Arsip
                 </th>
                 <td class="px-6 py-3">
-                    @if($item->status === 'diacc')
-                        {{ $item->jenis_arsip }}
-                        @if (($item->jenis_arsip = 'imb'))
-                            {{ $item->imb->nomor_dp }}
-                            {{ $item->imb->tahun }}
-                        @elseif(($item->jenis_arsip = 'Arsip1'))
-                            {{ $item->arsip1->nomor_dp }}
-                            {{ $item->arsip1->tahun }}
-                        @elseif(($item->jenis_arsip = 'Arsip2'))
-                            {{ $item->arsip2->nomor_dp }}
-                            {{ $item->arsip2->tahun }}
+                @if ($item->status === 'diacc')
+                            {{ $item->jenis_arsip }}
+                            @if ($item->jenis_arsip === 'IMB')
+                                {{ $item->imb->nomor_dp }}
+                                {{ $item->imb->tahun }}
+                            @elseif($item->jenis_arsip === 'SK')
+                                {{ $item->sk->nomor_sk }}
+                                {{ $item->sk->tahun }}
+                            @elseif($item->jenis_arsip === 'Arsip2')
+                                {{ $item->arsip2->nomor_dp }}
+                                {{ $item->arsip2->tahun }}
+                            @endif
+                        @else
+                            <p>Peminjaman di tolak</p>
                         @endif
-                    @else
-
-                    @endif
 
                 </td>
             </tr>

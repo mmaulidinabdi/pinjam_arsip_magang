@@ -234,6 +234,7 @@ class AdminController extends Controller
             'SK',
             'Keuangan',
         ];
+        // dd($data,$jenis);
         return view('adminlayout/lanjutan', [
             'title' => 'kelola',
             'item' => $data,
@@ -256,13 +257,15 @@ class AdminController extends Controller
     {
         if ($request->status == 'tolak') {
 
+            
             $validateData = $request->validate([
                 'jenis_arsip' => 'required',
                 'alasan_ditolak' => 'required|max:255',
                 'status' => 'required',
             ]);
 
-            $validateData['status'] = 'ditolak';
+            $status = 'ditolak';
+            
         } elseif ($request->status == 'acc') {
 
             $validateData = $request->validate([
@@ -286,9 +289,11 @@ class AdminController extends Controller
 
                 $validateData['sk_id'] = $arsip->id;                
             }
+
+            $status = 'diacc';
         }
 
-        $validateData['status'] = 'diacc';
+        $validateData['status'] = $status;
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
         $validateData['nama_arsip'] = $transaksi->nama_arsip;
         $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;

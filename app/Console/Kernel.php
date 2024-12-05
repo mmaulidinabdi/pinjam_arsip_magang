@@ -2,11 +2,12 @@
 
 namespace App\Console;
 
-use Notification;
+// use Notification;
 use App\Models\Histori;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
