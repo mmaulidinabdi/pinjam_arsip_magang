@@ -55,11 +55,10 @@ class PeminjamController extends Controller
         if ($histori) {
             $hariTersisa = null;
             if ($histori) {
-                // Hitung selisih hari antara tanggal divalidasi dan tanggal sekarang
+                
                 $tanggalDivalidasi = Carbon::parse($histori->tanggal_divalidasi);
 
-                // Hitung selisih hari antara tanggal divalidasi dan 30 hari sebelumnya, pastikan hasilnya positif
-                $hariTersisa = floor(abs($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(30))));
+                $hariTersisa = floor($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(30)));
             }
         }
 

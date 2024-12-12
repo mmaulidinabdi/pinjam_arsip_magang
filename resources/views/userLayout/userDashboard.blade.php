@@ -100,9 +100,16 @@
                 @endif
 
                 <!-- Menampilkan waktu pengembalian -->
-                <p class="mt-2 text-gray-700 dark:text-gray-400">
-                    Sisa waktu untuk pengembalian: {{ $hariTersisa }} hari lagi
-                </p>
+                
+        @if ($hariTersisa < 0)
+            <p class="mt-2 text-gray-700 dark:text-gray-400">
+                Sisa waktu untuk pengembalian: {{ abs($hariTersisa) }} hari lagi
+            </p>
+        @else
+            <p class="mt-2 text-red-500">
+                Anda sudah melewati tenggat pengembalian selama -{{ $hariTersisa }} hari.
+            </p>
+        @endif
             @else
                 Tidak ada arsip yang harus dikembalikan.
             @endif

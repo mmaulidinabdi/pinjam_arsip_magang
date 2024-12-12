@@ -27,22 +27,21 @@ class DatabaseSeeder extends Seeder
         // Arsip1::factory()->count(100)->create();
         // Arsip2::factory()->count(50)->create();
         // histori::factory()->count(10)->create();
-
-
         // Buat data di tabel `imbs`
+
     Imb::factory(10)->create();
     SK::factory(5)->create();
-    Arsip2::factory(5)->create();
+    // Arsip2::factory(5)->create();
 
     // Lalu lanjutkan dengan `Peminjam`, `TransaksiPeminjaman`, dan `Histori`
-    Peminjam::factory(10)->create()->each(function ($peminjam) {
-        TransaksiPeminjaman::factory(3)->create(['peminjam_id' => $peminjam->id])->each(function ($transaksi) use ($peminjam) {
-            Histori::factory(1)->create([
-                'peminjam_id' => $peminjam->id,
+    // Peminjam::factory(10)->create()->each(function ($peminjam) {
+    //     TransaksiPeminjaman::factory(3)->create(['peminjam_id' => $peminjam->id])->each(function ($transaksi) use ($peminjam) {
+    //         Histori::factory(1)->create([
+    //             'peminjam_id' => $peminjam->id,
                  // Pastikan `imb_id` mengacu pada data yang ada
-            ]);
-        });
-    });
+    //         ]);
+    //     });
+    // });
     
     // Tambahkan arsip lainnya (Arsip1, Arsip2)
    
@@ -52,10 +51,10 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345'),
         ]);
 
-        Peminjam::create([
-            'nama_lengkap' => 'Dio Brando',
-            'email'=>'dio@gmail.com',
-            'password'=> Hash::make('12345'),
-        ]);
+        // Peminjam::create([
+        //     'nama_lengkap' => 'Dio Brando',
+        //     'email'=>'dio@gmail.com',
+        //     'password'=> Hash::make('12345'),
+        // ]);
     }
 }
