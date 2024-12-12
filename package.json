@@ -16,7 +16,6 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "alpinejs": "^3.14.3",
         "apexcharts": "^3.36.3",
         "chart.js": "^4.4.6",
         "pdf-lib": "^1.17.1",

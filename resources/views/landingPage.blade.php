@@ -271,7 +271,7 @@
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div class="sm:flex sm:items-center sm:justify-between">
                 <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a
-                        href="https://dispersip.banjarmasinkota.go.id/" class="hover:underline">DISPERSIP™</a>. All
+                        href="https://dispersip.banjarmasinkota.go.id/"  target="_blank" class="hover:underline">DISPERSIP™</a>. All
                     Rights Reserved.
                 </span>
             </div>
@@ -321,34 +321,7 @@
 
         });
 
-        // Fungsi saat tombol hamburger diklik
-        // document.getElementById('hamburgerBtn').addEventListener('click', function() {
-        //     const navbar = document.getElementById('navbar');
-        //     const navbarSticky = document.getElementById('navbar-sticky');
-        // Fungsi saat tombol hamburger diklik
-        // document.getElementById('hamburgerBtn').addEventListener('click', function() {
-        //     const navbar = document.getElementById('navbar');
-        //     const navbarSticky = document.getElementById('navbar-sticky');
-
-        //     // Toggle navbar sticky visibility
-        //     navbarSticky.classList.toggle('hidden');
-        //     // Toggle navbar sticky visibility
-        //     navbarSticky.classList.toggle('hidden');
-
-        //     // Atur background navbar hanya jika navbar sticky terlihat
-        //     if (!navbarSticky.classList.contains('hidden')) {
-        //         navbar.classList.add('bg-black');
-        //     } else {
-        //         navbar.classList.remove('bg-black');
-        //     }
-        // });
-        //     // Atur background navbar hanya jika navbar sticky terlihat
-        //     if (!navbarSticky.classList.contains('hidden')) {
-        //         navbar.classList.add('bg-black');
-        //     } else {
-        //         navbar.classList.remove('bg-black');
-        //     }
-        // });
+        
     </script>
 </body>
 
