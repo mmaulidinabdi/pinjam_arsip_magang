@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\SK;
+use Carbon\Carbon;
 use App\Models\Imb;
 use App\Models\Arsip2;
 use App\Models\Histori;
 use App\Models\Peminjam;
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Facades\DB;
 use App\Models\TransaksiPeminjaman;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
@@ -42,8 +43,8 @@ class PeminjamController extends Controller
             ->count();
 
         $jumlahselesai = Histori::where('peminjam_id', $userId)
-        ->where('status','diacc')
-        ->count();
+            ->where('status', 'diacc')
+            ->count();
 
         $histori = Histori::where('peminjam_id', $userId)
             ->wherenull('tanggal_pengembalian')
@@ -71,7 +72,7 @@ class PeminjamController extends Controller
             'arsip2' => 'Arsip 2',
             'peminjamans' => TransaksiPeminjaman::where('peminjam_id', $userId)->get()
 
-        ], compact('hariTersisa', 'histori', 'jumlahminjam','jumlahselesai'));
+        ], compact('hariTersisa', 'histori', 'jumlahminjam', 'jumlahselesai'));
     }
 
     public function userProfile()
@@ -83,7 +84,19 @@ class PeminjamController extends Controller
 
     public function userPeminjaman()
     {
+
+        if (Auth::guard('web')->user()->isVerificate !== 'diterima') {
+
+            $status = 'belumVerifikasi';
+            return view('/userLayout/userPeminjaman', [
+                'status' => $status,
+                'title' => 'SIPEKA | Peminjaman',
+            ]);
+        }
+
+        $status = 'terverifikasi';
         return view('userLayout/userPeminjaman', [
+            'status' => $status,
             'title' => 'SIPEKA | Peminjaman',
         ]);
     }

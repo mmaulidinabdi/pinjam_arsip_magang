@@ -106,7 +106,7 @@
                 Sisa waktu untuk pengembalian: {{ abs($hariTersisa) }} hari lagi
             </p>
         @else
-            <p class="mt-2 text-red-500">
+            <p class="mt-2 font-bold text-red-600">
                 Anda sudah melewati tenggat pengembalian selama -{{ $hariTersisa }} hari.
             </p>
         @endif

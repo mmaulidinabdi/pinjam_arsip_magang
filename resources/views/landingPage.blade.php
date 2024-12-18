@@ -108,9 +108,11 @@
             <img src="{{ asset('img/Logo-Perpusnas.png') }}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo Perpusnas">
             <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-40 h-28 md:w-72 md:h-44" alt="Logo Srikandi">
         </div>
-
     </div>
 
+    <div class="flex flex-wrap justify-center gap-4 p-4 ">
+        <img src="{{ asset('img/alurpeminjamanarsip.png') }}" class="md:size-2/4 " alt="" srcset="">
+    </div>
     <!-- card -->
     <div id="article" class="max-w-[1144px] mt-8 mx-auto mb-20 rounded-lg p-5">
         <section class="flex flex-col flex-wrap">
@@ -119,96 +121,65 @@
                 Article</h2>
             <ul class="w-full">
                 <li class="flex flex-col md:flex-row w-full items-start md:items-center mb-10">
-                    <a href="#" class="inline-flex w-full">
+                    <a href="https://dispersip.banjarmasinkota.go.id/2021/05/peringatan-hari-kearsipan-ke-50.html" class="inline-flex w-full">
                         <div class="flex flex-col md:flex-row flex-grow gap-5 md:gap-10 items-start md:items-center">
                             <div class="p-4 overflow-hidden rounded-lg shadow-lg w-full md:w-auto md:flex-shrink-0">
                                 <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg"
                                     alt="">
                             </div>
                             <div class="flex-1">
-                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit,
-                                    amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad
-                                    maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure,
-                                    possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi,
-                                    recusandae autem eos cumque dolore nemo dolores culpa...</h4>
-                                <div class="mb-2 text-sky-400/75">Jumat Agustus 2024</div>
-                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est
-                                    dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus
-                                    repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum
-                                    soluta aliquam culpa minus perspiciatis...</p>
+                                <h4 class="mb-4 text-lg font-medium leading-snug">PERINGATAN HARI KEARSIPAN KE- 50</h4>
+                                <div class="mb-2 text-sky-400/75">Mei 18, 2021</div>
+                                <p class="text-gray-700 dark:text-gray-300 mb-4">Dengan tema "Satukan Langkah Menuju Arsip Digital", rangkaian peringatan Hari Kearsipan Nasional ke 50 yang bertepatan pada hari selasa tanggal 18 Mei 2021, Pemerintah Kota Banjarmasin melalui Dinas Perpustakaan dan Arsip melakukan rangkaian acara dan kegiatan antara lain sosialisasi tentang Hari kearsipan secara online baik melalui situs/web pemerin...</p>
                             </div>
                         </div>
                     </a>
                 </li>
                 <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                 <li class="flex flex-col md:flex-row w-full items-start md:items-center mb-10">
-                    <a href="#" class="inline-flex w-full">
+                    <a href="https://dispersip.banjarmasinkota.go.id/2024/08/standar-pelayanan-pada-dinas.html" class="inline-flex w-full">
                         <div class="flex flex-col md:flex-row flex-grow gap-5 md:gap-10 items-start md:items-center">
                             <div class="p-4 overflow-hidden rounded-lg shadow-lg w-full md:w-auto md:flex-shrink-0">
                                 <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg"
                                     alt="">
                             </div>
                             <div class="flex-1">
-                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit,
-                                    amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad
-                                    maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure,
-                                    possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi,
-                                    recusandae autem eos cumque dolore nemo dolores culpa...</h4>
-                                <div class="mb-2 text-sky-400/75">Jumat Agustus 2024</div>
-                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est
-                                    dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus
-                                    repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum
-                                    soluta aliquam culpa minus perspiciatis...</p>
+                                <h4 class="mb-4 text-lg font-medium leading-snug">Standar Pelayanan pada Dinas Perpusatakaan dan Arsip Kota Banjarmasin</h4>
+                                <div class="mb-2 text-sky-400/75">Agustus 23, 2024</div>
+                                <p class="text-gray-700 dark:text-gray-300 mb-4">Banjarmasin - Berikut kami sampaikan terkait standar pelayanan yang dilaksanakan di Dinas Perpustakaan dan Kearsipan Kota Banjarmasin.</p>
                             </div>
                         </div>
                     </a>
                 </li>
                 <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                 <li class="flex flex-col md:flex-row w-full items-start md:items-center mb-10">
-                    <a href="#" class="inline-flex w-full">
+                    <a href="https://dispersip.banjarmasinkota.go.id/2021/05/penerimaan-para-juara-1-lomba-bercerita.html" class="inline-flex w-full">
                         <div class="flex flex-col md:flex-row flex-grow gap-5 md:gap-10 items-start md:items-center">
                             <div class="p-4 overflow-hidden rounded-lg shadow-lg w-full md:w-auto md:flex-shrink-0">
                                 <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg"
                                     alt="">
                             </div>
                             <div class="flex-1">
-                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit,
-                                    amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad
-                                    maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure,
-                                    possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi,
-                                    recusandae autem eos cumque dolore nemo dolores culpa...</h4>
-                                <div class="mb-2 text-sky-400/75">Jumat Agustus 2024</div>
-                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est
-                                    dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus
-                                    repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum
-                                    soluta aliquam culpa minus perspiciatis...</p>
+                                <h4 class="mb-4 text-lg font-medium leading-snug">Penerimaan Para Juara 1 Lomba Bercerita Tingkat Kota Banjarmasin oleh Plh. Sekda Kota Banjarmasin</h4>
+                                <div class="mb-2 text-sky-400/75">Mei 06, 2021</div>
+                                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                    Pada hari rabu, tanggal 5 Mei 2021, Plh. Sekretaris Daerah Kota Banjarmasin Bapak H. Muhyar menerima kedatangan para juara 1lomba bercerita utk SD, SMP dan SMA sederajat Tingkat Kota Banjarmasin diruang kerja Beliau yang Didampingi oleh Kepala Dinas Perpustakaan dan Arsip kota Banjarmasin, dan Plt. Kabid Perpusta...</p>
                             </div>
                         </div>
                     </a>
                 </li>
                 <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                 <li class="flex flex-col md:flex-row w-full items-start md:items-center mb-10">
-                    <a href="#" class="inline-flex w-full">
+                    <a href="https://dispersip.banjarmasinkota.go.id/2021/04/kota-banjarmasin-juara-lomba-bertutur.html" class="inline-flex w-full">
                         <div class="flex flex-col md:flex-row flex-grow gap-5 md:gap-10 items-start md:items-center">
                             <div class="p-4 overflow-hidden rounded-lg shadow-lg w-full md:w-auto md:flex-shrink-0">
                                 <img src="{{ asset('img/Logo-Srikandi.png') }}" class="w-full md:max-w-xs rounded-lg"
                                     alt="">
                             </div>
                             <div class="flex-1">
-                                <h4 class="mb-4 text-lg font-medium leading-snug">Judul Article Lorem ipsum dolor sit,
-                                    amet consectetur adipisicing elit. Aut, mollitia unde natus quae, recusandae ad
-                                    maiores vero similique excepturi necessitatibus fugiat sunt ipsum tenetur! Iure,
-                                    possimus. Perferendis labore quasi optio eius veniam odio, neque eligendi,
-                                    recusandae autem eos cumque dolore nemo dolores culpa...</h4>
-                                <div class="mb-2 text-sky-400/75">Jumat Agustus 2024</div>
-                                <p class="text-gray-700 dark:text-gray-300 mb-4">Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Excepturi veritatis reiciendis maxime esse repudiandae? Odit, est
-                                    dolorum! Nobis a provident veritatis exercitationem porro, similique ducimus
-                                    repellat, aliquid temporibus accusamus omnis necessitatibus neque deleniti totam eum
-                                    soluta aliquam culpa minus perspiciatis...</p>
+                                <h4 class="mb-4 text-lg font-medium leading-snug">KOTA BANJARMASIN JUARA LOMBA BERTUTUR TINGKAT PROVINSI KALIMANTAN SELATAN</h4>
+                                <div class="mb-2 text-sky-400/75">April 14, 2021</div>
+                                <p class="text-gray-700 dark:text-gray-300 mb-4">Wakil peserta Lomba Bertutur bagi siswa-siswi SD/MI Tingkat Provinsi Kalimantan Selatan dari Kota Banjarmasin Keyra Ameera Shafa berhasil menduduki peringkat pertama pada perlombaan tersebut. Hal ini diketahui setelah para Dewa...</p>
                             </div>
                         </div>
                     </a>
@@ -233,28 +204,7 @@
                     </a>
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white">Resources</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
-                            </li>
-                            <li>
-                                <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white">Follow us</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
-                            </li>
-                            <li>
-                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
-                            </li>
-                        </ul>
-                    </div>
+
                     <div>
                         <h2 class="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white">Legal</h2>
                         <ul class="text-gray-500 dark:text-gray-400 font-medium">
@@ -271,7 +221,7 @@
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div class="sm:flex sm:items-center sm:justify-between">
                 <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a
-                        href="https://dispersip.banjarmasinkota.go.id/" class="hover:underline">DISPERSIP™</a>. All
+                        href="https://dispersip.banjarmasinkota.go.id/" target="_blank" class="hover:underline">DISPERSIP™</a>. All
                     Rights Reserved.
                 </span>
             </div>
@@ -320,35 +270,6 @@
             }
 
         });
-
-        // Fungsi saat tombol hamburger diklik
-        // document.getElementById('hamburgerBtn').addEventListener('click', function() {
-        //     const navbar = document.getElementById('navbar');
-        //     const navbarSticky = document.getElementById('navbar-sticky');
-        // Fungsi saat tombol hamburger diklik
-        // document.getElementById('hamburgerBtn').addEventListener('click', function() {
-        //     const navbar = document.getElementById('navbar');
-        //     const navbarSticky = document.getElementById('navbar-sticky');
-
-        //     // Toggle navbar sticky visibility
-        //     navbarSticky.classList.toggle('hidden');
-        //     // Toggle navbar sticky visibility
-        //     navbarSticky.classList.toggle('hidden');
-
-        //     // Atur background navbar hanya jika navbar sticky terlihat
-        //     if (!navbarSticky.classList.contains('hidden')) {
-        //         navbar.classList.add('bg-black');
-        //     } else {
-        //         navbar.classList.remove('bg-black');
-        //     }
-        // });
-        //     // Atur background navbar hanya jika navbar sticky terlihat
-        //     if (!navbarSticky.classList.contains('hidden')) {
-        //         navbar.classList.add('bg-black');
-        //     } else {
-        //         navbar.classList.remove('bg-black');
-        //     }
-        // });
     </script>
 </body>
 

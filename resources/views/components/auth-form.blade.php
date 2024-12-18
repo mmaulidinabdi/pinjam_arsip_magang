@@ -1,15 +1,31 @@
 <div>
     @if ($type == 'login')
 
-    <div class=" relative bg-sky-200 flex flex-col lg:flex-row justify-center items-center min-h-screen">
+    <div class=" relative bg-sky-100 flex flex-col lg:flex-row justify-center items-center min-h-screen">
 
 
 
         <!-- Left: Image -->
-        <div class="w-full lg:w-1/2 h-48 sm:h-64 md:h-80 lg:h-screen hidden lg:block">
-            <img src="https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826" alt="Placeholder Image"
+        <!-- <div class="w-full lg:w-1/2 h-48 sm:h-64 md:h-80 lg:h-screen hidden lg:block">
+            <img src="{{asset('img/bg-login-arsip.jpg')}}" alt="Placeholder Image"
                 class="object-cover w-full h-full">
+        </div> -->
+
+        <div class="flex items-center justify-center w-90 h-screen bg-gray-700 hidden lg:block">
+            <section
+                class="w-full h-full bg-center bg-no-repeat bg-cover bg-blend-multiply"
+                style="background-image: url('{{ asset('img/bg-login-arsip.jpg') }}')">
+                <div class="flex flex-col items-center justify-center w-full h-full px-4 text-center bg-gray-700 bg-opacity-50">
+                    <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+                        SIPEKA
+                    </h1>
+                    <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-8 lg:px-32">
+                        Sistem Peminjaman dan Kelola Arsip by DISPERSIP Kota Banjarmasin
+                    </p>
+                </div>
+            </section>
         </div>
+
 
         <!-- Right: Login Form -->
 
@@ -92,11 +108,21 @@
     @else
 
     <!-- Register Component -->
-    <div class="bg-sky-200 flex flex-col lg:flex-row justify-center items-center min-h-screen">
+    <div class="bg-sky-100 flex flex-col lg:flex-row justify-center items-center min-h-screen">
         <!-- Left: Image -->
-        <div class="w-full lg:w-1/2 h-48 sm:h-64 md:h-80 lg:h-screen hidden lg:block">
-            <img src="https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"
-                alt="Placeholder Image" class="object-cover w-full h-full">
+        <div class="flex items-center justify-center w-90 h-screen bg-gray-700 hidden lg:block">
+            <section
+                class="w-full h-full bg-center bg-no-repeat bg-cover bg-blend-multiply"
+                style="background-image: url('{{ asset('img/bg-login-arsip.jpg') }}')">
+                <div class="flex flex-col items-center justify-center w-full h-full px-4 text-center bg-gray-700 bg-opacity-50">
+                    <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+                        SIPEKA
+                    </h1>
+                    <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-8 lg:px-32">
+                        Sistem Peminjaman dan Kelola Arsip by DISPERSIP Kota Banjarmasin
+                    </p>
+                </div>
+            </section>
         </div>
 
         <!-- Right: Register Form -->
