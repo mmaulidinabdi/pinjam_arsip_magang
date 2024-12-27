@@ -53,6 +53,13 @@
         <br>
     </div>
 
+    @error('alasan_ditolak')
+    <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-green-400"
+            role="alert">
+            <span class="font-medium">Alasan ditolak tidak boleh kosong</span>
+        </div>
+    @enderror
+    
     @if (session()->has('passBeda'))
         <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-green-400"
             role="alert">

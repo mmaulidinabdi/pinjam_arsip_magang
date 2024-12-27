@@ -123,6 +123,10 @@ class AdminController extends Controller
             'alasan_ditolak' => 'required',
         ]);
 
+        // if($validateData['alasan_ditolak'] == null){
+        //     return redirect()->with()
+        // }
+
         $validateData['isVerificate'] = 'ditolak';
 
         Peminjam::where('id', $peminjam->id)->update($validateData);
