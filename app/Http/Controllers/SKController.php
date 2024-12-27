@@ -35,7 +35,7 @@ class SKController extends Controller
     {
         $validateData = $request->validate([
             'nomor_sk' => 'required|numeric',
-            'tahun' => 'nullable',
+            'tahun' => 'nullable|integer|min:1901|max:2155',
             'tanggal_penetapan' => 'required|date',
             'tentang' => 'nullable',
             'sk' => 'nullable'
@@ -80,7 +80,7 @@ class SKController extends Controller
 
         $validateData = $request->validate([
             'nomor_sk' => 'required|numeric',
-            'tahun' => 'nullable',
+            'tahun' => 'nullable|integer|min:1901|max:2155',
             'tanggal_penetapan' => 'required|date',
             'tentang' => 'nullable',
             'sk' => 'nullable'

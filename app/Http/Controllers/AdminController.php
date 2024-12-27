@@ -185,7 +185,7 @@ class AdminController extends Controller
             'lokasi' => 'nullable',
             'box' => 'nullable',
             'keterangan' => 'nullable',
-            'tahun' => 'nullable',
+            'tahun' => 'nullable|integer|min:1901|max:2155',
             'imbs' => 'nullable',
         ]);
 
@@ -328,12 +328,12 @@ class AdminController extends Controller
         // Validasi data yang diterima dari request
         $validateData = $request->validate([
             'nomor_dp' => 'required|numeric',
-            'nama_pemilik' => 'required',
-            'alamat' => 'required',
-            'lokasi' => 'required',
-            'box' => 'required',
+            'nama_pemilik' => 'nullable',
+            'alamat' => 'nullable',
+            'lokasi' => 'nullable',
+            'box' => 'nullable',
             'keterangan' => 'nullable',
-            'tahun' => 'required',
+            'tahun' => 'nullable|integer|min:1901|max:2155',
             'imbs' => 'nullable|string', // Asumsikan imbs dikirim sebagai string base64
         ]);
 
