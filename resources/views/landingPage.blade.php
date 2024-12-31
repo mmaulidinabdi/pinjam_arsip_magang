@@ -197,14 +197,25 @@
     <footer id="contact" class="bg-gray-900 ">
         <div class="mx-auto w-full  max-w-screen-xl p-4 py-6 lg:py-8">
             <div class="md:flex md:justify-between">
-                <div class="mb-6 md:mb-0 flex items-center">
+                <div class=" max-w-sm  w-full mb-6 md:mb-0 flex  flex-col">
                     <a href="" class="flex items-center">
                         <img src="{{ asset('img/dispersip_logo.png') }}" class="h-10 me-3" alt="DISPERSIP Logo" />
                         <span class="self-center text-2xl font-semibold whitespace-nowrap text-white"></span>
                     </a>
+                    <p class="text-gray-300 mt-4 break-before-right">
+                    Jl. Kapten Piere Tendean No.5, Gadang, Kec. Banjarmasin Tengah, Kota Banjarmasin, Kalimantan Selatan 70123 dan Jl. K. S. Tubun, RT.05/RW.01, Pekauman, Kec. Banjarmasin Sel., Kota Banjarmasin, Kalimantan Selatan 70234
+                    </p>
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-
+                    <div>
+                        <h2 class="mb-6 text-sm font-bold text-gray-500  dark:text-white">Layanan Kami</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="#" class="hover:underline">Pemerintah Kota Banjarmasin</a>
+                            </li>
+                          
+                        </ul>
+                    </div>
                     <div>
                         <h2 class="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white">Legal</h2>
                         <ul class="text-gray-500 dark:text-gray-400 font-medium">
@@ -216,6 +227,7 @@
                             </li>
                         </ul>
                     </div>
+                    
                 </div>
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
