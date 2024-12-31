@@ -18,17 +18,16 @@ return new class extends Migration
             $table->foreign('imb_id')->references('id')->on('imbs')->onDelete('cascade')->nullable();
             $table->unsignedBigInteger('sk_id')->nullable(); // Membuat kolom nullable
             $table->foreign('sk_id')->references('id')->on('sk')->onDelete('cascade')->nullable();
-            $table->unsignedBigInteger('arsip2_id')->nullable(); // Membuat kolom nullable
-            $table->foreign('arsip2_id')->references('id')->on('arsip2s')->onDelete('cascade')->nullable();
             $table->string('nama_arsip');
-            $table->enum('status', ['diacc', 'ditolak']);
+            $table->enum('status', ['diacc', 'ditolak','batal']);
             $table->string('alasan_ditolak')->nullable();
             $table->date('tanggal_peminjaman');
+            $table->date('tanggal_pengambilan')->nullable();            
             $table->date('tanggal_divalidasi')->nullable();
-            $table->datetime('tanggal_pengembalian')->nullable();
+            $table->date('tanggal_pengembalian')->nullable();
             $table->string('tujuan_peminjam');
             $table->string('dokumen_pendukung')->nullable();
-            $table->enum('jenis_arsip', ['SK', 'arsip2', 'IMB'])->notNull();
+            $table->enum('jenis_arsip', ['SK', 'IMB'])->notNull();
             $table->timestamps();
         });
     }

@@ -56,7 +56,5 @@ class Histori extends Model
         // Menghubungkan dengan tabel `arsip2` menggunakan `imb_id`
         return $this->belongsTo(Arsip2::class, 'arsip2_id');
     }
-    
-
-
+  
 }
