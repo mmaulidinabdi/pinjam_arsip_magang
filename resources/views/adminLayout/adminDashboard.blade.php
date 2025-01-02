@@ -33,7 +33,7 @@
 
 <!-- Kategori -->
 
-<div class=" my-4 grid sm:grid-cols-3  md:grid-row-3 gap-4">
+<div class=" my-4 grid sm:grid-cols-2  md:grid-row-3 gap-4">
     <!-- Kategtori section -->
     <!-- 3 -->
     <div class="p-6 bg-yellow-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -57,15 +57,7 @@
     </div>
 
 
-    <div class="p-6 bg-purple-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div>
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $arsip2 }}</h5>
-        </div>
-        <span class="text-2xl font-semibold">{{$jumlahArsip2}}</span>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Arsip yang tersimpan di Dinas Arsip dan
-            Perpusatakaan Banjarmasin</p>
-
-    </div>
+    
 </div>
 
 

@@ -29,8 +29,8 @@ class AdminController extends Controller
             ->get();
         $jumlahImb = Imb::count();
         $jumlahSK = SK::count();
-        $jumlahArsip2  = Arsip2::count();
-        $jumlahArsip = $jumlahImb + $jumlahSK + $jumlahArsip2;
+        // $jumlahArsip2  = Arsip2::count();
+        $jumlahArsip = $jumlahImb + $jumlahSK;
 
         // ambil transaksi peminjaman dengan status diperiksa
         $transaksiPending = TransaksiPeminjaman::with('peminjam')->where('status', 'diperiksa')->limit(5)->get();
@@ -43,7 +43,7 @@ class AdminController extends Controller
             'histori' => $historis,
             'sk' => 'SK',
             'arsip2' => 'Arsip 2',
-        ], compact('jumlahPeminjam', 'jumlahArsip', 'jumlahImb', 'jumlahSK', 'jumlahArsip2', 'transaksiPending'));
+        ], compact('jumlahPeminjam', 'jumlahArsip', 'jumlahImb', 'jumlahSK', 'transaksiPending'));
     }
 
     public function pengembalian($id)
@@ -154,7 +154,7 @@ class AdminController extends Controller
         $dataImb = Imb::orderBy('tahun', 'asc')
             ->orderBy('nomor_dp', 'asc')
             ->paginate(15);
-
+// dd($dataImb);
         return view('adminLayout.imb', [
             'title' => 'Management IMB',
             'active' => 'manajemen',
