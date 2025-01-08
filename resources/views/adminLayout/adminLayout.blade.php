@@ -77,8 +77,8 @@
     <aside id="logo-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-gray-800 border-r border-gray-800 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
-        <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-800 dark:bg-gray-800">
-            <ul class="space-y-2 font-medium">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-800 dark:bg-gray-800 flex flex-col justify-between">
+            <ul class="space-y-2 font-medium flex-grow">
                 <li>
                     <a href="/admin/dashboard"
                         class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Route::is('admin.dashboard') ? ' bg-gray-500' : 'text-white' }}">
@@ -204,10 +204,7 @@
                             <a href="{{Route('admin.viewTambahSK')}}"
                                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.viewTambahSK') ? 'bg-gray-500' : 'text-white'}}">SK</a>
                         </li>
-                        <!-- <li>
-                            <a href="{{Route('admin.viewTambahKeuangan')}}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.viewTambahKeuangan') ? 'bg-gray-500' : 'text-white'}}">Surat Keuangan</a>
-                        </li> -->
+                        =
                     </ul>
 
                 <li>
@@ -240,7 +237,19 @@
                         </button>
                     </form>
                 </li>
+
+
             </ul>
+            <div>
+                <a href="/"
+                    class="flex items-center p-2 text-white rounded-lg dark:text-white hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 group ">
+                    <svg class="w-6 h-6 text-white group-hover:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7" />
+                    </svg>
+
+                    <span class="flex-1 ms-3 whitespace-nowrap">Kembali</span>
+                </a>
+            </div>
         </div>
     </aside>
 

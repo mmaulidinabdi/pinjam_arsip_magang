@@ -68,35 +68,16 @@
         <!-- Main content container -->
         <div id="about"
             class="z-10 bg-white max-w-[90%] md:max-w-[1144px] mt-10 mx-auto mb-10 rounded-lg p-4 md:p-12 border-2 shadow-lg">
-            <h1 class="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl md:text-4xl lg:text-5xl">
+            <h1 class="mb-4 text-2xl font-extrabold text-center text-gray-900 dark:text-white sm:text-3xl md:text-4xl lg:text-5xl">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
                     Selamat Datang di Website Resmi
                 </span>
+                <br>
                 Dinas Perpustakaan dan Arsip Kota Banjarmasin
             </h1>
 
-            <!-- Text paragraph -->
-            <p class="mb-3 text-gray-500 dark:text-gray-400 text-base sm:text-lg">
-                Sumber informasi terkini dan terpercaya mengenai pengelolaan arsip serta pelayanan perpustakaan di kota
-                kita. Kami hadir untuk membantu masyarakat Banjarmasin dalam mengakses berbagai sumber literasi dan
-                dokumentasi, yang tidak hanya mendukung kebutuhan edukasi, namun juga menjaga jejak sejarah serta
-                warisan budaya lokal. Melalui kolaborasi dengan berbagai instansi, kami memastikan pengelolaan arsip
-                berjalan dengan baik dan dapat diakses secara luas. Selain itu, perpustakaan kami menawarkan koleksi
-                buku yang terus diperbarui untuk meningkatkan minat baca dan mendukung literasi masyarakat di semua
-                kalangan.
-            </p>
-
-            <!-- Second text paragraph -->
-            <p class="text-gray-500 dark:text-gray-400 text-base sm:text-lg">
-                Dengan inovasi dalam sistem manajemen informasi, kami menggunakan platform terbuka dan kolaboratif untuk
-                melacak dan mengelola data, sehingga setiap perubahan dan pengelolaan arsip tercatat secara rapi.
-                Pendekatan ini memungkinkan kami untuk merespon permintaan dan kebutuhan masyarakat dengan lebih cepat,
-                serta memberikan pengalaman layanan yang efisien tanpa kerumitan. Kami berkomitmen untuk mempercepat
-                alur kerja penting, mengurangi beban administratif, dan menyediakan jejak audit yang lengkap pada setiap
-                perubahan. Hal ini tidak hanya meningkatkan keandalan pelayanan, tetapi juga memberikan jaminan
-                akuntabilitas pada setiap proses yang dilakukan. Terima kasih atas kepercayaan Anda, dan kami siap
-                mendukung perjalanan literasi dan informasi Anda di Kota Banjarmasin.
-            </p>
+            <img src="{{ asset('img/bg-login-arsip.jpg') }}" class="border rounded-xl" alt="">
+            
         </div>
 
 
