@@ -107,7 +107,7 @@ Route::get('/admin/lihat/imb/{name}', [AdminController::class, 'show'])->middlew
 // edit imb
 Route::put('/admin/edit/imb/{id}', [AdminController::class, 'updateImb'])->middleware('admin')->name('edit.imb');
 // delete imb
-Route::get('/admin/delete/imb/{id}', [AdminController::class, 'deleteImb'])->middleware('admin')->name('delete.imb');
+Route::delete('/admin/delete/imb/{id}', [AdminController::class, 'deleteImb'])->middleware('admin')->name('delete.imb');
 
 // search
 Route::get('/admin/imb/search', [ImbController::class, 'search'])->middleware('admin')->name('search.imb');
@@ -132,7 +132,7 @@ Route::get('/admin/lihat/sk/{name}', [SKController::class, 'show'])->middleware(
 // edit imb
 Route::put('/admin/edit/sk/{id}', [SKController::class, 'updateSK'])->middleware('admin')->name('edit.sk');
 // hapus sk
-Route::get('/admin/delete/sk/{id}', [SKController::class, 'deleteSK'])->middleware('admin')->name('hapus.sk');
+Route::delete('/admin/delete/sk/{id}', [SKController::class, 'deleteSK'])->middleware('admin')->name('hapus.sk');
 // search
 Route::get('/admin/sk/search', [SKController::class, 'search'])->middleware('admin')->name('search.imb');
 // print all
