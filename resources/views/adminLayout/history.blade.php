@@ -98,7 +98,7 @@
                 </td>
 
                 <td>
-                    @if($item->status === 'diacc')
+                    @if($item->status !== 'ditolak')
                         @if ($item->jenis_arsip === 'IMB')
                             {{ $item->jenis_arsip }}
                             {{ optional($item->imb)->nomor_dp }}
@@ -126,41 +126,50 @@
                 </td>
                 <td>
                     @if($item->tanggal_pengambilan === null && $item->status === 'diacc')
-                    <p>belum di ambil</p>
+                        <p>belum di ambil</p>
                     @else
-                    {{ $item->status }}
+                        {{ $item->status }}
                     @endif
                 </td>
                 <td>
-                @if($item->tanggal_pengambilan === null && $item->status === 'diacc')
-                    <button type="submit"
-                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                        Konfirmasi pengambilan
-                    </button><button type="submit"
-                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                        batalkan
-                    </button>
-                    @elseif($item->status === 'ditolak')
-                    
-                    @else
-                    {{ \Carbon\Carbon::parse($item->tanggal_pengambilan)->translatedFormat('d F Y') }}
-                    @endif
-                </td>
-                <td>
-                @if($item->tanggal_pengambilan !== null)    
-                    @if ($item->status === 'diacc')
-                        @if ($item->tanggal_pengembalian !== null)
-                            {{ \Carbon\Carbon::parse($item->tanggal_pengembalian)->translatedFormat('d F Y') }}
-                        @else
-                            <form action="{{ route('konfirmasi.pengembalian', $item->id) }}" method="POST" class="inline">
+                    @if($item->tanggal_pengambilan === null && $item->status === 'diacc')
+                        <div class="flex flex-col">
+                            <form action="{{ route('pengambilan', $item->id) }}" method="POST" class="inline">
                                 @csrf
                                 <button type="submit"
-                                    class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                                    Konfirmasi pengembalian
+                                    class=" w-full text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                    Konfirmasi pengambilan
                                 </button>
                             </form>
-                        @endif
+                            <form action="{{ route('pembatalan', $item->id) }}" method="POST" class="inline">
+                                @csrf
+                            <button type="submit"
+                                class=" whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                batalkan
+                            </button>
+                            </form>
+                        </div>
+                    @elseif($item->status !== 'diacc')
+
+                    @else
+                        {{ \Carbon\Carbon::parse($item->tanggal_pengambilan)->translatedFormat('d F Y') }}
                     @endif
+                </td>
+                <td>
+                    @if($item->tanggal_pengambilan !== null)
+                        @if ($item->status === 'diacc')
+                            @if ($item->tanggal_pengembalian !== null)
+                                {{ \Carbon\Carbon::parse($item->tanggal_pengembalian)->translatedFormat('d F Y') }}
+                            @else
+                                <form action="{{ route('konfirmasi.pengembalian', $item->id) }}" method="POST" class="inline">
+                                    @csrf
+                                    <button type="submit"
+                                        class="min-w-[60px] whitespace-nowrap text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-2 py-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                        Konfirmasi pengembalian
+                                    </button>
+                                </form>
+                            @endif
+                        @endif
                     @else
                     @endif
                 </td>

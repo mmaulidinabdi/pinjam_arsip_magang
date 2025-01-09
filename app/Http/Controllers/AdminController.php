@@ -23,7 +23,7 @@ class AdminController extends Controller
     public function admindashboard()
     {
         $jumlahPeminjam = Peminjam::count();
-        $historis = Histori::where('tanggal_divalidasi', '<=', Carbon::now()->subDays(10))
+        $historis = Histori::where('tanggal_pengambilan', '<=', Carbon::now()->subDays(20))
             ->where('status', 'diacc')
             ->whereNull('tanggal_pengembalian')
             ->get();
@@ -445,6 +445,29 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Tanggal pengembalian berhasil diperbarui.');
     }
 
+    public function pengambilan($id)
+    {
+        // Cari data berdasarkan ID
+        $history = Histori::findOrFail($id);
+
+        $history->tanggal_pengambilan = Carbon::now()->toDateString();
+        $history->save();
+
+        // Redirect atau kembalikan respons sukses
+        return redirect()->back()->with('success', 'Tanggal pengambilan berhasil diperbarui.');
+    }
+
+    public function pembatalan($id)
+    {
+        // Cari data berdasarkan ID
+        $history = Histori::findOrFail($id);
+
+        $history->status = 'batal';
+        $history->save();
+
+        // Redirect atau kembalikan respons sukses
+        return redirect()->back()->with('success', 'Tanggal pengambilan berhasil diperbarui.');
+    }
 
 
     public function autocomplete(Request $request)

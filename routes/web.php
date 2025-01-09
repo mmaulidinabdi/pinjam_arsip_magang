@@ -118,6 +118,10 @@ Route::post('admin/kelola/{id}', [AdminController::class, 'konfirmasiPengembalia
 
 Route::post('admin/dashboard/{id}', [AdminController::class, 'Pengembalian'])->name('pengembalian.konfirmasi');
 
+Route::post('admin/pegambilan/{id}', [AdminController::class, 'pengambilan'])->name('pengambilan');
+
+Route::post('admin/batalkan/{id}', [AdminController::class, 'pembatalan'])->name('pembatalan');
+
 
 //untuk SK
 Route::get('/admin/sk', [SKController::class, 'manajemenSK'])->middleware('admin')->name('admin.manajemenSK');
