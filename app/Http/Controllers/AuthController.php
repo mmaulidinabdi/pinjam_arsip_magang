@@ -42,13 +42,13 @@ class AuthController extends Controller
             }
             
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/user/dashboard');
         }
 
         if (Auth::guard('admin')->attempt($validateData)) {
             // dd($request);
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/admin/dashboard');
         }
 
         return back()->with('error', 'Login gagal!')->withInput();

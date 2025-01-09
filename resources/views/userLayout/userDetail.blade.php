@@ -70,6 +70,7 @@
                         File Pendukung
                     </th>
                     <td class="px-6 py-3">
+                        <p>$</p>
                         <a href="{{ asset('storage/' . $history->dokumen_pendukung) }}" target="_blank"
                             class="text-blue-600 hover:underline">
                             Lihat File PDF

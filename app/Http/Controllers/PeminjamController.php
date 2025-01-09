@@ -208,6 +208,8 @@ class PeminjamController extends Controller
             'jenis_arsip' => 'required',
         ]);
 
+        
+
         $validateData['tanggal_peminjaman'] = now()->format('Y-m-d');
         $validateData['status'] = 'diperiksa';
 
