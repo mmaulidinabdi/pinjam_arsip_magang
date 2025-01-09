@@ -57,7 +57,7 @@ class PeminjamController extends Controller
             $hariTersisa = null;
             if ($histori) {
                 
-                $tanggalDivalidasi = Carbon::parse($histori->tanggal_divalidasi);
+                $tanggalDivalidasi = Carbon::parse($histori->tanggal_pengambilan);
 
                 $hariTersisa = floor($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(30)));
             }

@@ -3,6 +3,13 @@
 @section('adminLayout')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<style>
+    th {
+        width: 400px; /* Ganti dengan ukuran yang diinginkan */
+        white-space: nowrap; /* Agar teks tidak membungkus */
+    }
+</style>
+
 @if (session()->has('success'))
 <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400" role="alert">
     <span class="font-medium">{{ session('success') }}</span>
@@ -120,10 +127,14 @@
                     File KTP
                 </th>
                 <td class="px-6 py-3">
-                    <a href="{{ asset( 'storage/' . $item->peminjam->ktp) }}" target="_blank"
+                @if($item->peminjam->ktp !== null)    
+                <a href="{{ asset( 'storage/' . $item->peminjam->ktp) }}" target="_blank"
                         class="text-blue-600 hover:underline">
                         Lihat File PDF
                     </a>
+                @else
+                <p>Tidak ada file</p>
+                @endif
                 </td>
             </tr>
             <tr
@@ -132,10 +143,14 @@
                     File Pendukung
                 </th>
                 <td class="px-6 py-3">
+                    @if($item->dokumen_pendukung !== null)
                     <a href="{{ asset('storage/' . $item->dokumen_pendukung) }}" target="_blank"
                         class="text-blue-600 hover:underline">
                         Lihat File PDF
                     </a>
+                    @else
+                    <p>Tidak ada file</p>
+                    @endif
                 </td>
             </tr>
             <tr

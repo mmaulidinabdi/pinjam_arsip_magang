@@ -73,7 +73,9 @@ class AdminController extends Controller
 
     public function historyadmin()
     {
-        $items = Histori::all();
+        $items = Histori::orderBy('tanggal_peminjaman')->get();
+
+
         return view('adminlayout/history', [
             'title' => 'histori',
             'items' => $items,
