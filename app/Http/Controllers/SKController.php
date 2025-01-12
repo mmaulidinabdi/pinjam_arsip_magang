@@ -64,7 +64,7 @@ class SKController extends Controller
         return redirect()->route('admin.manajemenSK')->with('success', 'Data Berhasil Masuk!! ');
     }
 
-    public function show($name)
+    public function lihatSk($name)
     {
         $path = storage_path('app/public/sk/' . $name);
 

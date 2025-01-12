@@ -22,85 +22,6 @@ use App\Notifications\VerifyEmailNotification;
 class PeminjamController extends Controller
 {
     //
-
-    public function testSendReminderEmails()
-    {
-        // Dapatkan instance dari Kernel
-        $kernel = app(\App\Console\Kernel::class);
-
-        // Panggil fungsi sendReminderEmails
-        $kernel->sendReminderEmails();
-
-        return 'Reminder Emails sent!';
-    }
-
-    public function index()
-    {
-        $userId = auth()->guard('web')->user()->id;
-        $jumlahminjam = Histori::where('peminjam_id', $userId)
-            ->whereNull('tanggal_pengembalian')
-            ->where('status', 'diacc')
-            ->count();
-
-        $jumlahselesai = Histori::where('peminjam_id', $userId)
-            ->where('status', 'diacc')
-            ->count();
-
-        $histori = Histori::where('peminjam_id', $userId)
-            ->wherenull('tanggal_pengembalian')
-            ->where('status', 'diacc')
-            ->orderByRaw('DATEDIFF(CURDATE(), tanggal_divalidasi) desc') // Urutkan berdasarkan selisih waktu terbesar
-            ->first(); // Ambil data dengan perbedaan terbesar
-
-        $hariTersisa = null;
-        if ($histori) {
-            $hariTersisa = null;
-            if ($histori) {
-                
-                $tanggalDivalidasi = Carbon::parse($histori->tanggal_pengambilan);
-
-                $hariTersisa = floor($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(30)));
-            }
-        }
-
-
-
-        return view('userLayout/userDashboard', [
-            'title' => 'SIPEKA | Dashboard ',
-            'imb' => 'IMB',
-            'sk' => 'SK',
-            'arsip2' => 'Arsip 2',
-            'peminjamans' => TransaksiPeminjaman::where('peminjam_id', $userId)->get()
-
-        ], compact('hariTersisa', 'histori', 'jumlahminjam', 'jumlahselesai'));
-    }
-
-    public function userProfile()
-    {
-        return view('userLayout/userProfile', [
-            'title' => 'SIPEKA | Profile',
-        ]);
-    }
-
-    public function userPeminjaman()
-    {
-
-        if (Auth::guard('web')->user()->isVerificate !== 'diterima') {
-
-            $status = 'belumVerifikasi';
-            return view('/userLayout/userPeminjaman', [
-                'status' => $status,
-                'title' => 'SIPEKA | Peminjaman',
-            ]);
-        }
-
-        $status = 'terverifikasi';
-        return view('userLayout/userPeminjaman', [
-            'status' => $status,
-            'title' => 'SIPEKA | Peminjaman',
-        ]);
-    }
-
     public function create(Request $request)
     {
         $validateData = $request->validate([
@@ -132,30 +53,6 @@ class PeminjamController extends Controller
             ->notify(new VerifyEmailNotification($verificationUrl, $validateData['nama_lengkap']));
 
         return redirect('/login')->with('success', 'Silakan cek email Anda untuk verifikasi.');
-    }
-
-    public function verifyEmail($token)
-    {
-        // cari pengguna di table pending_users
-        $pendingUser = DB::table('pending_users')->where('verification_token', $token)->first();
-
-        if (!$pendingUser) {
-            return redirect('/login')->with('error', 'Token verifikasi tidak valid atau telah kadaluarsa.');
-        }
-
-        // Simpan ke database
-        Peminjam::create([
-            'nama_lengkap' => $pendingUser->nama_lengkap,
-            'email' => $pendingUser->email,
-            'password' => $pendingUser->password,
-            'is_verified' => true,
-        ]);
-
-        // Hapus dari table pending_users
-        DB::table('pending_users')->where('verification_token', $token)->delete();
-
-
-        return redirect('/login')->with('success', 'Email berhasil diverifikasi! Anda dapat login sekarang.');
     }
 
     public function update(Request $request, Peminjam $peminjam)
@@ -196,30 +93,69 @@ class PeminjamController extends Controller
         return redirect()->back()->with('success', 'Akun Peminjam Berhasil Dihapus');
     }
 
-    public function pinjam(Request $request)
+    public function userDashboard()
     {
-        $validateData = $request->validate([
-            'peminjam_id' => 'required',
-            'tujuan_peminjam' => 'required',
-            'dokumen_pendukung' => 'nullable',
-            'no_arsip' => 'nullable',
-            'nama_arsip' => 'required',
-            'data_arsip' => 'nullable',
-            'jenis_arsip' => 'required',
-        ]);
+        $userId = auth()->guard('web')->user()->id;
+        $jumlahminjam = Histori::where('peminjam_id', $userId)
+            ->whereNull('tanggal_pengembalian')
+            ->where('status', 'diacc')
+            ->count();
 
-        
+        $jumlahselesai = Histori::where('peminjam_id', $userId)
+            ->where('status', 'diacc')
+            ->count();
 
-        $validateData['tanggal_peminjaman'] = now()->format('Y-m-d');
-        $validateData['status'] = 'diperiksa';
+        $histori = Histori::where('peminjam_id', $userId)
+            ->wherenull('tanggal_pengembalian')
+            ->where('status', 'diacc')
+            ->orderByRaw('DATEDIFF(CURDATE(), tanggal_divalidasi) desc') // Urutkan berdasarkan selisih waktu terbesar
+            ->first(); // Ambil data dengan perbedaan terbesar
 
-        if ($request->file('dokumen_pendukung')) {
-            $validateData['dokumen_pendukung'] = $request->file('dokumen_pendukung')->store('dokumen_pendukung', 'public');
+        $hariTersisa = null;
+        if ($histori) {
+            $hariTersisa = null;
+            if ($histori) {
+                
+                $tanggalDivalidasi = Carbon::parse($histori->tanggal_pengambilan);
+
+                $hariTersisa = floor($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(30)));
+            }
         }
 
-        TransaksiPeminjaman::create($validateData);
+        return view('userLayout/userDashboard', [
+            'title' => 'SIPEKA | Dashboard ',
+            'imb' => 'IMB',
+            'sk' => 'SK',
+            'arsip2' => 'Arsip 2',
+            'peminjamans' => TransaksiPeminjaman::where('peminjam_id', $userId)->get()
 
-        return back()->with('success', 'Peminjaman Berhasil Diajukan !!');
+        ], compact('hariTersisa', 'histori', 'jumlahminjam', 'jumlahselesai'));
+    }
+
+    public function userProfile()
+    {
+        return view('userLayout/userProfile', [
+            'title' => 'SIPEKA | Profile',
+        ]);
+    }
+
+    public function userPeminjaman()
+    {
+
+        if (Auth::guard('web')->user()->isVerificate !== 'diterima') {
+
+            $status = 'belumVerifikasi';
+            return view('/userLayout/userPeminjaman', [
+                'status' => $status,
+                'title' => 'SIPEKA | Peminjaman',
+            ]);
+        }
+
+        $status = 'terverifikasi';
+        return view('userLayout/userPeminjaman', [
+            'status' => $status,
+            'title' => 'SIPEKA | Peminjaman',
+        ]);
     }
 
     public function userHistory()
@@ -240,5 +176,40 @@ class PeminjamController extends Controller
             'history' => $history,
             'active' => 'peminjaman'
         ]);
+    }
+
+    public function sendReminderEmails()
+    {
+        // Dapatkan instance dari Kernel
+        $kernel = app(\App\Console\Kernel::class);
+
+        // Panggil fungsi sendReminderEmails
+        $kernel->sendReminderEmails();
+
+        return 'Reminder Emails sent!';
+    }
+
+    public function verifyEmail($token)
+    {
+        // cari pengguna di table pending_users
+        $pendingUser = DB::table('pending_users')->where('verification_token', $token)->first();
+
+        if (!$pendingUser) {
+            return redirect('/login')->with('error', 'Token verifikasi tidak valid atau telah kadaluarsa.');
+        }
+
+        // Simpan ke database
+        Peminjam::create([
+            'nama_lengkap' => $pendingUser->nama_lengkap,
+            'email' => $pendingUser->email,
+            'password' => $pendingUser->password,
+            'is_verified' => true,
+        ]);
+
+        // Hapus dari table pending_users
+        DB::table('pending_users')->where('verification_token', $token)->delete();
+
+
+        return redirect('/login')->with('success', 'Email berhasil diverifikasi! Anda dapat login sekarang.');
     }
 }

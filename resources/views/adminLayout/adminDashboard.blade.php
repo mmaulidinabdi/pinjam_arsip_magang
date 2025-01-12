@@ -184,7 +184,7 @@
                             hari
                         </td>
                         <td>
-                            <form action="{{ route('pengembalian.konfirmasi', $historis->id) }}" method="POST"
+                            <form action="{{ route('konfirmasi.pengembalian', $historis->id) }}" method="POST"
                                 class="inline">
                                 @csrf
                                 <button type="submit"

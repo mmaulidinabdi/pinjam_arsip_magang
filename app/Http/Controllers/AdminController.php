@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\SK;
 use Carbon\Carbon;
+use App\Models\SK;
 use App\Models\Imb;
-use App\Models\Arsip2;
 use App\Models\Histori;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
-use Psy\Command\HistoryCommand;
-use PhpParser\Node\Expr\FuncCall;
 use App\Models\TransaksiPeminjaman;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 
 class AdminController extends Controller
 {
     //
-    public function admindashboard()
+    public function adminDashboard()
     {
         $jumlahPeminjam = Peminjam::count();
         $historis = Histori::where('tanggal_pengambilan', '<=', Carbon::now()->subDays(20))
@@ -46,32 +42,20 @@ class AdminController extends Controller
         ], compact('jumlahPeminjam', 'jumlahArsip', 'jumlahImb', 'jumlahSK', 'transaksiPending'));
     }
 
-    public function pengembalian($id)
+    public function adminKelola()
     {
+        $items = TransaksiPeminjaman::with('peminjam')
+            ->where('status', 'diperiksa')
+            ->get();
 
-        // Ambil data histori berdasarkan id
-        $historis = Histori::findOrFail($id);
-
-        // Update tanggal_pengembalian dengan waktu saat ini
-        $historis->tanggal_pengembalian = Carbon::now()->toDateString();
-
-        // Simpan perubahan ke database
-        $historis->save();
-
-        // Redirect ke halaman dashboard dengan pesan sukses
-        return redirect()->back()->with('success', 'Tanggal pengembalian berhasil diperbarui.');
-    }
-
-
-    public function kelola()
-    {
         return view('adminlayout/kelolapeminjaman', [
-            'title' => 'Kelola peminjaman',
+            'title' => 'Kelola',
+            'items' => $items,
             'active' => 'peminjaman'
         ]);
     }
 
-    public function historyadmin()
+    public function adminHistori()
     {
         $items = Histori::orderBy('tanggal_peminjaman')->get();
 
@@ -83,24 +67,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function lanjutan()
-    {
-        return view('adminlayout/lanjutan', [
-            'title' => 'Data Peminjam',
-            'active' => 'tindakLanjut',
-        ]);
-    }
-
-    public function detail()
-    {
-
-        return view('adminlayout/detailhistory', [
-            'title' => 'detail Peminjam',
-            'active' => 'peminjaman'
-        ]);
-    }
-
-    public function useradmin()
+    public function adminUsers()
     {
         return view('adminlayout/user', [
             'title' => 'user',
@@ -110,29 +77,23 @@ class AdminController extends Controller
         ]);
     }
 
-    public function terimaStatus($id)
+    public function adminLanjutan()
     {
-        $peminjam = Peminjam::findOrFail($id);
-        $peminjam->isVerificate = 'diterima';
-        $peminjam->save();
-
-        return redirect()->back();
-    }
-
-    public function tolakStatus(Request $request, Peminjam $peminjam)
-    {
-        $validateData = $request->validate([
-            'alasan_ditolak' => 'required',
+        return view('adminlayout/lanjutan', [
+            'title' => 'Data Peminjam',
+            'active' => 'tindakLanjut',
         ]);
-
-
-        $validateData['isVerificate'] = 'ditolak';
-
-        Peminjam::where('id', $peminjam->id)->update($validateData);
-
-        return redirect()->back();
     }
 
+    public function adminDetail($id)
+    {
+        $data = Histori::with('peminjam')->findOrFail($id);
+        return view('adminLayout/detailhistory', [
+            'title' => 'kelola',
+            'item' => $data,
+            'active' => 'peminjaman'
+        ]);
+    }
 
     public function updateUser(Request $request, Peminjam $peminjam)
     {
@@ -151,82 +112,27 @@ class AdminController extends Controller
         return back()->with('success', 'Password berhasil diganti');
     }
 
-    public function manajemenImb()
+    public function terimaStatusUser($id)
     {
-        $dataImb = Imb::orderBy('tahun', 'asc')
-            ->orderBy('nomor_dp', 'asc')
-            ->paginate(15);
-// dd($dataImb);
-        return view('adminLayout.imb', [
-            'title' => 'Management IMB',
-            'active' => 'manajemen',
-            'dataImb' => $dataImb,
-        ]);
+        $peminjam = Peminjam::findOrFail($id);
+        $peminjam->isVerificate = 'diterima';
+        $peminjam->save();
+
+        return redirect()->back();
     }
 
-
-
-    public function viewTambahImb()
-    {
-
-        return view('adminLayout.tambahImb', [
-            'title' => 'Input IMB',
-            'active' => 'tambahArsip'
-        ]);
-    }
-
-    public function tambahImb(Request $request)
+    public function tolakStatusUser(Request $request, Peminjam $peminjam)
     {
         $validateData = $request->validate([
-            'nomor_dp' => 'required|numeric',
-            'nama_pemilik' => 'nullable',
-            'alamat' => 'nullable',
-            'lokasi' => 'nullable',
-            'box' => 'nullable',
-            'keterangan' => 'nullable',
-            'tahun' => 'nullable|integer|min:1901|max:2155',
-            'imbs' => 'nullable',
+            'alasan_ditolak' => 'required',
         ]);
 
 
-        // Decode base64 to store as file
-        $base64Pdf = $request->input('imbs');
-        $pdfContent = base64_decode(preg_replace('#^data:application/pdf;base64,#i', '', $base64Pdf));
+        $validateData['isVerificate'] = 'ditolak';
 
-        // Simpan file ke storage Laravel (atau folder tertentu)
-        $fileName = 'imb_' . $request['nomor_dp'] . '_' . $request['tahun'] . '_' . time() . '.pdf';
-        $validateData['imbs'] = $fileName;
+        Peminjam::where('id', $peminjam->id)->update($validateData);
 
-        Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);
-        Imb::create($validateData);
-
-        return redirect()->route('admin.manajemenImb')->with('success', 'Data Berhasil Masuk!!');
-    }
-
-
-
-
-
-    // Keuangan
-    public function viewTambahKeuangan()
-    {
-        return view('adminLayout.tambahKeuangan', [
-            'title' => 'Input Arsip Keuangan',
-            'active' => 'tambahArsip'
-        ]);
-    }
-
-    public function kelolapeminjaman()
-    {
-        $items = TransaksiPeminjaman::with('peminjam')
-            ->where('status', 'diperiksa')
-            ->get();
-
-        return view('adminlayout/kelolapeminjaman', [
-            'title' => 'Kelola',
-            'items' => $items,
-            'active' => 'peminjaman'
-        ]);
+        return redirect()->back();
     }
 
     public function datalanjutan($id)
@@ -244,249 +150,5 @@ class AdminController extends Controller
             'active' => 'peminjaman',
             'jenis' => $jenis,
         ]);
-    }
-
-    public function datadetail($id)
-    {
-        $data = Histori::with('peminjam')->findOrFail($id);
-        return view('adminLayout/detailhistory', [
-            'title' => 'kelola',
-            'item' => $data,
-            'active' => 'peminjaman'
-        ]);
-    }
-
-    public function simpanKeHistory(request $request, TransaksiPeminjaman $transaksi)
-    {
-
-        if ($request->status == 'tolak') {
-            $validateData = $request->validate([
-                'jenis_arsip' => 'required',
-                'alasan_ditolak' => 'required|max:255',
-                'status' => 'required',
-            ]);
-
-            $validateData['status'] = 'ditolak';
-        } elseif ($request->status == 'acc') {
-
-            $validateData = $request->validate([
-                'jenis_arsip' => 'required',
-                'arsip' => 'required',
-            ]);
-
-            if ($validateData['jenis_arsip'] == 'IMB') {
-
-                list($dp, $tahun, $nama) = explode(' - ', $validateData['arsip']);
-
-                $arsip = imb::where('nomor_dp', $dp)->first();
-
-                $validateData['imb_id'] = $arsip->id;
-            } elseif ($validateData['jenis_arsip'] == 'SK') {
-
-                list($sk, $tahun) = explode(' - ', $validateData['arsip'], 2);
-
-                $arsip = sk::where('nomor_sk', $sk)->first();
-
-                $validateData['sk_id'] = $arsip->id;
-            }
-
-            $validateData['status'] = 'diacc';
-        } elseif ($request->status == 'diperiksa') {
-            return back()->with('success','Pastikan Status Peminjaman Sudah Valid!');
-        }
-
-        $validateData['peminjam_id'] = $transaksi->peminjam_id;
-        $validateData['nama_arsip'] = $transaksi->nama_arsip;
-        $validateData['tanggal_peminjaman'] = $transaksi->tanggal_peminjaman;
-        $validateData['tujuan_peminjam'] = $transaksi->tujuan_peminjam;
-        $validateData['dokumen_pendukung'] = $transaksi->dokumen_pendukung;
-        $validateData['tanggal_divalidasi'] = Carbon::now();
-        Histori::create($validateData);
-
-        $transaksi->delete();
-
-        return redirect('/admin/histori')->with(['title' => 'History Peminjaman', 'active' => 'peminjaman']);
-    }
-
-
-    // untuk lihat file imb
-    public function show($name)
-    {
-        $path = storage_path('app/public/imbs/' . $name);
-        // dd($path);
-        return response()->file($path, [
-            'Content-Type' => 'application/pdf'
-        ]);
-    }
-
-    public function updateImb($id_imb, Request $request)
-    {
-        // Ambil data IMB berdasarkan ID atau gagal jika tidak ditemukan
-        $imb = Imb::findOrFail($id_imb);
-
-        // Validasi data yang diterima dari request
-        $validateData = $request->validate([
-            'nomor_dp' => 'required|numeric',
-            'nama_pemilik' => 'nullable',
-            'alamat' => 'nullable',
-            'lokasi' => 'nullable',
-            'box' => 'nullable',
-            'keterangan' => 'nullable',
-            'tahun' => 'nullable|integer|min:1901|max:2155',
-            'imbs' => 'nullable|string', // Asumsikan imbs dikirim sebagai string base64
-        ]);
-
-        $isFileUpdated = false;
-
-        // Cek apakah ada file PDF baru yang diupload
-        if ($request->filled('imbs')) {
-            $isFileUpdated = true;
-
-            // Jika ada file lama, hapus file tersebut
-            if ($imb->imbs && Storage::disk('public')->exists('imbs/' . $imb->imbs)) {
-                Storage::disk('public')->delete('imbs/' . $imb->imbs);
-            }
-
-            // Decode konten PDF dari base64
-            $base64Pdf = $request->input('imbs');
-            $pdfContent = base64_decode(preg_replace('#^data:application/pdf;base64,#i', '', $base64Pdf));
-
-            // Buat nama file baru
-            $fileName = 'imb_' . $validateData['nomor_dp'] . '_' . $validateData['tahun'] . '_' . time() . '.pdf';
-            $validateData['imbs'] = $fileName;
-
-            // Simpan file PDF ke storage
-            Storage::disk('public')->put('imbs/' . $fileName, $pdfContent);
-        } else {
-            // Jika tidak ada file baru yang diupload, periksa apakah ada perubahan pada nomor_dp atau tahun
-            $nomorDpChanged = $validateData['nomor_dp'] != $imb->nomor_dp;
-            $tahunChanged = $validateData['tahun'] != $imb->tahun;
-
-            if (($nomorDpChanged || $tahunChanged) && $imb->imbs) {
-                // Extract nama file tanpa path
-                $currentFileName = $imb->imbs;
-
-                // Tentukan path saat ini dan path baru
-                $currentPath = 'imbs/' . $currentFileName;
-
-                // Pisahkan nama file berdasarkan underscore
-                $parts = explode('_', pathinfo($currentFileName, PATHINFO_FILENAME));
-
-                // Asumsikan format nama file adalah imb_nomor_dp_tahun_timestamp.pdf
-                // Jadi, kita ambil nomor_dp dan tahun dari validateData
-                if (count($parts) >= 4) { // memastikan ada cukup bagian
-                    $newFileName = 'imb_' . $validateData['nomor_dp'] . '_' . $validateData['tahun'] . '_' . $parts[3] . '.' . pathinfo($currentFileName, PATHINFO_EXTENSION);
-
-                    // Cek apakah file dengan nama baru sudah ada
-                    if (!Storage::disk('public')->exists('imbs/' . $newFileName)) {
-                        // Rename file di storage
-                        Storage::disk('public')->move($currentPath, 'imbs/' . $newFileName);
-
-                        // Update nama file di validateData
-                        $validateData['imbs'] = $newFileName;
-                    } else {
-                        // Handle konflik nama file, misalnya dengan menambahkan timestamp atau memberikan error
-                        // Berikut ini contoh menambahkan timestamp
-                        $newFileName = 'imb_' . $validateData['nomor_dp'] . '_' . $validateData['tahun'] . '_' . time() . '.' . pathinfo($currentFileName, PATHINFO_EXTENSION);
-                        Storage::disk('public')->move($currentPath, 'imbs/' . $newFileName);
-                        $validateData['imbs'] = $newFileName;
-                    }
-                } else {
-                    // Jika format nama file tidak sesuai, mungkin tambahkan log atau tangani sesuai kebutuhan
-                    // Misalnya, tetap menggunakan nama file lama
-                    $validateData['imbs'] = $currentFileName;
-                }
-            } else {
-                // Jika tidak ada perubahan pada nomor_dp atau tahun, tetap gunakan nama file lama
-                $validateData['imbs'] = $imb->imbs;
-            }
-        }
-
-        // Update data IMB dengan data yang sudah divalidasi
-        $imb->update($validateData);
-
-        // Redirect dengan pesan <sukse></sukse>s
-        return redirect()->back()->with('success', 'IMB Berhasil dirubah!!');
-    }
-
-
-
-    public function deleteImb($id)
-    {
-        $imb = Imb::where('id', $id)->firstOrFail();
-        // Ambil semua parameter query string saat ini
-        $queryString = request()->query();
-
-        if ($imb->imbs) {
-            // dd($imb->imbs); 
-            Storage::disk('public')->delete('imbs/' . $imb->imbs);
-        }
-
-        $imb->delete();
-
-        return redirect()->route('admin.manajemenImb', $queryString)->with('success', 'Data IMB berhasil dihapus!!');
-        // return redirect()->route('management', $queryString)->with('success', 'Data IMB berhasil dihapus !!');
-    }
-
-
-    public function history() {}
-
-    public function konfirmasiPengembalian($id)
-    {
-        // Cari data berdasarkan ID
-        $history = Histori::findOrFail($id);
-
-        // Perbarui tanggal_pengembalian dengan tanggal saat ini
-        $history->tanggal_pengembalian = Carbon::now()->toDateString();
-        $history->save();
-
-        // Redirect atau kembalikan respons sukses
-        return redirect()->back()->with('success', 'Tanggal pengembalian berhasil diperbarui.');
-    }
-
-    public function pengambilan($id)
-    {
-        // Cari data berdasarkan ID
-        $history = Histori::findOrFail($id);
-
-        $history->tanggal_pengambilan = Carbon::now()->toDateString();
-        $history->save();
-
-        // Redirect atau kembalikan respons sukses
-        return redirect()->back()->with('success', 'Tanggal pengambilan berhasil diperbarui.');
-    }
-
-    public function pembatalan($id)
-    {
-        // Cari data berdasarkan ID
-        $history = Histori::findOrFail($id);
-
-        $history->status = 'batal';
-        $history->save();
-
-        // Redirect atau kembalikan respons sukses
-        return redirect()->back()->with('success', 'Tanggal pengambilan berhasil diperbarui.');
-    }
-
-
-    public function autocomplete(Request $request)
-    {
-        $query = $request->get('query');
-        $jenis = $request->get('jenis_arsip');
-
-        if ($jenis == 'IMB') {
-
-            $results = Imb::where('nomor_dp', 'LIKE', '%' . $query . '%')
-                ->orWhere('tahun', 'LIKE', '%' . $query . '%')
-                ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
-                ->get(['nomor_dp', 'tahun', 'nama_pemilik']);
-        } elseif ($jenis == 'SK') {
-
-            $results = sk::where('nomor_sk', 'LIKE', '%' . $query . '%')
-                ->orWhere('tahun', 'LIKE', '%' . $query . '%')
-                ->get(['nomor_sk', 'tahun']);
-        }
-
-        return response()->json($results);
     }
 }
