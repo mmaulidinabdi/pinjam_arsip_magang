@@ -77,6 +77,11 @@
                 id="file_input" type="file" onchange="previewFile(event)" name="ktp">
         </div>
 
+        @error('ktp')
+            <div class="text-red-600">
+                *{{ $message }}
+            </div>
+        @enderror
         <div class="flex w-full items-center justify-center my-4" id="ktp_display">
             <img id="preview_image" class="max-w-xs rounded-lg" alt="Image preview"
                 src="{{ Auth::user()->ktp ? asset('storage/' . Auth::user()->ktp) : '' }}"
