@@ -35,14 +35,12 @@ class HistoriController extends Controller
                 list($dp, $tahun, $nama) = explode(' - ', $validateData['arsip']);
 
                 $arsip = imb::where('nomor_dp', $dp)->first();
-
                 $validateData['imb_id'] = $arsip->id;
             } elseif ($validateData['jenis_arsip'] == 'SK') {
 
                 list($sk, $tahun) = explode(' - ', $validateData['arsip'], 2);
 
                 $arsip = sk::where('nomor_sk', $sk)->first();
-
                 $validateData['sk_id'] = $arsip->id;
             }
 
@@ -84,6 +82,10 @@ class HistoriController extends Controller
     {
         // Cari data berdasarkan ID
         $history = Histori::findOrFail($id);
+
+        $arsip = $history->imb ?? $history->sk;
+        $arsip->status = 'Dipinjam';
+        $arsip->save();
 
         $history->tanggal_pengambilan = Carbon::now()->toDateString();
         $history->save();
