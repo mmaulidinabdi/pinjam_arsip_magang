@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('keterangan')->nullable();
             $table->year('tahun')->nullable();
             $table->string('imbs')->nullable();
+            $table->enum('status', ['Tersedia', 'Dipinjam'])->default('tersedia');
             $table->timestamps();
         });
     }

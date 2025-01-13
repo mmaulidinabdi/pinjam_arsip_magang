@@ -152,7 +152,7 @@
                     <td>
                         <a href="{{ asset('storage/' . $peminjam->ktp) }}" target="_blank"
                             class="text-blue-600 hover:underline">
-                            Lihat File PDF
+                            Lihat KTP
                         </a>
                     </td>
                     <td>

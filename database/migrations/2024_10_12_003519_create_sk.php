@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('tanggal_penetapan')->nullable();
             $table->text('tentang')->nullable();
             $table->string('sk')->nullable();
+            $table->enum('status', ['Tersedia', 'Dipinjam'])->default('tersedia');
             $table->timestamps();
         });
     }
