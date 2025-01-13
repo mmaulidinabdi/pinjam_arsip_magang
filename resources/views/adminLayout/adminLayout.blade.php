@@ -204,7 +204,7 @@
                             <a href="{{Route('admin.viewTambahSK')}}"
                                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.viewTambahSK') ? 'bg-gray-500' : 'text-white'}}">SK</a>
                         </li>
-                        =
+                        
                     </ul>
 
                 <li>

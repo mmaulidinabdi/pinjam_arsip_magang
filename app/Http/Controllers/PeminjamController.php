@@ -106,21 +106,21 @@ class PeminjamController extends Controller
             ->count();
 
         $histori = Histori::where('peminjam_id', $userId)
-            ->wherenull('tanggal_pengembalian')
-            ->where('status', 'diacc')
-            ->orderByRaw('DATEDIFF(CURDATE(), tanggal_divalidasi) desc') // Urutkan berdasarkan selisih waktu terbesar
-            ->first(); // Ambil data dengan perbedaan terbesar
+            ->whereNotNull('tanggal_pengambilan') // Pastikan tanggal_pengambilan tidak null
+            ->whereNull('tanggal_pengembalian') // Pastikan tanggal_pengembalian null
+            ->where('status', 'diacc') // Status diacc
+            ->orderByRaw('DATEDIFF(CURDATE(), tanggal_pengambilan) desc') // Urutkan berdasarkan selisih waktu terbesar
+            ->first(); // Ambil data dengan selisih terbesar
 
         $hariTersisa = null;
         if ($histori) {
-            $hariTersisa = null;
-            if ($histori) {
-                
-                $tanggalDivalidasi = Carbon::parse($histori->tanggal_pengambilan);
+            // Ambil tanggal_pengambilan dari histori yang ditemukan
+            $tanggalPengambilan = Carbon::parse($histori->tanggal_pengambilan);
 
-                $hariTersisa = floor($tanggalDivalidasi->diffInDays(Carbon::now()->subDays(30)));
-            }
+            // Hitung selisih hari antara tanggal_pengambilan dan sekarang
+            $hariTersisa = floor($tanggalPengambilan->diffInDays(Carbon::now()->subDays(30)));
         }
+
 
         return view('userLayout/userDashboard', [
             'title' => 'SIPEKA | Dashboard ',
