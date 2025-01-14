@@ -23,7 +23,7 @@ class TransaksiPeminjamanController extends Controller
             'jenis_arsip' => 'required',
         ]);
 
-        
+
 
         $validateData['tanggal_peminjaman'] = now()->format('Y-m-d');
         $validateData['status'] = 'diperiksa';
@@ -47,10 +47,12 @@ class TransaksiPeminjamanController extends Controller
             $results = Imb::where('nomor_dp', 'LIKE', '%' . $query . '%')
                 ->orWhere('tahun', 'LIKE', '%' . $query . '%')
                 ->orWhere('nama_pemilik', 'LIKE', '%' . $query . '%')
+                ->where('status', 'Tersedia')
                 ->get(['nomor_dp', 'tahun', 'nama_pemilik']);
         } elseif ($jenis == 'SK') {
 
-            $results = sk::where('nomor_sk', 'LIKE', '%' . $query . '%')
+            $results = sk::where('status', 'Tersedia')
+                ->where('nomor_sk', 'LIKE', '%' . $query . '%')
                 ->orWhere('tahun', 'LIKE', '%' . $query . '%')
                 ->get(['nomor_sk', 'tahun']);
         }

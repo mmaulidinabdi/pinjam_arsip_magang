@@ -43,6 +43,8 @@ class HistoriController extends Controller
                 $arsip = sk::where('nomor_sk', $sk)->first();
                 $validateData['sk_id'] = $arsip->id;
             }
+            $arsip->status = 'Dipinjam';
+            $arsip->save();
 
             $validateData['status'] = 'diacc';
         } elseif ($request->status == 'diperiksa') {
@@ -68,6 +70,10 @@ class HistoriController extends Controller
         // Ambil data histori berdasarkan id
         $historis = Histori::findOrFail($id);
 
+        $arsip = $historis->imb ?? $historis->sk;
+        $arsip->status = 'Tersedia';
+        $arsip->save();
+
         // Update tanggal_pengembalian dengan waktu saat ini
         $historis->tanggal_pengembalian = Carbon::now()->toDateString();
 
@@ -83,10 +89,6 @@ class HistoriController extends Controller
         // Cari data berdasarkan ID
         $history = Histori::findOrFail($id);
 
-        $arsip = $history->imb ?? $history->sk;
-        $arsip->status = 'Dipinjam';
-        $arsip->save();
-
         $history->tanggal_pengambilan = Carbon::now()->toDateString();
         $history->save();
 
@@ -98,6 +100,10 @@ class HistoriController extends Controller
     {
         // Cari data berdasarkan ID
         $history = Histori::findOrFail($id);
+
+        $arsip = $history->imb ?? $history->sk;
+        $arsip->status = 'Tersedia';
+        $arsip->save();
 
         $history->status = 'batal';
         $history->save();
