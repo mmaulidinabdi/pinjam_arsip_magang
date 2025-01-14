@@ -25,6 +25,8 @@ class Kernel extends ConsoleKernel
 
     public function sendReminderEmails(): void
     {
+        Log::info("Scheduler berjalan pada: " . now());
+
         // Ambil semua peminjaman yang masih aktif (belum dikembalikan)
         $histories = \App\Models\Histori::whereNull('tanggal_pengembalian')
             ->where('status', 'diacc') // Pastikan status hanya "diacc"
