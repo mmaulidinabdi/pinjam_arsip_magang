@@ -37,12 +37,12 @@
                     <div class="flex items-center ms-3">
                         <div>
                             <button type="button"
-                                class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-white dark:focus:ring-gray-600"
+                                class="flex text-sm bg-gray-800 dark:focus:ring-gray-600"
                                 aria-expanded="false" data-dropdown-toggle="dropdown-user">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="w-8 h-8 rounded-full"
-                                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                    alt="user photo">
+                                <p class="text-sm text-white dark:text-white" role="none">
+                                    Admin
+                                </p>
                             </button>
                         </div>
                         <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
@@ -204,7 +204,7 @@
                             <a href="{{Route('admin.viewTambahSK')}}"
                                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700 {{Route::is('admin.viewTambahSK') ? 'bg-gray-500' : 'text-white'}}">SK</a>
                         </li>
-                        
+
                     </ul>
 
                 <li>
