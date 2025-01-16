@@ -180,7 +180,7 @@
                             {{ \Carbon\Carbon::parse($historis->tanggal_peminjaman)->translatedFormat('d F Y') }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ number_format(\Carbon\Carbon::parse($historis->tanggal_divalidasi)->diffInDays(\Carbon\Carbon::now()), 0, '.', ',') }}
+                            {{ number_format(\Carbon\Carbon::parse($historis->tanggal_pengambilan)->diffInDays(\Carbon\Carbon::now()), 0, '.', ',') }}
                             hari
                         </td>
                         <td>
