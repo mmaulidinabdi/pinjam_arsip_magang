@@ -158,7 +158,5 @@ Route::get('/tes', function () {
     return view('tes');
 });
 
-// reminder email
-Route::get('/test-reminder-emails', [PeminjamController::class, 'sendReminderEmails']);
 
 // Route::get('/admin/kelola', [AdminController::class, 'kelolapeminjaman'])->middleware('admin')->name('admin.kelola');
