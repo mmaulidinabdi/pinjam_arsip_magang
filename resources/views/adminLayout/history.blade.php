@@ -127,7 +127,7 @@
                 <td>
                     @if($item->tanggal_pengambilan === null && $item->status === 'diacc')
                         <p>belum di ambil</p>
-                        {{ number_format(\Carbon\Carbon::parse($item->tanggal_divalidasi)->diffInDays(\Carbon\Carbon::now()), 0, '.', ',') }}
+                        selama {{ number_format(\Carbon\Carbon::parse($item->tanggal_divalidasi)->diffInDays(\Carbon\Carbon::now()), 0, '.', ',') }}
                         hari 
                     @else
                         {{ $item->status }}
