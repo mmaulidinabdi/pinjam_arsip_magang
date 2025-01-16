@@ -95,10 +95,14 @@
                         File Pendukung
                     </th>
                     <td class="px-6 py-3">
+                        @if($item->dokumen_pendukung)
                         <a href="{{ asset('storage/'. $item->dokumen_pendukung) }}" target="_blank"
                             class="text-blue-600 hover:underline">
                             Lihat File
                         </a>
+                        @else
+                        <p>Tidak Ada File</p>
+                        @endif
                     </td>
                 </tr>
                 <tr
