@@ -2,6 +2,10 @@
 
 @section('peminjamLayout')
 
+@php
+    $selisihHari = \Carbon\Carbon::parse($history->tanggal_pengambilan)->diffInDays(\Carbon\Carbon::now());
+@endphp
+
     <div class=" font-bold">
         <h2 class="text-xl">
             Data Peminjam
@@ -92,6 +96,22 @@
                         </td>
                     </tr>
                 @endif
+                @if($history->tanggal_pengembalian === null)
+                <tr
+                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
+                        Lama peminjaman
+                    </th>
+                    <td class="px-6 py-3">
+                        @if($selisihHari < 30)
+                            {{ number_format($selisihHari, 0, '.', ',') }} hari
+                        @else
+                            <span class="text-red-600 ">Peminjaman lewat {{ number_format($selisihHari - 31, 0, '.', ',') }} hari</span>
+                        @endif
+
+                    </td>
+                </tr>
+            @endif
 
             </tbody>
         </table>
