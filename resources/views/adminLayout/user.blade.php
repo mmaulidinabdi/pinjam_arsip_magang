@@ -54,12 +54,12 @@
     </div>
 
     @error('alasan_ditolak')
-    <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-green-400"
+        <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-green-400"
             role="alert">
             <span class="font-medium">Alasan ditolak tidak boleh kosong</span>
         </div>
     @enderror
-    
+
     @if (session()->has('passBeda'))
         <div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-green-400"
             role="alert">
@@ -150,10 +150,14 @@
                     <td>{{ $peminjam->email }}</td>
                     <td>{{ $peminjam->no_telp }}</td>
                     <td>
-                        <a href="{{ asset('storage/' . $peminjam->ktp) }}" target="_blank"
-                            class="text-blue-600 hover:underline">
-                            Lihat KTP
-                        </a>
+                        @if ($peminjam->ktp)
+                            <a href="{{ asset('storage/' . $peminjam->ktp) }}" target="_blank"
+                                class="text-blue-600 hover:underline">
+                                Lihat KTP
+                            </a>
+                        @else
+                            <p>Tidak ada file</p>
+                        @endif
                     </td>
                     <td>
                         @if ($peminjam->isVerificate == 'diperiksa')
@@ -313,8 +317,6 @@
 
 
     <script>
-
-        
         function validateForm(id) {
             // Ambil elemen password dan confirm password berdasarkan ID
             const password = document.getElementById(`password${id}`).value;
@@ -349,7 +351,7 @@
 
         if (document.getElementById("filter-table") && typeof simpleDatatables.DataTable !== 'undefined') {
             const dataTable = new simpleDatatables.DataTable("#filter-table", {
-                paging:false,
+                paging: false,
                 tableRender: (_data, table, type) => {
                     if (type === "print") {
                         return table;
@@ -424,13 +426,11 @@
             initModals();
             const alert = document.getElementById('alert');
 
-        if (alert) {
-            setTimeout(() => {
-                alert.style.display = 'none'
-            }, 2000);
-        }
-    })
-
-    
-</script>
+            if (alert) {
+                setTimeout(() => {
+                    alert.style.display = 'none'
+                }, 2000);
+            }
+        })
+    </script>
 @endsection

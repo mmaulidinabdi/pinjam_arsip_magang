@@ -42,14 +42,14 @@
                 <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
                 <input type="text" id="alamat" name="alamat"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    value="{{ Auth::user()->alamat }}" placeholder="" required />
+                    value="{{ old('alamat') ?? Auth::user()->alamat}}" placeholder="" required />
             </div>
             <div>
                 <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
                     Telepon/Handphone</label>
                 <input type="text" id="phone" name="no_telp"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    value="{{ Auth::user()->no_telp }}" placeholder="" required />
+                    value="{{ old('no_telp') ?? Auth::user()->no_telp }}" placeholder="" required />
                 @error('no_telp')
                     <div class="text-red-600">
                         *{{ $message }}
@@ -60,7 +60,7 @@
         </div>
         <div class="mb-6">
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-            <input type="email" id="email" name="email"
+            <input type="email" id="email" name="email" disabled
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 value="{{ Auth::user()->email }}" placeholder="john.doe@company.com" required />
         </div>

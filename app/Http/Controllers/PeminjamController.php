@@ -60,8 +60,7 @@ class PeminjamController extends Controller
         $validateData = $request->validate([
             'nama_lengkap' => 'required|max:255',
             'alamat' => 'required',
-            'no_telp' => 'required||max:15|min:10|unique:peminjams,no_telp,' . $peminjam->id,
-            'email' => 'required|email|unique:peminjams,email,' . $peminjam->id,
+            'no_telp' => 'required|numeric|digits_between:10,14|unique:peminjams,no_telp,' . $peminjam->id,
             'ktp' => 'nullable|mimes:jpg,png|max:3072'
         ]);
 
