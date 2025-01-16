@@ -177,16 +177,7 @@ class PeminjamController extends Controller
         ]);
     }
 
-    public function sendReminderEmails()
-    {
-        // Dapatkan instance dari Kernel
-        $kernel = app(\App\Console\Kernel::class);
-
-        // Panggil fungsi sendReminderEmails
-        $kernel->sendReminderEmails();
-
-        return 'Reminder Emails sent!';
-    }
+  
 
     public function verifyEmail($token)
     {
