@@ -49,7 +49,7 @@ class HistoriController extends Controller
             } elseif ($validateData['jenis_arsip'] == 'SK') {
 
                 $arsipParts = explode(' - ', $validateData['arsip']);
-                if (count($arsipParts) === 3) {
+                if (count($arsipParts) === 2) {
                     list($sk, $tahun) = explode(' - ', $validateData['arsip'], 2);
 
                     $arsip = sk::where('nomor_sk', $sk)->first();

@@ -13,6 +13,7 @@
         "iio/libmergepdf": "^3.1",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "mailgun/mailgun-php": "^4.3",
         "setasign/fpdf": "^1.8",
         "setasign/fpdi": "^2.6",
         "symfony/http-client": "^7.1",
