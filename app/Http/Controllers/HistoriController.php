@@ -31,6 +31,7 @@ class HistoriController extends Controller
             ]);
 
             if ($validateData['jenis_arsip'] == 'IMB') {
+                
 
                 list($dp, $tahun, $nama) = explode(' - ', $validateData['arsip']);
 
