@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
         // histori::factory()->count(10)->create();
         // Buat data di tabel `imbs`
 
-    Imb::factory(10)->create();
-    SK::factory(5)->create();
+    // Imb::factory(10)->create();
+    // SK::factory(5)->create();
     // Arsip2::factory(5)->create();
 
     // Lalu lanjutkan dengan `Peminjam`, `TransaksiPeminjaman`, dan `Histori`

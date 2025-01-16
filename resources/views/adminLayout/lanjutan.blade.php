@@ -11,8 +11,14 @@
 </style>
 
 @if (session()->has('success'))
-<div id="alert" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400" role="alert">
+<div id="alert1" class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 " role="alert">
     <span class="font-medium">{{ session('success') }}</span>
+</div>
+@endif
+
+@if (session()->has('error'))
+<div id="alert2" class="p-4 mb-4 text-sm text-white rounded-lg bg-red-500 " role="alert">
+    <span class="font-medium">{{ session('error') }}</span>
 </div>
 @endif
 
@@ -242,11 +248,18 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    const alert = document.getElementById('alert');
+    const alert1 = document.getElementById('alert1');
 
-    if (alert) {
+    if (alert1) {
         setTimeout(() => {
-            alert.style.display = 'none'
+            alert1.style.display = 'none'
+        }, 4000);
+    }
+    const alert2 = document.getElementById('alert2');
+
+    if (alert2) {
+        setTimeout(() => {
+            alert2.style.display = 'none'
         }, 4000);
     }
 
@@ -255,7 +268,7 @@
             let query = $(this).val(); // Ambil nilai input
             let jenisArsip = $('#jenis_arsip').val(); // Jenis arsip dari dropdown (sesuaikan jika berbeda)
 
-            if (query.length > 2) { // Minimal panjang query untuk pencarian
+            if (query.length > 0) { // Minimal panjang query untuk pencarian
                 $.ajax({
                     url: "{{ url('cari') }}",
                     method: 'GET',

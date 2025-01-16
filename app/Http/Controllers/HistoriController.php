@@ -32,16 +32,33 @@ class HistoriController extends Controller
 
             if ($validateData['jenis_arsip'] == 'IMB') {
 
-                list($dp, $tahun, $nama) = explode(' - ', $validateData['arsip']);
 
-                $arsip = imb::where('nomor_dp', $dp)->first();
-                $validateData['imb_id'] = $arsip->id;
+                $arsipParts = explode(' - ', $validateData['arsip']);
+                if (count($arsipParts) === 3) {
+                    list($dp, $tahun, $nama) = $arsipParts;
+
+                    $arsip = imb::where('nomor_dp', $dp)->first();
+                    if (!$arsip) {
+                        return back()->with('error', 'Data tidak ditemukan');
+                    }
+                    $validateData['imb_id'] = $arsip->id;
+                } else {
+                    return back()->with('error', 'Data tidak valid');
+                }
             } elseif ($validateData['jenis_arsip'] == 'SK') {
 
-                list($sk, $tahun) = explode(' - ', $validateData['arsip'], 2);
+                $arsipParts = explode(' - ', $validateData['arsip']);
+                if (count($arsipParts) === 3) {
+                    list($sk, $tahun) = explode(' - ', $validateData['arsip'], 2);
 
-                $arsip = sk::where('nomor_sk', $sk)->first();
-                $validateData['sk_id'] = $arsip->id;
+                    $arsip = sk::where('nomor_sk', $sk)->first();
+                    if (!$arsip) {
+                        return back()->with('error', 'Data tidak ditemukan');
+                    }
+                    $validateData['sk_id'] = $arsip->id;
+                } else {
+                    return back()->with('error', 'Data tidak valid');
+                }
             }
             $arsip->status = 'Dipinjam';
             $arsip->save();
@@ -50,6 +67,7 @@ class HistoriController extends Controller
         } elseif ($request->status == 'diperiksa') {
             return back()->with('success', 'Pastikan Status Peminjaman Sudah Valid!');
         }
+
 
         $validateData['peminjam_id'] = $transaksi->peminjam_id;
         $validateData['nama_arsip'] = $transaksi->nama_arsip;
