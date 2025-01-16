@@ -31,9 +31,6 @@ class HistoriController extends Controller
             ]);
 
             if ($validateData['jenis_arsip'] == 'IMB') {
-                
-
-
                 $arsipParts = explode(' - ', $validateData['arsip']);
                 if (count($arsipParts) === 3) {
                     list($dp, $tahun, $nama) = $arsipParts;
