@@ -30,7 +30,7 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [PeminjamController::class, 'create'])->name('register.process')->middleware('guest');;
 
 //Route untuk Logout
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:admin,web');
 
 // route verifikasi email
 Route::get('/verify-email/{token}', [PeminjamController::class, 'verifyEmail'])->name('verify.email')->middleware('guest');
