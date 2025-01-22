@@ -9,10 +9,10 @@
 </head>
 
 <body class="bg-gray-100 flex flex-col justify-center items-center min-h-screen">
+    @if (session()->has('success'))
     <div id="alert" class="p-4 mb-4 w-full max-w-md text-center text-sm text-white rounded-lg bg-green-500" role="alert">
         <span class="font-medium">{{ session('success') }}</span>
     </div>
-    @if (session()->has('success'))
 
     @endif
 

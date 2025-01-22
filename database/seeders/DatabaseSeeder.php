@@ -51,10 +51,10 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345'),
         ]);
 
-        // Peminjam::create([
-        //     'nama_lengkap' => 'Dio Brando',
-        //     'email'=>'dio@gmail.com',
-        //     'password'=> Hash::make('12345'),
-        // ]);
+        Peminjam::create([
+            'nama_lengkap' => 'Dio Brando',
+            'email'=>'dio@gmail.com',
+            'password'=> Hash::make('12345'),
+        ]);
     }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->text('alamat')->nullable();
             $table->string('no_telp')->unique()->nullable();
+            $table->string('nik',16)->unique()->nullable();
             $table->string('ktp')->nullable();
             $table->boolean('is_account_verified')->default(true);
             $table->string('verification_token')->nullable();

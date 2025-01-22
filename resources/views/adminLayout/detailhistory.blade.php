@@ -23,6 +23,13 @@
                 </th>
                 <td class="px-6 py-3">{{ $item->peminjam->nama_lengkap }}</td>
             </tr>
+            <tr
+                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
+                    NIK
+                </th>
+                <td class="px-6 py-3">{{ $item->peminjam->nik }}</td>
+            </tr>
             @if ($item->status === 'diacc')
                 <tr
                     class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">

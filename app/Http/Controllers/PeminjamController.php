@@ -61,6 +61,7 @@ class PeminjamController extends Controller
             'nama_lengkap' => 'required|max:255',
             'alamat' => 'required',
             'no_telp' => 'required|numeric|digits_between:10,14|unique:peminjams,no_telp,' . $peminjam->id,
+            'nik' => 'required|size:16|unique:peminjams,nik,' . $peminjam->id,
             'ktp' => 'nullable|mimes:jpg,png|max:3072'
         ]);
 

@@ -5,8 +5,10 @@
 
 <style>
     th {
-        width: 400px; /* Ganti dengan ukuran yang diinginkan */
-        white-space: nowrap; /* Agar teks tidak membungkus */
+        width: 400px;
+        /* Ganti dengan ukuran yang diinginkan */
+        white-space: nowrap;
+        /* Agar teks tidak membungkus */
     }
 </style>
 
@@ -84,6 +86,12 @@
                 </th>
                 <td class="px-6 py-3">{{ $item->peminjam->nama_lengkap }}</td>
             </tr>
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
+                    NIK
+                </th>
+                <td class="px-6 py-3">{{$item->peminjam->nik}}</td>
+            </tr>
             <tr
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white">
@@ -133,14 +141,14 @@
                     File KTP
                 </th>
                 <td class="px-6 py-3">
-                @if($item->peminjam->ktp !== null)    
-                <a href="{{ asset( 'storage/' . $item->peminjam->ktp) }}" target="_blank"
+                    @if($item->peminjam->ktp !== null)
+                    <a href="{{ asset( 'storage/' . $item->peminjam->ktp) }}" target="_blank"
                         class="text-blue-600 hover:underline">
                         Lihat File PDF
                     </a>
-                @else
-                <p>Tidak ada file</p>
-                @endif
+                    @else
+                    <p>Tidak ada file</p>
+                    @endif
                 </td>
             </tr>
             <tr

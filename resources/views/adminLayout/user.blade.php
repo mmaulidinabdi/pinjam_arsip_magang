@@ -136,6 +136,7 @@
                 <th>Alamat</th>
                 <th>Email</th>
                 <th>No telp</th>
+                <th>NIK</th>
                 <th>KTP</th>
                 <th>Status</th>
                 <th></th>
@@ -149,6 +150,7 @@
                     <td>{{ $peminjam->alamat }}</td>
                     <td>{{ $peminjam->email }}</td>
                     <td>{{ $peminjam->no_telp }}</td>
+                    <td>{{ $peminjam->nik }}</td>
                     <td>
                         @if ($peminjam->ktp)
                             <a href="{{ asset('storage/' . $peminjam->ktp) }}" target="_blank"
